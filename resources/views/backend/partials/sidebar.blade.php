@@ -9,11 +9,16 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class="active">
-                        <a href="index-1.htm">
-                            <span class="pcoded-mtext">Default</span>
+                        <a href="{{ url('/admin/dashboard', []) }}">
+                            <span class="pcoded-mtext">Home</span>
                         </a>
                     </li>
-                    <li class="">
+                    <li class="active">
+                        <a href="{{ url('/admin/datatable') }}">
+                            <span class="pcoded-mtext">data table</span>
+                        </a>
+                    </li>
+                    {{-- <li class="">
                         <a href="dashboard-crm.htm">
                             <span class="pcoded-mtext">CRM</span>
                         </a>
@@ -23,10 +28,10 @@
                             <span class="pcoded-mtext">Analytics</span>
                             <span class="pcoded-badge label label-info ">NEW</span>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
-            <li class="pcoded-hasmenu">
+            {{-- <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                     <span class="pcoded-mtext">Page layouts</span>
@@ -135,9 +140,10 @@
                     </li>
 
                 </ul>
-            </li>
+            </li> --}}
         </ul>
-        <div class="pcoded-navigatio-lavel">UI Element</div>
+        {{-- <div class="pcoded-navigatio-lavel">UI Element</div>
+
         <ul class="pcoded-item pcoded-left-item">
             <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">
@@ -398,6 +404,7 @@
             </li>
         </ul>
         <div class="pcoded-navigatio-lavel">Forms</div>
+
         <ul class="pcoded-item pcoded-left-item">
             <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">
@@ -1375,6 +1382,6 @@
                     <span class="pcoded-mtext">Submit Issue</span>
                 </a>
             </li>
-        </ul>
+        </ul> --}}
     </div>
 </nav>

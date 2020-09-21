@@ -29,3 +29,7 @@ Route::get('/admin', function () {
 Route::get('/admin/dashboard', function () {
     return view('backend.pages.dashboard.index');
 });
+
+Route::get('/admin/datatable', function () {
+    return view('backend.pages.datatable');
+});
