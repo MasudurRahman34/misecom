@@ -1,0 +1,10 @@
+@extends('backend.layouts.app')
+<!--start section -->
+@section('admin-content')
+
+@endsection   
+<!--end section--> 
+
+@section('script')
+   
+@endsection
