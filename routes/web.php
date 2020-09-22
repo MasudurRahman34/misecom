@@ -33,3 +33,6 @@ Route::get('/admin/dashboard', function () {
 Route::get('/admin/datatable', function () {
     return view('backend.pages.datatable');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
