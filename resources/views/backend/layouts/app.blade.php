@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="#">
     <title>@yield('title', 'Admin')</title>
@@ -24,9 +25,14 @@
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('backend/files/bower_components/bootstrap/css/bootstrap.min.css') }}">
     <!-- feather Awesome -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/files/assets/icon/feather/css/feather.css') }}">
+    
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/files/assets/css/style.css') }}"> --}}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/files/assets/icon/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/files/assets/icon/feather/css/feather.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/files/assets/css/jquery.mCustomScrollbar.css') }}">
+
     <link rel="stylesheet" type="text/css" href="{{ mix('css/all.css') }}">
 </head>
 
@@ -108,6 +114,8 @@
     <!-- Warning Section Ends -->
     <!-- Required Jquery -->
     <script data-cfasync="false" src="{{ mix('js/all.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('backend/files/bower_components/modernizr/js/css-scrollbars.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('backend/files/assets/pages/form-validation/form-validation.js') }}"></script>
     {{-- <script type="text/javascript" src="{{ asset('backend/files/bower_components/jquery/js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/files/bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/files/bower_components/popper.js/js/popper.min.js') }}"></script>
@@ -141,6 +149,7 @@
 
   gtag('config', 'UA-23581568-13');
 </script> --}}
+@yield('script')
 </body>
 
 </html>

@@ -17,6 +17,7 @@ mix.styles([
     'public/backend/files/assets/icon/themify-icons/themify-icons.css',
     'public/backend/files/assets/icon/icofont/css/icofont.css',
 
+    //datatable
     'public/backend/files/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css',
     'public/backend/files/assets/pages/data-table/css/buttons.dataTables.min.css',
     'public/backend/files/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css',
@@ -42,6 +43,7 @@ mix.scripts([
 
     'public/backend/files/bower_components/modernizr/js/css-scrollbars.js',
 
+    //datatable
     'public/backend/files/bower_components/datatables.net/js/jquery.dataTables.min.js',
     'public/backend/files/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js',
     'public/backend/files/assets/pages/data-table/js/jszip.min.js',
@@ -70,9 +72,6 @@ mix.scripts([
     //'public/backend/files/assets/js/script.js',
 
 
-
-
-
     'public/backend/files/bower_components/chart.js/js/Chart.js',
     'public/backend/files/assets/pages/widget/amchart/amcharts.js',
     'public/backend/files/assets/pages/widget/amchart/serial.js',
@@ -82,7 +81,9 @@ mix.scripts([
     'public/backend/files/assets/js/pcoded.min.js',
     'public/backend/files/assets/js/vartical-layout.min.js',
     'public/backend/files/assets/pages/dashboard/custom-dashboard.js',
-    'public/backend/files/assets/js/script.min.js'
+    'public/backend/files/assets/js/script.min.js',
+    'public/backend/files/assets/js/hepler.js'
+
 ], 'public/js/all.js')
     .version();
 

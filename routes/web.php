@@ -21,7 +21,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::get('/admin', function () {
     return view('backend.layouts.app');
 });
@@ -33,6 +32,16 @@ Route::get('/admin/dashboard', function () {
 Route::get('/admin/datatable', function () {
     return view('backend.pages.datatable');
 });
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//category
+
+
+    Route::get('admin/categories','backend\CategoryController@index')->name('categories.index');
+    Route::post('admin/categories/store','backend\CategoryController@store')->name('categories.store');
+    Route::get('admin/categories/show','backend\CategoryController@show')->name('categories.show');
+    Route::get('admin/categories/edit/{id}','backend\CategoryController@edit')->name('categories.edt');
+    Route::post('admin/categories/update/{id}','backend\CategoryController@update')->name('categories.update');
+    Route::get('admin/categories/delete/{id}','backend\CategoryController@destroy')->name('categories.delete');
+
+//user list
+Route::get('admin/users', ['uses'=>'backend\UserController@index', 'as'=>'users.index']);
