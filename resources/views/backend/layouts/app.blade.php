@@ -31,6 +31,8 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/files/assets/icon/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/files/assets/icon/feather/css/feather.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/files/bower_components/select2/css/select2.min.css') }}">
+
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/files/assets/css/jquery.mCustomScrollbar.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ mix('css/all.css') }}">
@@ -53,6 +55,7 @@
                     <div class="pcoded-content">
                         <div class="pcoded-inner-content">
                             <div class="main-body">
+                                @include('backend.partials.massage')
 
 
                                 @yield('admin-content')

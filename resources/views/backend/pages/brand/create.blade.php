@@ -63,7 +63,7 @@
                 <!-- Basic Inputs Validation start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="" id="title">Add Brand</h3>
+                        <h5 class="" id="title">Add Brand</h5>
                         {{-- <h5>Basic Inputs Validation</h5>
                         <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
 
@@ -186,6 +186,7 @@
                                     $('<div>'+errorMessage[err]+'</div>').insertAfter('#'+err).addClass('text-danger').attr('id','error');
                                     console.log(err);
                                 }
+                                getError(result.errors);
                             }
                         }
                     }

@@ -60,6 +60,20 @@
                    
                 </ul>
             </li>
+            <li class="pcoded-hasmenu active pcoded-trigger">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                    <span class="pcoded-mtext">product</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="active">
+                        <a href="{{ route('products.index', []) }}">
+                            <span class="pcoded-mtext">Manage product</span>
+                        </a>
+                    </li>
+                   
+                </ul>
+            </li>
 
             {{-- <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">

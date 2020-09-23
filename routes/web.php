@@ -31,7 +31,10 @@ Route::get('/admin/datatable', function () {
     return view('backend.pages.datatable');
 });
 
-//category
+//user list
+Route::get('admin/users', ['uses'=>'backend\UserController@index', 'as'=>'users.index']);
+
+//brand
 
 
     Route::get('admin/brands','backend\BrandController@index')->name('brands.index');
@@ -52,5 +55,17 @@ Route::get('/admin/datatable', function () {
     Route::post('admin/categories/update/{id}','backend\CategoryController@update')->name('categories.update');
     Route::get('admin/categories/delete/{id}','backend\CategoryController@destroy')->name('categories.delete');
 
-//user list
-Route::get('admin/users', ['uses'=>'backend\UserController@index', 'as'=>'users.index']);
+
+//product
+
+
+Route::get('admin/products','backend\ProductController@index')->name('products.index');
+Route::post('admin/products/store','backend\ProductController@store')->name('products.store');
+Route::get('admin/products/show','backend\ProductController@show')->name('products.show');
+Route::get('admin/products/edit/{id}','backend\ProductController@edit')->name('products.edt');
+Route::post('admin/products/update/{id}','backend\ProductController@update')->name('products.update');
+Route::get('admin/products/delete/{id}','backend\ProductController@destroy')->name('products.delete');
+
+
+
+
