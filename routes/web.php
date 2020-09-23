@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('welcome'); });
 
 Auth::routes();
 
@@ -32,6 +30,17 @@ Route::get('/admin/dashboard', function () {
 Route::get('/admin/datatable', function () {
     return view('backend.pages.datatable');
 });
+
+//category
+
+
+    Route::get('admin/brands','backend\BrandController@index')->name('brands.index');
+    Route::post('admin/brands/store','backend\BrandController@store')->name('brands.store');
+    Route::get('admin/brands/show','backend\BrandController@show')->name('brands.show');
+    Route::get('admin/brands/edit/{id}','backend\BrandController@edit')->name('brands.edt');
+    Route::post('admin/brands/update/{id}','backend\BrandController@update')->name('brands.update');
+    Route::get('admin/brands/delete/{id}','backend\BrandController@destroy')->name('brands.delete');
+
 
 //category
 

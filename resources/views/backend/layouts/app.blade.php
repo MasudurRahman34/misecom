@@ -114,6 +114,11 @@
     <!-- Warning Section Ends -->
     <!-- Required Jquery -->
     <script data-cfasync="false" src="{{ mix('js/all.js') }}"></script>
+      <!-- Validation js -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+      <script type="text/javascript" src="{{ asset('backend/files/assets/pages/form-validation/validate.js') }}"></script>
+
     <script type="text/javascript" src="{{ asset('backend/files/bower_components/modernizr/js/css-scrollbars.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/files/assets/pages/form-validation/form-validation.js') }}"></script>
     {{-- <script type="text/javascript" src="{{ asset('backend/files/bower_components/jquery/js/jquery.min.js') }}"></script>

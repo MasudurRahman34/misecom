@@ -1,5 +1,5 @@
 @extends('backend.layouts.app')
-@section('title', 'Category Management')
+@section('title', 'Brands Management')
 @section('admin-content')
 <div class="page-wrapper">
     <!-- Page-header start -->
@@ -8,8 +8,8 @@
             <div class="col-lg-8">
                 <div class="page-header-title">
                     <div class="d-inline">
-                        <h4> Category</h4>
-                        <span>manage Category</span>
+                        <h4> Brands</h4>
+                        <span>manage Brands</span>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                         </li>
                         <li class="breadcrumb-item"><a href="#!">Dashboard</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#!">Category</a>
+                        <li class="breadcrumb-item"><a href="#!">Brands</a>
                         </li>
                     </ul>
                 </div>
@@ -39,7 +39,7 @@
 
                 <div class="card">
                     <div class="card-header table-card-header">
-                        <h5>HTML5 Export Buttons</h5>
+                        <h5>Export Brands As you Need</h5>
                     </div>
                     <div class="card-block">
                         <div class="dt-responsive table-responsive">
@@ -63,7 +63,7 @@
                 <!-- Basic Inputs Validation start -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="" id="title">Add Category</h3>
+                        <h3 class="" id="title">Add Brand</h3>
                         {{-- <h5>Basic Inputs Validation</h5>
                         <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
 
@@ -71,22 +71,10 @@
                     <div class="card-block">
                         <form id="myform" method="post" action="javascript:void(0)" novalidate="">
                             <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Category Name</label>
+                                <label class="col-sm-5 col-form-label">Brand Name</label>
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Text Input Validation" required>
+                                    <input type="text" class="form-control" name="brand_name" id="brand_name" placeholder="Text Input Validation" required>
                                     <span class="messages"></span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Parent Category(optional)</label>
-                                <div class="col-sm-5">
-                                    <span class="messages"></span>
-                                    <select class="form-control "  id="category_id" name="category_id">
-                                        ,<option value="">Primary Catagory</option>
-                                        @foreach ($categories as $categorie)
-                                        <option value="{{$categorie->id}}">{{$categorie->name}}</option>
-                                        @endforeach
-                                        </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -98,38 +86,6 @@
                         </form>
                     </div>
                 </div>
-                <!-- Basic Inputs Validation end -->
-
-                {{-- <form id="myform" action="javascript:void(0)">
-                <div class="tile">
-                    <h3 class="tile-title border-bottom p-2" id="title">Add Category</h3>
-
-                    <div class="tile-body">
-                    <div class="form-group row">
-                    <label for="exampleSelect1" class="control-label col-md-3 pl-4">Select Class</label>
-                    <select class="form-control col-md-7"  id="classId" name="classId">
-                    @foreach ($class as $class)
-                    <option value="{{$class->id}}">{{$class->className}}</option>
-                    @endforeach
-                    </select>
-                    </div>
-                            <div class="form-group row">
-                                <label class="control-label col-md-3 pl-4"> Name</label>
-                                <div class="col-md-9">
-                                    <input class="form-control col-md-6" type="text" id="name" value="" name="name" required>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="tile-footer">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <button class="btn btn-primary edit_studClass"  style="float: right;" id="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </form> --}}
-                <!--End section-->
             </div>
         </div>
     </div>
@@ -141,8 +97,8 @@
     <script>
         function required()
             {
-                var name = $('#name').val();
-                if (name === "")
+                var brand_name = $('#brand_name').val();
+                if (brand_name === "")
                 {
                 alert("Please input a Value");
                 return false;
@@ -177,10 +133,10 @@
                 } ],
                 processing:true,
                 serverSide:true,
-                ajax:"{{url('admin/categories/show')}}",
+                ajax:"{{url('admin/brands/show')}}",
                 columns:[
                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                    { data: 'name', name: 'name' },
+                    { data: 'brand_name', name: 'brand_name' },
                     { data: 'created_at', name: 'created_at' },
                     { data: 'action', name: 'action' }
                 ]
@@ -204,17 +160,17 @@
                         }
                 });
                 if (id>0) {
-                    var url="{{url('admin/categories/update')}}"+"/"+id;
+                    var url="{{url('admin/brands/update')}}"+"/"+id;
                 }else{
-                var url="{{url('admin/categories/store')}}"
+                var url="{{url('admin/brands/store')}}"
                 }
                 $.ajax({
 
                     type: "post",
                     url: url,
                     data: {
-                        name: $('#name').val(),
-                        category_id: $('#category_id').val(),
+                        brand_name: $('#brand_name').val(),
+                       
                     },
                     success: function (result) {
                         if (result.success) {
@@ -237,23 +193,22 @@
                 });
             });
             //edit view
-            function editCategory(id)
+            function editBrand (id)
             {
-                setUpdateProperty(id, "Category");
-                var url="{{url('/admin/categories/edit')}}";
+                setUpdateProperty(id, "Brand");
+                var url="{{url('/admin/brands/edit')}}";
                 $.ajax({
                     type:'GET',
                     url:url+"/"+id,
                     success:function(data) {
-                        $('#name').val(data.name);
-                        $('#category_id').val(data.name);
+                        $('#brand_name').val(data.brand_name);
                         console.log(data);
                         }
                      });
              }
             //delete
-            function deleteCategory(id) {
-                var url = "{{url('/admin/categories/delete')}}";
+            function deleteBrand (id) {
+                var url = "{{url('/admin/brands/delete')}}";
                 $.ajax({
                    url:url+"/"+id,
                    type:"GET",

@@ -31,6 +31,20 @@
                     </li> --}}
                 </ul>
             </li>
+            <li class="pcoded-hasmenu active pcoded-trigger">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                    <span class="pcoded-mtext">Brand</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="{{ route('brands.index', []) }}">
+                            <span class="pcoded-mtext">Manage Brand</span>
+                        </a>
+                    </li>
+                   
+                </ul>
+            </li>
 
             <li class="pcoded-hasmenu active pcoded-trigger">
                 <a href="javascript:void(0)">
@@ -43,24 +57,10 @@
                             <span class="pcoded-mtext">Manage category</span>
                         </a>
                     </li>
-                    {{-- <li class="active">
-                        <a href="">
-                            <span class="pcoded-mtext">create category</span>
-                        </a>
-                    </li> --}}
-                    {{-- <li class="">
-                        <a href="dashboard-crm.htm">
-                            <span class="pcoded-mtext">CRM</span>
-                        </a>
-                    </li>
-                    <li class=" ">
-                        <a href="dashboard-analytics.htm">
-                            <span class="pcoded-mtext">Analytics</span>
-                            <span class="pcoded-badge label label-info ">NEW</span>
-                        </a>
-                    </li> --}}
+                   
                 </ul>
             </li>
+
             {{-- <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
