@@ -213,7 +213,7 @@
                 });
             });
             //edit view
-            function editCategory(id)
+            function btnEdit(id)
             {
                 setUpdateProperty(id, "catagory","catagory","submit");
                 var url="{{url('/admin/categories/edit')}}";
@@ -228,7 +228,7 @@
                      });
              }
             //delete
-            function deleteCategory(id) {
+            function btnDelete (id) {
                 var url = "{{url('/admin/categories/delete')}}";
                 $.ajax({
                    url:url+"/"+id,
