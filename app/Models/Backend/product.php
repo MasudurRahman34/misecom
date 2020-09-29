@@ -3,30 +3,19 @@
 namespace App\Models\Backend;
 
 use Illuminate\Database\Eloquent\Model;
+use DateTimeInterface;
 
 class Product extends Model
 {
     //
-
-    public static $rules =[
-
-      'product_title'=>'required','string',
-      // 'description'=>'required',
-      // 'stockAmount'=>'required',
-      // 'Price'=>'required',
-      // 'offerPrice'=>'required',
-      
-      // 'image'  => 'nullable|image',
-
-      'product_title.required'  => 'Please provide a brand name',
-      // 'description.required'  => 'Please provide a description',
-      // 'Price.required'  => 'Please provide a description',
-      // 'offerPrice.required'  => 'Please provide a description',
-      // 'image.image'  => 'Please provide a valid image with .jpg, .png, .gif, .jpeg exrension..',
-    
-
+    protected $dates=[
+      'creadted_at',
+      'updated_at',
+      'deleted_at'
   ];
-
+  public function serializeDate(DateTimeInterface $date){
+    return $date->format('Y-m-d H:i:s');
+}
     public function categories() {
         return $this->belongsTo(Category::class, 'category_id');
     }

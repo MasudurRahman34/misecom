@@ -1,13 +1,30 @@
 var baseurl=window.location.hostname;
-function setUpdateProperty(id,  propertyName){
+function setUpdateProperty(id, propertyName,modalName, btnSubmit){
+    $('#'+modalName).modal('show');
+    $('[data-dismiss]').attr('data-property',propertyName);
     $("#submit").html("<i class='fa fa-save'></i> Update "+propertyName+"");
-    $("#title").html("<i class='fa fa-save'></i> Update "+propertyName+"");
-    $("#submit").val(id);
+    $("#modalLabel").html("Update "+propertyName+"");
+    $("#"+btnSubmit).val(id);
 }
+
 function removeUpdateProperty(propertyName){
-    $("#submit").html('<i class="fa fa-save"></i> Submit');
-    $("#title").html("<i class='fa fa-save'></i> Add "+propertyName+"");
+    document.getElementById("myform").reset();
+    $("#submit").html('Submit');
+    $("#modalLabel").html("<i class='fa fa-save'></i> New "+propertyName+" Information");
     $("#submit").val(0);
+}
+function dataDismiss(){
+    $('[data-dismiss]').click(function(e){
+        e.preventDefault();
+        propertyName=$(this).attr('data-property');
+        console.log(propertyName);
+        if(propertyName==null){
+            console.log(propertyName);
+        }else{
+            removeUpdateProperty(propertyName);
+        }
+        
+    });
 }
 function getError(errorMessage){
     $( "div" ).remove( ".text-danger" );
@@ -19,11 +36,11 @@ function getError(errorMessage){
 
 function successNotification() {
     $.notify({
-            title: "Update Complete : ",
-            message: "Something cool is just updated!",
+            title: "Data Saved : ",
+            message: "update completed",
             icon: 'fa fa-exclamation-triangle'
         }, {
-            type: "success",
+            type: "info",
             delay: 100,
             timer: 600,
 

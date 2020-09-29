@@ -12,12 +12,15 @@ use DataTables;
 use App\Models\Backend\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Traits\ApiResponse;
+use DB;
 // end-added
 
 
 
 class CategoryController extends Controller
 {
+    use ApiResponse;
     /**
      * Display a listing of the resource.
      *
@@ -60,15 +63,22 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(), Category::$rules);
         
         if($validator->fails()) {
-            return response()->json(["errors"=>$validator->errors(),400]);
+            return $this->error($validator->errors(),200);
         }else{
-            
+            DB::beginTransaction();
+            try {
             $category= new Category();
             $category->name = $request->name;
             $category->category_id = $request->category_id;
             $category->save();
-            return response()->json(["success"=>"Data saved", "data"=>$category, 201]);
+            DB::commit();
+            return $this->success($category);
+        }catch (\Exception $e) {
+            DB::rollBack();
+            return $this->error($e->getMessage(),200);
         }
+        
+     }
     }
 
     /**
@@ -81,14 +91,19 @@ class CategoryController extends Controller
     {
         //
 
-        $data= Category::latest()->get();
-            return $data_table_render = DataTables::of($data)
+        $catagories= Category::with('childrenCategories')->get();
+            return $data_table_render = DataTables::of($catagories)
                 ->addIndexColumn()
+                ->addColumn('parent_catagories',function($catagories){
+                    return view('backend.pages.category.child_category',compact('catagories'));
+                })
                 ->addColumn('action',function ($row){
-                    $btn = '<button class="btn btn-info btn-sm" onClick="editCategory('.$row['id'].')"><i class="fa fa-edit"></i></button>'.
-                            '<button  onClick="deleteCategory('.$row['id'].')" class="btn btn-danger btn-sm delete_section"><i class="fa fa-trash-o"></i></button>';
-                    return $btn;
+                    return view('backend.pages.category.action',compact('row'));
+                    // $btn = '<button class="btn btn-info btn-sm" onClick="editCategory('.$row['id'].')"><i class="fa fa-edit"></i></button>'.
+                    //         '<button  onClick="deleteCategory('.$row['id'].')" class="btn btn-danger btn-sm delete_section"><i class="fa fa-trash-o"></i></button>';
+                    // return $btn;
             })
+           
             ->rawColumns(['action'])
             ->make(true);
 
