@@ -13,16 +13,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('welcome'); });
+//frontend
+Route::get('/', function () {
+    return view('frontend.layouts.master');
+});
+Route::get('/shop', function () {
+    return view('frontend.pages.myapp.index');
+});
+Route::get('/shop/cart', function () {
+    return view('frontend.pages.cart.index');
+});
+Route::get('/shop/checkout', function () {
+    return view('frontend.pages.checkout.index');
+});
+Route::get('/shop/contact', function () {
+    return view('frontend.pages.contact.index');
+});
+Route::get('/shop/about-us', function () {
+    return view('frontend.pages.about-us.about-us');
+});
+Route::get('/shop/all-product', function () {
+    return view('frontend.pages.product.all-category-product');
+});
+
+//end-frontend
+//Route::get('/', function () { return view('welcome'); });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/admin', function () {
     return view('backend.layouts.app');
 });
-
 Route::get('/admin/dashboard', function () {
     return view('backend.pages.dashboard.index');
 });
@@ -30,9 +51,8 @@ Route::get('/admin/dashboard', function () {
 Route::get('/admin/datatable', function () {
     return view('backend.pages.datatable');
 });
-
 //user list
-Route::get('admin/users', ['uses'=>'backend\UserController@index', 'as'=>'users.index']);
+    Route::get('admin/users', ['uses'=>'backend\UserController@index', 'as'=>'users.index']);
 
 //brand
 
