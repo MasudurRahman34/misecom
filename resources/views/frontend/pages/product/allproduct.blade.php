@@ -22,13 +22,17 @@
             
         <!-- tab-bestseller-->
 
-       @include('frontend.partials.second-banner')
+       {{-- @include('frontend.partials.second-banner') --}}
+
+
 
 
         {{-- Featured --}}
         @include('frontend.pages.product.partials.featured-product')
+        @include('frontend.pages.product.partials.man-products')
+        @include('frontend.pages.product.partials.woman-products')
 
-        @include('frontend.partials.blog')
+        {{-- @include('frontend.partials.blog') --}}
     </div>
     @include('frontend.partials.brandimage')
 </div>

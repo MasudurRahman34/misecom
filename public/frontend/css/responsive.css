@@ -99,7 +99,12 @@
 	}
 	.main-navigation li a{font-weight: normal;}
 	.main-navigation li > a{text-transform: capitalize;}
-	#logo{margin: 0 0 15px;}
+	#logo {
+		margin: 0;
+		max-width: 55%;
+		max-height: 12%;
+		overflow: hidden;
+	}
 	ul.main-navigation{
 		padding:10px;
 		text-align:left;

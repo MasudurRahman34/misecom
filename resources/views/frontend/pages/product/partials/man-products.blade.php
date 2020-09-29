@@ -1,7 +1,8 @@
-<h3 class="productblock-title">Featured</h3>
+<h3 class="productblock-title">Man</h3>
                 <div class="box">
 
                     <div id="feature-slider" class="row owl-carousel product-slider">
+
                           {{-- banner one --}}
                           <div class="item product-slider-item">
                             <div class="product-thumb transition">
@@ -13,7 +14,7 @@
                                     </div>
                                 </div>
                                 <div class="caption product-detail">
-                                   <center> <h3 class="product-name"><a href="product.html" title="iPhone"> <b>Feature section</b> </a></h3></center> 
+                                   <center> <h3 class="product-name"><a href="product.html" title="iPhone"> <b> Man Section</b> </a></h3></center> 
                                    
                                 </div>
                                 <div class="button-group">

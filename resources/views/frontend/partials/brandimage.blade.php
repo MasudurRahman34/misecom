@@ -1,3 +1,4 @@
+<h3 class="productblock-title">Brand We Provied</h3>
 <div id="brand_carouse" class="owl-carousel brand-logo">
     <div class="item text-center"> <a href="#"><img src="{{ asset('frontend/image/brand/brand1.png') }}" alt="Disney" class="img-responsive" /></a> </div>
     <div class="item text-center"> <a href="#"><img src="{{ asset('frontend/image/brand/brand2.png') }}" alt="Dell" class="img-responsive" /></a> </div>

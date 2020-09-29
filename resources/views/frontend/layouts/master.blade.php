@@ -18,7 +18,7 @@
 <div class="preloader loader" style="display: block;"> <img src="{{ asset('frontend/image/loader.gif') }}"  alt="#"/></div>
 <header>
     @include('frontend.partials.header')
-    @include('frontend.partials.cart')     
+    {{-- @include('frontend.partials.cart')      --}}
 </header>
 @include('frontend.partials.navbar')     
 
