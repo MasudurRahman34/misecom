@@ -36,6 +36,10 @@ Route::get('/shop/all-product', function () {
     return view('frontend.pages.product.all-category-product');
 });
 
+Route::get('/shop/single-product', function () {
+    return view('frontend.pages.product.show');
+});
+
 //end-frontend
 //Route::get('/', function () { return view('welcome'); });
 

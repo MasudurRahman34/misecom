@@ -5,7 +5,7 @@
                 <div class="col-sm-4 col-xs-6 header-left">
                     <div class="header-middle-top">
                         
-                        <div id="logo"> <a href="index.html"><img src="{{ asset('frontend/image/logo-mib.png') }}" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
+                        <div id="logo"> <a href="index.html"><img src="{{ asset('frontend/image/logo.png') }}" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
                     </div>
                     
                 </div>

@@ -5,7 +5,7 @@
                          {{-- banner one --}}
                         <div class="item product-slider-item">
                             <div class="product-thumb transition">
-                                <div class="image product-imageblock"> <a href="product.html"> <img src="{{ asset('frontend/image/product/product4.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
+                                <div class="image product-imageblock"> <a href="product.html"> <img src="{{ asset('frontend/image/product/product.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
                                     <div class="button-group">
                                         {{-- <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button> --}}
                                         <button type="button" class="addtocart-btn" >view All Product</button>
@@ -28,7 +28,7 @@
                         {{-- products-list --}}
                         <div class="item product-slider-item">
                             <div class="product-thumb transition">
-                                <div class="image product-imageblock"> <a href="product.html"> <img src="{{ asset('frontend/image/product/product5.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
+                                <div class="image product-imageblock"> <a href="product.html"> <img src="{{ asset('frontend/image/product/product.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
                                     <div class="button-group">
                                         <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
                                         <button type="button" class="addtocart-btn" >Add to Cart</button>
@@ -50,7 +50,7 @@
 
                         <div class="item product-slider-item">
                             <div class="product-thumb transition">
-                                <div class="image product-imageblock"> <a href="product.html"> <img src="{{ asset('frontend/image/product/product6.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
+                                <div class="image product-imageblock"> <a href="product.html"> <img src="{{ asset('frontend/image/product/product.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
                                     <div class="button-group">
                                         <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
                                         <button type="button" class="addtocart-btn" >Add to Cart</button>
@@ -71,7 +71,7 @@
 
                         <div class="item product-slider-item">
                             <div class="product-thumb transition">
-                                <div class="image product-imageblock"> <a href="#"> <img src="{{ asset('frontend/image/product/product7.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
+                                <div class="image product-imageblock"> <a href="#"> <img src="{{ asset('frontend/image/product/product.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
                                     <div class="button-group">
                                         <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
                                         <button type="button" class="addtocart-btn" >Add to Cart</button>
@@ -92,7 +92,7 @@
 
                         <div class="item product-slider-item">
                             <div class="product-thumb transition">
-                                <div class="image product-imageblock"> <a href="#"> <img src="{{ asset('frontend/image/product/product8.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
+                                <div class="image product-imageblock"> <a href="#"> <img src="{{ asset('frontend/image/product/product.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
                                     <div class="button-group">
                                         <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
                                         <button type="button" class="addtocart-btn" >Add to Cart</button>
@@ -113,7 +113,7 @@
 
                         <div class="item product-slider-item">
                             <div class="product-thumb transition">
-                                <div class="image product-imageblock"> <a href="#"> <img src="{{ asset('frontend/image/product/product1.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
+                                <div class="image product-imageblock"> <a href="#"> <img src="{{ asset('frontend/image/product/product.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
                                     <div class="button-group">
                                         <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
                                         <button type="button" class="addtocart-btn" >Add to Cart</button>

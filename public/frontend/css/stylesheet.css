@@ -1109,7 +1109,7 @@ h2.price {
 	box-shadow: none;
 	border-radius: 0;
 	margin: 0 auto;
-	width: 700px;
+	/* width: 700px; */
 }
 #product-thumbnail.owl-carousel .owl-buttons {
 	position: absolute;

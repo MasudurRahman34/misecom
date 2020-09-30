@@ -36,12 +36,12 @@
         </div>
     </div>
     {{-- latest-blog --}}
-    @include('frontend.partials.saidbar-latest-blog')
+    {{-- @include('frontend.partials.saidbar-latest-blog') --}}
 
     {{-- latest-product-list --}}
-    @include('frontend.partials.saidbar-latest-product-list')
+    {{-- @include('frontend.partials.saidbar-latest-product-list') --}}
 
     {{-- specials-product-list --}}
-    @include('frontend.partials.saidbar-specials-product-list')
+    {{-- @include('frontend.partials.saidbar-specials-product-list') --}}
 
 </div>
