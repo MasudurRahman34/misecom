@@ -191,6 +191,10 @@ header {
 /* logo */
 #logo {
 	margin: 0;
+	max-width:25%;
+	max-height:12%;
+	overflow:hidden;
+
 }
 .shipping-img, .returns-img {
 	background: url(../image/shipping.png) no-repeat scroll 0 -85px;
@@ -2165,7 +2169,6 @@ span.review-count, span.review-edit {
 }
 .load-more-wrapper {
 	display: inline-block;
-text-align;
 	text-align: center;
 	width: 100%;
 }

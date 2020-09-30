@@ -8,7 +8,7 @@
                     <div class="image product-imageblock"> <a href="product.html"><img src="{{ asset('frontend/image/product/product1.jpg') }}" alt="iPod Classic" title="iPod Classic" class="img-responsive" /> </a>
                         <div class="button-group">
                             <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
-                            <button type="button" class="addtocart-btn" >Add to Cart</button>
+                            <button type="button" class="addtocart-btn" >Add to Bag</button>
                             <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" ><i class="fa fa-exchange"></i></button>
                         </div>
                     </div>

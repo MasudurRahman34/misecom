@@ -1,9 +1,9 @@
-<h3 class="productblock-title">Featured</h3>
+<h3 class="productblock-title">woman</h3>
                 <div class="box">
-
+                   
                     <div id="feature-slider" class="row owl-carousel product-slider">
-                          {{-- banner one --}}
-                          <div class="item product-slider-item">
+                         {{-- banner one --}}
+                        <div class="item product-slider-item">
                             <div class="product-thumb transition">
                                 <div class="image product-imageblock"> <a href="product.html"> <img src="{{ asset('frontend/image/product/product4.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
                                     <div class="button-group">
@@ -13,7 +13,7 @@
                                     </div>
                                 </div>
                                 <div class="caption product-detail">
-                                   <center> <h3 class="product-name"><a href="product.html" title="iPhone"> <b>Feature section</b> </a></h3></center> 
+                                   <center> <h3 class="product-name"><a href="product.html" title="iPhone"> <b>woman section</b> </a></h3></center> 
                                    
                                 </div>
                                 <div class="button-group">
@@ -25,27 +25,7 @@
                         </div>
                         {{-- end-banner --}}
 
-                        <div class="item product-slider-item">
-                            <div class="product-thumb transition">
-                                <div class="image product-imageblock"> <a href="product.html"> <img src="{{ asset('frontend/image/product/product4.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
-                                    <div class="button-group">
-                                        <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
-                                        <button type="button" class="addtocart-btn" >Add to Cart</button>
-                                        <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" ><i class="fa fa-exchange"></i></button>
-                                    </div>
-                                </div>
-                                <div class="caption product-detail">
-                                    <h4 class="product-name"><a href="product.html" title="iPhone">iPhone</a></h4>
-                                    <p class="price product-price"> <span class="price-new">$254.00</span> <span class="price-old">$272.00</span> <span class="price-tax">Ex Tax: $210.00</span> </p>
-                                </div>
-                                <div class="button-group">
-                                    <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
-                                    <button type="button" class="addtocart-btn" >Add to Cart</button>
-                                    <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" ><i class="fa fa-exchange"></i></button>
-                                </div>
-                            </div>
-                        </div>
-
+                        {{-- products-list --}}
                         <div class="item product-slider-item">
                             <div class="product-thumb transition">
                                 <div class="image product-imageblock"> <a href="product.html"> <img src="{{ asset('frontend/image/product/product5.jpg') }}" alt="iPhone" title="iPhone" class="img-responsive" /> </a>
@@ -66,6 +46,7 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- end-products-list --}}
 
                         <div class="item product-slider-item">
                             <div class="product-thumb transition">
