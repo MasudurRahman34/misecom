@@ -54,6 +54,17 @@ Route::get('/admin/datatable', function () {
 //user list
     Route::get('admin/users', ['uses'=>'backend\UserController@index', 'as'=>'users.index']);
 
+//section
+    Route::group([ 'prefix'=>'admin/section', 'namespace'=>'Backend\Section'], function () {
+    Route::get('/list', 'SectionsController@index')->name('section.list');
+    Route::post('/store', 'SectionsController@store')->name('section.store');
+    Route::post('/update/{section}', 'SectionsController@update')->name('section.update');
+    //Route::get('/synctable', 'SectionsController@syncTable')->name('section.synctable');
+    Route::get('/edit/{section}', 'SectionsController@edit')->name('section.edit');
+    Route::get('/destroy/{section}', 'SectionsController@destroy')->name('section.destroy');
+         //Route::get('/edit2/{id}', 'SupplierController@edit2')->name('supplier.edit2');
+});
+
 //brand
 
 
