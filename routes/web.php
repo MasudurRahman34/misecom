@@ -17,12 +17,30 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('frontend.layouts.master');
 });
-Route::get('/shop', function () {
-    return view('frontend.pages.myapp.index');
-});
-Route::get('/shop/cart', function () {
-    return view('frontend.pages.cart.index');
-});
+
+
+
+// Route::get('/shop', function () {
+//     return view('frontend.pages.myapp.index');
+// });
+
+ Route::get('/shop','Frontend\testfrontendController@index')->name('shop');
+
+ //allCategoryProduct
+ //Route::get('/shop/all-product', function () {  return view('frontend.pages.product.all-category-product'); })->name('allcategoryproduct');
+ Route::get('/shop/all-product','Frontend\testfrontendController@allCategoryProduct')->name('allProduct');
+
+
+
+// Route::get('/shop/cart', 
+
+// function () {
+//     return view('frontend.pages.cart.index');
+// });
+
+Route::get('/shop/carts','Frontend\CartController@index')->name('cart.index'); 
+
+
 Route::get('/shop/checkout', function () {
     return view('frontend.pages.checkout.index');
 });
@@ -32,13 +50,11 @@ Route::get('/shop/contact', function () {
 Route::get('/shop/about-us', function () {
     return view('frontend.pages.about-us.about-us');
 });
-Route::get('/shop/all-product', function () {
-    return view('frontend.pages.product.all-category-product');
-});
+
 
 Route::get('/shop/single-product', function () {
     return view('frontend.pages.product.show');
-});
+})->name('single.product.show');
 
 //end-frontend
 //Route::get('/', function () { return view('welcome'); });

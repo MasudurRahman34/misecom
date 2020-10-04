@@ -799,7 +799,9 @@ footer ul li {
 .product-list .product-thumb .image {
 	float: left;
 	background: #F5F5F5;
-	margin: 0 20px 0 0;
+	margin: 0 0.5em 0 0;
+
+	max-width: 25%;
 }
 .product-thumb .product-name {
 	font-weight: 600;

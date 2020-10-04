@@ -18,4 +18,12 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('shop/latest','Frontend\testfrontendController@index')->name('latest.product');
+//Route::get('shop/latest','Frontend\testfrontendController@index')->name('latest.product');
+
+// Cart Routes
+Route::group(['prefix' => 'carts'], function(){
+    Route::get('/', 'Frontend\CartController@index')->name('carts');
+    Route::post('/store', 'Frontend\CartController@store')->name('carts.store');
+    Route::post('/update/{id}', 'Frontend\CartController@update')->name('carts.update');
+    Route::post('/delete/{id}', 'Frontend\CartController@destroy')->name('carts.delete');
+  });

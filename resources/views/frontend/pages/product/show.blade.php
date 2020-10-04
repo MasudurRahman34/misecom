@@ -76,10 +76,10 @@
                 With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go.	
                 Cover Flow.		
                 Browse through your music collection by flipping..</p>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label class="control-label qty-label" for="input-quantity">size</label>
                     <input type="size" name="size" value="" size="3" id="input-quantity" class="form-control productpage-size my-2" />
-                </div>
+                </div> --}}
                 <br>
             <div id="product">
                 

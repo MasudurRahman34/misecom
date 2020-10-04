@@ -20,11 +20,14 @@
     @include('frontend.partials.header')
     {{-- @include('frontend.partials.cart')      --}}
 </header>
-@include('frontend.partials.navbar')     
+@include('frontend.partials.navbar') 
+{{-- @include('frontend.partials.flash-massage ')  --}}
+
 
     @yield('content')
     
 @include('frontend.partials.footer')
+@include('frontend.partials.script')
 
 @yield('script')
 </body>

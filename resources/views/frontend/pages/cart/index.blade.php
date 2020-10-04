@@ -1,7 +1,7 @@
 @extends('frontend.layouts.shop')
 <!--start section -->
 @section('title')
-<title>App</title>    
+<title>E-Shop Cart</title>    
 @endsection
 @section('breadcrumb')
 <ul class="breadcrumb">
@@ -12,6 +12,7 @@
 @endsection
 @section('shop-content')
 
+@include('frontend.partials.sidebar')
     <div class="row">
       <div class="col-md-8" id="content">
         <h1>Shopping Cart                &nbsp;(10.00kg) </h1>

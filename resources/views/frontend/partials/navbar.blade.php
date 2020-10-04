@@ -5,8 +5,8 @@
         </div>
         <div class="navbar-collapse">
             <ul class="main-navigation">
-                <li><a href="index.html"   class="parent"  >Home</a> </li>
-                <li><a href="index.html"   class="parent"  >Shop</a> </li>
+                <li><a href="{{ route('shop', ['id'=>'shop']) }}"   class="parent"  >Home</a> </li>
+                <li><a href="{{ route('allProduct') }}"   class="parent"  >Shop</a> </li>
 
                 <li><a href="category.html"   class="parent"  >Electronics</a> </li>
                 <li><a href="category.html"   class="parent"  >Mobile</a> </li>
