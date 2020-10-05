@@ -5,6 +5,7 @@ namespace App\Models\Frontend;
 use Illuminate\Database\Eloquent\Model;
 
 use Auth;
+use App\Models\Backend\product;
 
 class Cart extends Model
 {
@@ -17,6 +18,13 @@ class Cart extends Model
         'product_quantity',
         'order_id'
       ];
+
+
+      //relation-ship
+      public function product()
+      {
+        return $this->belongsTo(Product::class);
+      }
     
       public function user()
       {
@@ -28,11 +36,6 @@ class Cart extends Model
     //     return $this->belongsTo(Order::class);
     //   }
     
-      public function product()
-      {
-        return $this->belongsTo(product::class);
-      }
-
       public static function totalCarts()
   {
     if (Auth::check()) {

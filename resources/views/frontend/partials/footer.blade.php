@@ -1,7 +1,7 @@
 <footer>
     <div class="container">
         <div class="footer-top-cms">
-            <div class="footer-logo"> <a href="#"><img alt="index.html" src="frontend/image/logo-footer.png"></a> </div>
+            <div class="footer-logo"> <a href="#"><img alt="index.html" src="{{ asset('frontend/image/logo-footer.png') }}"></a> </div>
             <div class="footer-desc"> <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </span> </div>
             <div class="footer-social">
                 <h5>Social</h5>

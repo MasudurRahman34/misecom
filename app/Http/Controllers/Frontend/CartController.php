@@ -112,7 +112,18 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $id= $request->cart_id;
+
+      //find the cart
+      $cart = Cart::find($id);
+      if (!is_null($cart)) {
+        $cart->product_quantity = $request->product_quantity;
+        $cart->save();
+      }else {
+        return redirect()->route('carts');
+      }
+      session()->flash('success', 'Cart item has updated successfully !!');
+      return back();
     }
 
     /**
@@ -123,6 +134,14 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+      //$id= $request->cart_id;
+      $cart = Cart::find($id);
+      if (!is_null($cart)) {
+        $cart->delete();
+      }else {
+        return redirect()->route('carts');
+      }
+      session()->flash('success', 'Cart item has deleted !!');
+      return back();
     }
 }

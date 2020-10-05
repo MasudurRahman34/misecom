@@ -26,6 +26,7 @@
     @yield('breadcrumb')
     {{-- main --}}
     <div class="row">
+        @include('frontend.partials.flash-massage')
         {{-- siad-bar --}}
       
         {{-- end siad-bar --}}
@@ -37,6 +38,7 @@
 </div>
 @include('frontend.partials.footer')
 @include('frontend.partials.script')
+@yield('script')
 </body>
 
 <!-- Mirrored from html.lionode.com/focus/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Sep 2020 07:07:57 GMT -->
