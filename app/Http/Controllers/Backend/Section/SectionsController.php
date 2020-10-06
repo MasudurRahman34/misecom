@@ -32,7 +32,7 @@ use imageUpload;
         return $data_table_render = DataTables::of($sections)
             ->addIndexColumn()
             ->editColumn('thumbnail_image', function($raw){
-                $url= URL::to('/public/img/product/section/thumnail/'.$raw->thumbnail_image);
+                $url= URL::to('/img/product/section/thumbnail/'.$raw->thumbnail_image);
                  $img='<img src='.$url.' border="0" width="40" class="img-rounded" align="center" />';
                  return $img;
             })
@@ -61,16 +61,16 @@ use imageUpload;
             $section->status = $request->status;
             if ($image = $request->file('thumbnail_image')) {
                 $img=time().'.'.$image->getClientOriginalExtension();
-                $image=Image::make($image);
+               $image=Image::make($image);
                 
-                $thumbnailPath='public/img/product/section/thumnail/';
+                $thumbnailPath='img/product/section/thumbnail/';
                 $image->save($thumbnailPath.$img);
                 // $img=time().'.'.$image->getClientOriginalExtension();
                  
                 // $image->move('public/img/product/section/thumnail',$img);
-
+                $section->thumbnail_image = $img;
             }
-            $section->thumbnail_image = $img;
+            
             $section->save();
             DB::commit();
             return $this->success($section);
@@ -109,8 +109,8 @@ use imageUpload;
             $section->status = $request->status;
            
             if ($image = $request->file('thumbnail_image')) {
-                 $savePath='public/img/product/section/thumnail/';
-                 $existImage_path='public/img/product/section/thumnail/'.$section->thumbnail_image;
+                $thumbnailPath='img/product/section/thumbnail/';
+                 $existImage_path=$thumbnailPath.$section->thumbnail_image;
                 // if (File::exists($image_path)) {
                 //     //File::delete($image_path);
                 //     unlink($image_path);
@@ -119,7 +119,7 @@ use imageUpload;
                 // $img=time().'.'.$image->getClientOriginalExtension();
                  
                 // $image->move('public/img/product/section/thumnail/',$img);
-                $section->thumbnail_image = $this->updateSingleImage($image,$existImage_path, $savePath);
+                $section->thumbnail_image = $this->updateSingleImage($image,$existImage_path, $thumbnailPath);
             }
             
             $section->status = $request->status;
@@ -138,7 +138,7 @@ use imageUpload;
     public function destroy($sections)
     {
         $section= Sections::find($sections);
-        $image_path='public/img/product/section/thumnail/'.$section->thumbnail_image;
+        $image_path='/img/product/section/thumnail/'.$section->thumbnail_image;
         if (File::exists($image_path)) {
             //File::delete($image_path);
             unlink($image_path);

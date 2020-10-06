@@ -254,8 +254,8 @@ $(document).ready(function () {
                         $('#name').val(result.data.name);
                         $('#status').val(result.data.status);
                         //$('#thumbnail_image').val(result.data.thumbnail_image);
-                        $('#modal-preview').attr('src', SITEURL +'/public/img/product/section/thumnail/'+result.data.thumbnail_image);
-                        $('#hidden_image').attr('src', SITEURL +'/public/img/product/section/thumnail/'+result.data.thumbnail_image);
+                        $('#modal-preview').attr('src', SITEURL +'/img/product/section/thumbnail/'+result.data.thumbnail_image);
+                        $('#hidden_image').attr('src', SITEURL +'/img/product/section/thumbnail/'+result.data.thumbnail_image);
                         
                         }
                      });

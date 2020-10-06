@@ -32,3 +32,12 @@ Route::group([ 'prefix'=>'admin/supplier', 'namespace'=>'Backend\Supplier'], fun
     Route::get('/edit/{supplier}', 'SupplierController@edit')->name('supplier.edit');
     Route::get('/destroy/{supplier}', 'SupplierController@destroy')->name('supplier.destroy');
 });
+
+Route::group([ 'prefix'=>'admin/brand', 'namespace'=>'Backend\Brand'], function () {
+    Route::post('/store','BrandController@store')->name('brands.store');
+    Route::get('/synctable','BrandController@syncTable')->name('brands.synctable');
+    Route::get('/edit/{id}','BrandController@edit')->name('brands.edt');
+    Route::post('/update/{id}','BrandController@update')->name('brands.update');
+    Route::get('/destroy/{id}','BrandController@destroy')->name('brands.delete');
+
+});

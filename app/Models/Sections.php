@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use DateTimeInterface;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Sections extends Model
 {
-    //
+    use SoftDeletes;
     protected $dates=[
         'creadted_at',
         'updated_at',

@@ -72,12 +72,12 @@ Route::group([ 'prefix'=>'admin/supplier', 'namespace'=>'Backend\Supplier'], fun
 //brand
 
     Route::group([ 'prefix'=>'admin/brand', 'namespace'=>'Backend\Brand'], function () {
-    Route::get('/list','backend\BrandController@index')->name('brands.index');
-    Route::post('/store','backend\BrandController@store')->name('brands.store');
-    Route::get('/synctable','backend\BrandController@syncTable')->name('brands.synctable');
-    Route::get('/edit/{id}','backend\BrandController@edit')->name('brands.edt');
-    Route::post('/update/{id}','backend\BrandController@update')->name('brands.update');
-    Route::get('/delete/{id}','backend\BrandController@destroy')->name('brands.delete');
+    Route::get('/list','BrandController@index')->name('brands.index');
+    Route::post('/store','BrandController@store')->name('brands.store');
+    Route::get('/synctable','BrandController@syncTable')->name('brands.synctable');
+    Route::get('/edit/{id}','BrandController@edit')->name('brands.edt');
+    Route::post('/update/{id}','BrandController@update')->name('brands.update');
+    Route::get('/delete/{id}','BrandController@destroy')->name('brands.delete');
 
 });
 //category

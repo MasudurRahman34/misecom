@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 Use File;
+Use Image;
 
 trait imageUpload{
 
@@ -10,7 +11,9 @@ trait imageUpload{
             //File::delete($image_path);
             unlink($existImage_path);
         }
+        
             $img=time().'.'.$image->getClientOriginalExtension();
+            //$image=Image::make($image);
                  
             $image->move($savePath,$img);
             return $img;
