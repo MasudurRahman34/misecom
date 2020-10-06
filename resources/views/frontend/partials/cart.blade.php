@@ -1,4 +1,6 @@
-<div class="col-sm-4 col-xs-6 header-right">
+
+
+<div class="col-sm-8 col-xs-6 header-right">
     <div id="cart" class="btn-group btn-block">
         <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button"><span id="cart-total" style="color: red ">{{ App\Models\Frontend\Cart::totalItems() }} item(s)</span><i class="fa fa-caret-down"></i></button>
         <ul class="dropdown-menu pull-right cart-dropdown-menu">
@@ -66,38 +68,32 @@
                           </tbody>
                     </table>
                     <p class="text-right"> <span class="btn-viewcart"><a href="{{ route('carts', ['id'=>'carts']) }}"><strong><i class="fa fa-shopping-cart"></i> View Cart</strong></a></span> <span class="btn-checkout"><a href="checkout.html"><strong><i class="fa fa-share"></i> Checkout</strong></a></span> </p>
-                    @else
-                    <div class="row alert alert-warning">
-                      <strong>There is no item in your cart.</strong>
-                      <br>
-                    </div>
-                    <div class="buttons">
-                      <div class="pull-left"><a class="btn btn-default" href="{{ route('shop') }}">Continue Shopping</a></div>
-                     
-                    </div>
+                   
                 @endif
                
                 </div>
             </li>
         </ul>
     </div>
+    <ul class="list-inline pull-right cart-dropdown-menu">
+                            
+      <li class="dropdown"><a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span>My Account</span> <span class="caret"></span></a>
+          <ul class="dropdown-menu dropdown-menu-right">
+              <li><a href="register.html">Register</a></li>
+              <li><a href="login.html">Login</a></li>
+          </ul>
+      </li>
+      <li><a href="#" id="wishlist-total" title="Wish List (0)"><i class="fa fa-heart"></i> <span>Wish List</span><span> (0)</span></a></li>
+      <li></li>
+    </ul>
+    
     {{-- <div id="search" class="input-group">
         <input type="text" name="search" value="" placeholder="Search" class="form-control input-lg" />
         <span class="input-group-btn">
         <button type="button" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
         </span> 
     </div> --}}
-    <ul class="list-inline">
-                            
-        <li class="dropdown"><a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span>My Account</span> <span class="caret"></span></a>
-            <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href="register.html">Register</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </li>
-        <li><a href="#" id="wishlist-total" title="Wish List (0)"><i class="fa fa-heart"></i> <span>Wish List</span><span> (0)</span></a></li>
-        <li></li>
-    </ul>
+    
 </div>
 </div>
 </div>

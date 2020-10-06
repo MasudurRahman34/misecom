@@ -1,3 +1,4 @@
+{{-- <footer></footer> --}}
 <footer>
     <div class="container">
         <div class="footer-top-cms">

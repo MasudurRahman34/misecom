@@ -28,22 +28,14 @@ Route::get('/', function () {
 
  //allCategoryProduct
  //Route::get('/shop/all-product', function () {  return view('frontend.pages.product.all-category-product'); })->name('allcategoryproduct');
- Route::get('/shop/all-product','Frontend\testfrontendController@allCategoryProduct')->name('allProduct');
 
-
-
-// Route::get('/shop/cart', 
-
-// function () {
-//     return view('frontend.pages.cart.index');
-// });
-
+Route::get('/shop/all-product','Frontend\testfrontendController@allCategoryProduct')->name('allProduct');
 Route::get('/shop/carts','Frontend\CartController@index')->name('cart.index'); 
 
+Route::get('/shop/checkout','Frontend\CheckoutController@index')->name('checkout'); 
+Route::post('/checkout/store','Frontend\CheckoutController@store')->name('checkout.store'); 
 
-Route::get('/shop/checkout', function () {
-    return view('frontend.pages.checkout.index');
-});
+
 Route::get('/shop/contact', function () {
     return view('frontend.pages.contact.index');
 });

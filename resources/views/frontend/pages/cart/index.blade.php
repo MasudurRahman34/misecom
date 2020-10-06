@@ -528,7 +528,7 @@
         </div>
         <div class="buttons">
           <div class="pull-left"><a class="btn btn-default" href="{{ route('shop') }}">Continue Shopping</a></div>
-          <div class="pull-right"><a class="btn btn-primary" href="checkout.html">Checkout</a></div>
+          <div class="pull-right"><a class="btn btn-primary" href="{{ route('checkout') }}">Checkout</a></div>
         </div>
       @else
         <div class="row alert alert-warning">

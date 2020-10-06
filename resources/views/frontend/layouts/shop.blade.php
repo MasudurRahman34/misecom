@@ -6,6 +6,7 @@
     @yield('title','eshop')
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <meta charset="UTF-8" />
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="e-commerce site well design with responsive view." />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,19 +23,18 @@
 @include('frontend.partials.navbar')     
 
 <div class="container">
-
     @yield('breadcrumb')
     {{-- main --}}
     <div class="row">
-        @include('frontend.partials.flash-massage')
+        <div class="app">
+            @include('frontend.partials.flash-massage')
+        </div>
+       
         {{-- siad-bar --}}
-      
         {{-- end siad-bar --}}
         @yield('shop-content')
-
     </div>
     {{-- end-main --}}
-    
 </div>
 @include('frontend.partials.footer')
 @include('frontend.partials.script')
