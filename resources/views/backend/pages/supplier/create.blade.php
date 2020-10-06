@@ -8,7 +8,7 @@
             <div class="col-lg-8 col-sm-8">
                 <div class="page-header-title">
                     <div class="d-inline">
-                        <h4>Manage Section</h4>
+                        <h4>Manage Supplier</h4>
                     </div>
                 </div>
             </div>
@@ -16,7 +16,7 @@
                 <div class="page-header-breadcrumb">
                     <ul class="breadcrumb-title">
                         <li class="breadcrumb-item">
-                            <button class="btn btn-primary btn-icon" data-toggle="modal" data-target="#section"><i class="ti-plus"></i></button>
+                            <button class="btn btn-primary btn-icon" data-toggle="modal" data-target="#supplier"><i class="ti-plus"></i></button>
                         </li>
                     </ul>
                 </div>
@@ -39,10 +39,11 @@
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
                                 <tr>
-                                    <th></th>
-                                    <th> Name</th>
-                                    <th> Status</th>
-                                    <th>Image</th>
+                                    <th>SL</th>
+                                    <th data-priority="">official Name</th>
+                                    <th data-priority="">official Mobile</th>
+                                    <th data-priority="">official Email</th>
+                                    <th data-priority="">official Address</th>
                                     
                                     <th>Action</th>
                                 </tr>
@@ -54,7 +55,7 @@
             </div>
 
             <div class="col-md-12 col-sm-12">
-                <div class="modal fade" id="section" tabindex="-1" role="dialog" aria-labelledby="sectionCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="supplier" tabindex="-1" role="dialog" aria-labelledby="sectionCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header bg-info">
@@ -67,47 +68,36 @@
                         <div class="modal-body">
                            
                                 <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">Name</label>
+                                    <label class="col-sm-5 col-form-label">Official Name</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" name="name" id="name"  required>
+                                        <input type="text" class="form-control" name="official_name" id="official_name"  required>
                                         <span class="messages"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">Status</label>
+                                    <label class="col-sm-5 col-form-label">Official Email</label>
                                     <div class="col-sm-5">
+                                        <input type="email" class="form-control" name="official_email" id="official_email"  required>
                                         <span class="messages"></span>
-                                        <select class="form-control "  id="status" name="status">
-                                                ,<option value="1" selected>Active</option>
-                                                ,<option value="0" >Inactive</option>
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">Thumbnail Image(50*59 px)</label>
+                                    <label class="col-sm-5 col-form-label">Official Phone</label>
                                     <div class="col-sm-5">
+                                        <input type="text" class="form-control" name="official_mobile" id="official_mobile"  required>
                                         <span class="messages"></span>
-                                        <input id="thumbnail_image" type="file" class="form-control" name="thumbnail_image" multiple="multiple" onchange="readURL(this);">
-                                        <input type="hidden" name="hidden_image" id="hidden_image">
-                                       
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">preview</label>
-                                    <div id="img_preview">
-                                        
-                                        <style>
-                                            img{
-                                                padding: 5px;
-                                            }
-                                        </style>
-                                        <img id="modal-preview" src="https://via.placeholder.com/150" alt="Preview" class="form-group hidden" width="100" height="100">
-                    
-                                        </div>
+                                    <label class="col-sm-5 col-form-label">Official address</label>
+                                    <div class="col-sm-5">
+                                        <textarea name="official address" id="official_address" cols="10" rows="5" class="form-control"></textarea>
+                                        <span class="messages"></span>
                                     </div>
                                 </div>
+                            </div>
                             
-                        </div>
+                        
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                           <button type="submit" class="btn btn-primary" id="submit">submit</button>
@@ -127,48 +117,7 @@
     <script>
         dataDismiss();
         var SITEURL = '{{URL::to('')}}';
-        function readURL(input, id) {
-            id = id || '#modal-preview';
-            if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-            $(id).attr('src', e.target.result);
-            
-            // var image = new Image();
-            // image.src = String(e.target.result);
-            // image.width =100;
-            // image.height =100;
-            // image.class =String('form-group');
-            // image.onclick=String("delete(this)");
-         
-            // img_preview.append(image);
-
-            // var x = document.createElement("IMG");
-            // x.setAttribute('src',e.target.result);
-            // x.setAttribute('width',100);
-            // x.setAttribute('height',100);
-            // x.setAttribute('class','preIm');
-            // x.setAttribute('onclick','delPreviewImage(this)');
-            // img_preview.append(x);
-
-            // lth=document.images.length;
-            // for (let index =length; index <= length; index++) {
-            //     isrc=document.images[index].src;
-            //     console.log(isrc);
-                
-            // }
-            //console.log( lth);
-
-            };
-            reader.readAsDataURL(input.files[0]);
-            $('#modal-preview').removeClass('hidden');
-            $('#start').hide();
-        }}
-        function delPreviewImage(e){
-            console.log();
-            $(e).remove();
-            $('#thumbnail_image').val("");
-        }
+        
         var table= $('#sampleTable').DataTable({
                 dom: 'lBfrtip',
                 buttons: [
@@ -182,12 +131,13 @@
                 } ],
                 processing:true,
                 serverSide:true,
-                ajax:"{{url('/api/admin/section/synctable')}}",
+                ajax:"{{url('/api/admin/supplier/synctable')}}",
                 columns:[
                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                    { data: 'name', name: 'name' },
-                    { data: 'status', name: 'status' },
-                    { data: 'thumbnail_image', name: 'thumbnail_image' },
+                    { data: 'official_name', name: 'official_name' },
+                    { data: 'official_mobile', name: 'official_mobile' },
+                    { data: 'official_email', name: 'official_email' },
+                    { data: 'official_address', name: 'official_address' },
                     
                     { data: 'action', name: 'action' }
                 ]
@@ -206,19 +156,14 @@ $(document).ready(function () {
                        }
                });
                if (id>0) {
-                   var url="{{url('/api/admin/section/update')}}"+"/"+id;
+                   var url="{{url('/api/admin/supplier/update')}}"+"/"+id;
                }else{
-               var url="{{url('/api/admin/section/store')}}"
+               var url="{{url('/api/admin/supplier/store')}}"
                }
                $.ajax({
 
                    type: "post",
                    url: url,
-                //    data: {
-                //        name: $('#name').val(),
-                //        status: $('#status').val(),
-                //        thumbnail_image: $('#thumbnail_image').val(),
-                //    },
                     data:formData,
                     cache:false,
                     contentType: false,
@@ -229,7 +174,7 @@ $(document).ready(function () {
                        if (result.error==false) {
                            $( "div").remove( ".text-danger" );
                            successNotification();
-                           removeUpdateProperty("section");
+                           removeUpdateProperty("supplier");
                            document.getElementById("myform").reset();
                        }
                        if(result.error==true){
@@ -245,24 +190,26 @@ $(document).ready(function () {
             //edit view
             function btnEdit(id)
             {
-                setUpdateProperty(id, "section","section","submit");
-                var url="{{url('/api/admin/section/edit')}}";
+                setUpdateProperty(id, "supplier","supplier","submit");
+                var url="{{url('/api/admin/supplier/edit')}}";
                 $.ajax({
                     type:'GET',
                     url:url+"/"+id,
                     success:function(result) {
-                        $('#name').val(result.data.name);
-                        $('#status').val(result.data.status);
-                        //$('#thumbnail_image').val(result.data.thumbnail_image);
-                        $('#modal-preview').attr('src', SITEURL +'/public/img/product/section/thumnail/'+result.data.thumbnail_image);
-                        $('#hidden_image').attr('src', SITEURL +'/public/img/product/section/thumnail/'+result.data.thumbnail_image);
+                        console.log(result);
+                        $('#official_name').val(result.data.official_name);
+                        $('#official_email').val(result.data.official_email);
+                        $('#official_mobile').val(result.data.official_mobile);
+                        $('#official_address').val(result.data.official_address);
+                        
+                      
                         
                         }
                      });
              }
             //delete
             function btnDelete (id) {
-                var url = "{{url('/api/admin/section/destroy')}}";
+                var url = "{{url('/api/admin/supplier/destroy')}}";
                var con=confirm("Danger ! You Are Going To Delete Data ");
                 if(con==true){
                 $.ajax({
