@@ -8,8 +8,7 @@
             <div class="col-lg-8">
                 <div class="page-header-title">
                     <div class="d-inline">
-                        <h4> Brands</h4>
-                        <span>manage Brands</span>
+                        <span>Manage Brand</span>
                     </div>
                 </div>
             </div>
@@ -17,14 +16,9 @@
                 <div class="page-header-breadcrumb">
                     <ul class="breadcrumb-title">
                         <li class="breadcrumb-item">
-                            <a href="index-1.htm"> <i class="feather icon-home"></i> </a>
+                            <button class="btn btn-primary btn-icon" data-toggle="modal" data-target="#brand"><i class="ti-plus"></i></button>
                         </li>
-                        <li class="breadcrumb-item"><a href="#!">Admin</a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#!">Dashboard</a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#!">Brands</a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -48,7 +42,7 @@
                                 <tr>
                                     <th></th>
                                     <th> Name</th>
-                                    <th>Created Date</th>
+                                    <th> Image</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -58,34 +52,44 @@
                 </div>
             </div>
 
-            <div class="col-md-5 col-sm-5">
-
-                <!-- Basic Inputs Validation start -->
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="" id="title">Add Brand</h5>
-                        {{-- <h5>Basic Inputs Validation</h5>
-                        <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
-
-                    </div>
-                    <div class="card-block">
-                        <form id="myform" method="post" action="javascript:void(0)" novalidate="">
-                            <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Brand Name</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" name="brand_name" id="brand_name" placeholder="Text Input Validation" required>
-                                    <span class="messages"></span>
+            <div class="col-md-12 col-sm-12">
+                <div class="modal fade" id="section" tabindex="-1" role="dialog" aria-labelledby="sectionCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header bg-info">
+                          <h5 class="modal-title" id="modalLabel">Add section</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="myform" method="post" action="javascript:void(0)" novalidate="">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Name</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" name="brand_name" id="brand_name"  required>
+                                        <span class="messages"></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class=""></label>
-                                <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-primary m-b-0" id="submit" >Submit</button>
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Status</label>
+                                    <div class="col-sm-5">
+                                        <span class="messages"></span>
+                                        <select class="form-control "  id="status" name="status">
+                                                <option value="1" selected>Active</option>
+                                                <option value="0" >Inactive</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" id="submit">Save</button>
+                        </div>
+                      </div>
                     </div>
-                </div>
+                  </div>
             </div>
         </div>
     </div>
@@ -95,36 +99,12 @@
 @endsection
 @section('script')
     <script>
-        function required()
-            {
-                var brand_name = $('#brand_name').val();
-                if (brand_name === "")
-                {
-                alert("Please input a Value");
-                return false;
-                }
-                else 
-                {
-                return true; 
-                }
-            }
-
-            function setUpdateProperty(id,  propertyName){
-                    $("#submit").html("Update "+propertyName+"");
-                    $("#title").html("Update "+propertyName+"");
-                    $("#submit").val(id);
-                }    
-
+       dataDismiss();
         var table= $('#sampleTable').DataTable({
                 dom: 'lBfrtip',
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf',
-                    {
-                    extend: 'print',
-                    exportOptions: {
-                        columns: ':visible'
-                            }
-                    },
+                    'copy', 'excel',
+                   
                     'colvis',
                 ],
                 columnDefs: [ {
@@ -133,11 +113,12 @@
                 } ],
                 processing:true,
                 serverSide:true,
-                ajax:"{{url('admin/brands/show')}}",
+                ajax:"{{url('admin/section/synctable')}}",
                 columns:[
                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                    { data: 'brand_name', name: 'brand_name' },
-                    { data: 'created_at', name: 'created_at' },
+                    { data: 'name', name: 'name' },
+                    { data: 'status', name: 'status' },
+                    { data: 'img', name: 'img' },
                     { data: 'action', name: 'action' }
                 ]
             });
@@ -145,8 +126,6 @@
             //submit function
             $('#submit').click(function(e) {
                 e.preventDefault();
-                required();
-
                 var id=$('#submit').val();
                 if(id>0){
                     console.log(`submit id:`+id);
@@ -160,66 +139,64 @@
                         }
                 });
                 if (id>0) {
-                    var url="{{url('admin/brands/update')}}"+"/"+id;
+                    var url="{{url('admin/section/update')}}"+"/"+id;
                 }else{
-                var url="{{url('admin/brands/store')}}"
+                var url="{{url('admin/section/store')}}"
                 }
                 $.ajax({
 
                     type: "post",
                     url: url,
                     data: {
-                        brand_name: $('#brand_name').val(),
-                       
+                        name: $('#name').val(),
+                        status: $('#status').val(),
                     },
                     success: function (result) {
-                        if (result.success) {
-                            console.log(result);
-                            alert('data added to server.');
+                        console.log(result);
+                        if (result.error==false) {
+                            $( "div").remove( ".text-danger" );
+                            successNotification();
+                            removeUpdateProperty("section");
                             document.getElementById("myform").reset();
-                            setTimeout( function() 
-                                        {table.draw()},600);
                         }
-                        if(result.errors){
-                            function getError(errorMessage){
-                                    for (err in errorMessage) {
-                                    $('<div>'+errorMessage[err]+'</div>').insertAfter('#'+err).addClass('text-danger').attr('id','error');
-                                    console.log(err);
-                                }
-                                getError(result.errors);
-                            }
+                        if(result.error==true){
+                            getError(result.message);
                         }
                     }
 
                 });
             });
             //edit view
-            function editBrand (id)
+            function btnEdit(id)
             {
-                setUpdateProperty(id, "Brand");
-                var url="{{url('/admin/brands/edit')}}";
+                setUpdateProperty(id, "section","section","submit");
+                var url="{{url('/admin/section/edit')}}";
                 $.ajax({
                     type:'GET',
                     url:url+"/"+id,
-                    success:function(data) {
-                        $('#brand_name').val(data.brand_name);
-                        console.log(data);
+                    success:function(result) {
+                        $('#name').val(result.data.name);
+                        $('#status').val(result.data.status);
+                        
                         }
                      });
              }
             //delete
-            function deleteBrand (id) {
-                var url = "{{url('/admin/brands/delete')}}";
+            function btnDelete (id) {
+                var url = "{{url('/admin/section/destroy')}}";
+               var con=confirm("Danger ! You Are Going To Delete Data ");
+                if(con==true){
                 $.ajax({
                    url:url+"/"+id,
                    type:"GET",
                    dataType:"json",
-                   success:function(data) {
-                       console.log(data)
-                       alert('data success fully deleted');
+                   success:function(data) {               
                        table.draw();
                    }
                })
+            }else{
+                alert("Data is Safe");
+            }
             }   
     </script>
 

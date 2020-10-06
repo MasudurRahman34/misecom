@@ -17,7 +17,7 @@ class CreateSectionsTable extends Migration
             $table->id();
             $table->string('name', 100);
             $table->unsignedTinyInteger('status')->default('0')->commnent('0=inactiove, 1=active');
-            $table->string('img',100)->nullable();
+            $table->string('thumbnail_image',100)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

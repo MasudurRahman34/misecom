@@ -98,8 +98,8 @@ class CategoryController extends Controller
                     return view('backend.pages.category.child_category',compact('catagories'));
                 })
                 ->addColumn('action',function ($row){
-                    return view('backend.pages.category.action',compact('row'));
-                    // $btn = '<button class="btn btn-info btn-sm" onClick="editCategory('.$row['id'].')"><i class="fa fa-edit"></i></button>'.
+                   
+                    // $btn = '<button cla return view('backend.pages.category.action',compact('row'));ss="btn btn-info btn-sm" onClick="editCategory('.$row['id'].')"><i class="fa fa-edit"></i></button>'.
                     //         '<button  onClick="deleteCategory('.$row['id'].')" class="btn btn-danger btn-sm delete_section"><i class="fa fa-trash-o"></i></button>';
                     // return $btn;
             })

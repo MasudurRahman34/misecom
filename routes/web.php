@@ -59,23 +59,25 @@ Route::get('/admin/datatable', function () {
     Route::get('/list', 'SectionsController@index')->name('section.list');
     Route::post('/store', 'SectionsController@store')->name('section.store');
     Route::post('/update/{section}', 'SectionsController@update')->name('section.update');
-    //Route::get('/synctable', 'SectionsController@syncTable')->name('section.synctable');
+    Route::get('/synctable', 'SectionsController@syncTable')->name('section.synctable');
     Route::get('/edit/{section}', 'SectionsController@edit')->name('section.edit');
     Route::get('/destroy/{section}', 'SectionsController@destroy')->name('section.destroy');
          //Route::get('/edit2/{id}', 'SupplierController@edit2')->name('supplier.edit2');
 });
 
+
+
 //brand
 
+    Route::group([ 'prefix'=>'admin/brand', 'namespace'=>'Backend\Brand'], function () {
+    Route::get('/list','backend\BrandController@index')->name('brands.index');
+    Route::post('/store','backend\BrandController@store')->name('brands.store');
+    Route::get('/synctable','backend\BrandController@syncTable')->name('brands.synctable');
+    Route::get('/edit/{id}','backend\BrandController@edit')->name('brands.edt');
+    Route::post('/update/{id}','backend\BrandController@update')->name('brands.update');
+    Route::get('/delete/{id}','backend\BrandController@destroy')->name('brands.delete');
 
-    Route::get('admin/brands','backend\BrandController@index')->name('brands.index');
-    Route::post('admin/brands/store','backend\BrandController@store')->name('brands.store');
-    Route::get('admin/brands/show','backend\BrandController@show')->name('brands.show');
-    Route::get('admin/brands/edit/{id}','backend\BrandController@edit')->name('brands.edt');
-    Route::post('admin/brands/update/{id}','backend\BrandController@update')->name('brands.update');
-    Route::get('admin/brands/delete/{id}','backend\BrandController@destroy')->name('brands.delete');
-
-
+});
 //category
 
 
