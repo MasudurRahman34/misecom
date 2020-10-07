@@ -66,27 +66,37 @@ Route::get('/admin/datatable', function () {
 //user list
     Route::get('admin/users', ['uses'=>'backend\UserController@index', 'as'=>'users.index']);
 
+//section
+Route::group([ 'prefix'=>'admin/section', 'namespace'=>'Backend\Section'], function () {
+    Route::get('/list', 'SectionsController@index')->name('section.list');
+   
+         //Route::get('/edit2/{id}', 'SupplierController@edit2')->name('supplier.edit2');
+});
+
+Route::group([ 'prefix'=>'admin/supplier', 'namespace'=>'Backend\Supplier'], function () {
+    Route::get('/list', 'SupplierController@index')->name('supplier.list');
+   
+         //Route::get('/edit2/{id}', 'SupplierController@edit2')->name('supplier.edit2');
+});
+
+
+
 //brand
 
+Route::group([ 'prefix'=>'admin/brand', 'namespace'=>'Backend\Brand'], function () {
+    Route::get('/list','BrandController@index')->name('brands.index');
+    Route::post('/store','BrandController@store')->name('brands.store');
+    Route::get('/synctable','BrandController@syncTable')->name('brands.synctable');
+    Route::get('/edit/{id}','BrandController@edit')->name('brands.edt');
+    Route::post('/update/{id}','BrandController@update')->name('brands.update');
+    Route::get('/delete/{id}','BrandController@destroy')->name('brands.delete');
 
-    Route::get('admin/brands','backend\BrandController@index')->name('brands.index');
-    Route::post('admin/brands/store','backend\BrandController@store')->name('brands.store');
-    Route::get('admin/brands/show','backend\BrandController@show')->name('brands.show');
-    Route::get('admin/brands/edit/{id}','backend\BrandController@edit')->name('brands.edt');
-    Route::post('admin/brands/update/{id}','backend\BrandController@update')->name('brands.update');
-    Route::get('admin/brands/delete/{id}','backend\BrandController@destroy')->name('brands.delete');
-
-
+});
 //category
 
-
-    Route::get('admin/categories','backend\CategoryController@index')->name('categories.index');
-    Route::post('admin/categories/store','backend\CategoryController@store')->name('categories.store');
-    Route::get('admin/categories/show','backend\CategoryController@show')->name('categories.show');
-    Route::get('admin/categories/edit/{id}','backend\CategoryController@edit')->name('categories.edt');
-    Route::post('admin/categories/update/{id}','backend\CategoryController@update')->name('categories.update');
-    Route::get('admin/categories/delete/{id}','backend\CategoryController@destroy')->name('categories.delete');
-
+Route::group([ 'prefix'=>'admin/categories', 'namespace'=>'Backend\Catagory'], function () {
+    Route::get('/','CategoryController@index')->name('categories.index');
+});
 
 //product
 

@@ -53,7 +53,7 @@
     </div>
    
    
-    <script data-cfasync="false" src="{{ mix('js/all.js') }}"></script>
+    <script src="{{ mix('js/all.js') }}"></script>
 
    
 @yield('script')

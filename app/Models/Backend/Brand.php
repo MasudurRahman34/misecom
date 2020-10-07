@@ -4,6 +4,7 @@ namespace App\Models\Backend;
 
 use Illuminate\Database\Eloquent\Model;
 use DateTimeInterface;
+Use App\Models\Sections;
 
 class Brand extends Model
 {
@@ -24,16 +25,20 @@ class Brand extends Model
     {
         return $this->hasMany(Category::class);
     }
+    public function section()
+    {
+        return $this->bellongsTO(Sections::class);
+    }
 
 
     public static $rules =[
 
-        'brand_name'=>'required','string','max:255',
+        'name'=>'required','string','max:255',
         'description'=>'nullable',
-        'image'  => 'nullable|image',
+        'thumbnail_image'  => 'nullable|image',
 
         'name.required'  => 'Please provide a brand name',
-        'image.image'  => 'Please provide a valid image with .jpg, .png, .gif, .jpeg exrension..',
+        'thumbnail_image.image'  => 'Please provide a valid image with .jpg, .png, .gif, .jpeg exrension..',
       
 
     ];

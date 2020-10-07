@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\Catagory;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,10 +10,15 @@ use Illuminate\Http\Request;
 //use Yajra\DataTables\DataTables;
 use DataTables;
 use App\Models\Backend\Category;
+use App\Models\Sections;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Traits\ApiResponse;
+use App\Traits\imageUpload;
+use Illuminate\Support\Facades\URL;
 use DB;
+use Image;
+Use File;
 // end-added
 
 
@@ -21,6 +26,7 @@ use DB;
 class CategoryController extends Controller
 {
     use ApiResponse;
+    use imageUpload;
     /**
      * Display a listing of the resource.
      *
@@ -31,8 +37,9 @@ class CategoryController extends Controller
         $categories = Category::whereNull('category_id')
         ->with('childrenCategories')
         ->get();
+        $sections=Sections::get();
     // return view('categories', compact('categories'));
-     return view('backend.pages.category.create', compact('categories'));
+     return view('backend.pages.category.create', compact(['categories','sections']));
 
     
 
@@ -70,6 +77,18 @@ class CategoryController extends Controller
             $category= new Category();
             $category->name = $request->name;
             $category->category_id = $request->category_id;
+            $category->section_id = $request->section_id;
+            $category->status = $request->status;
+            $category->description = $request->description;
+            if ($image = $request->file('thumbnail_image')) {
+                ini_set('memory_limit','256M');
+                $img=time().'.'.$image->getClientOriginalExtension();
+                $location='img/product/catagory/thumbnail';
+                
+                $image->move( $location, $img);
+    
+                $category->thumbnail_image = $img;
+            }
             $category->save();
             DB::commit();
             return $this->success($category);
@@ -87,24 +106,27 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function synctable()
     {
         //
 
         $catagories= Category::with('childrenCategories')->get();
             return $data_table_render = DataTables::of($catagories)
                 ->addIndexColumn()
+                ->editColumn('thumbnail_image', function($raw){
+                    $url= URL::to('/img/product/catagory/thumbnail/'.$raw->thumbnail_image);
+                     $img='<img src='.$url.' border="0" width="40" class="img-rounded" align="center" />';
+                     return $img;
+                })
                 ->addColumn('parent_catagories',function($catagories){
                     return view('backend.pages.category.child_category',compact('catagories'));
                 })
                 ->addColumn('action',function ($row){
                     return view('backend.pages.category.action',compact('row'));
-                    // $btn = '<button class="btn btn-info btn-sm" onClick="editCategory('.$row['id'].')"><i class="fa fa-edit"></i></button>'.
-                    //         '<button  onClick="deleteCategory('.$row['id'].')" class="btn btn-danger btn-sm delete_section"><i class="fa fa-trash-o"></i></button>';
-                    // return $btn;
+                   
             })
            
-            ->rawColumns(['action'])
+            ->rawColumns(['thumbnail_image','action'])
             ->make(true);
 
     }
@@ -119,7 +141,7 @@ class CategoryController extends Controller
     {
         //
         $category = Category::find($id);
-        return response()->json($category);
+        return $this->success($category);
     }
 
     /**
@@ -135,14 +157,30 @@ class CategoryController extends Controller
 
         $validator = Validator::make($request->all(), Category::$rules);
         if($validator->fails()){
-            return response()->json(["error"=>$validator->erroes(),400]);
+            return $this->error($validator->errors(),200);
         }else{
+            DB::beginTransaction();
+            try {
             $category = Category::find($id);
            
-            $category->name=$request->name;
-            //$category->bId= Auth::user()->bId;
-            $category->Save();
-            return response()->json(["success"=>'Updated', "data"=>$category,201]);
+            $category->name = $request->name;
+            $category->category_id = $request->category_id;
+            $category->section_id = $request->section_id;
+            $category->status = $request->status;
+            $category->description = $request->description;
+            if ($image = $request->file('thumbnail_image')) {
+                ini_set('memory_limit','256M');
+                $thumbnailPath='img/product/catagory/thumbnail';
+                $existImage_path=$thumbnailPath.$category->thumbnail_image;
+               $category->thumbnail_image = $this->updateSingleImage($image,$existImage_path, $thumbnailPath);
+                } 
+                $category->save();
+                DB::commit();
+                return $this->success($category);
+            }catch (\Exception $e) {
+                DB::rollBack();
+                return $this->error($e->getMessage(),200);
+            }
         }
     }
 
@@ -155,12 +193,15 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
-        $CategoryDelete = Category::find($id);
-        if($CategoryDelete){
-            $CategoryDelete->delete();
-            return response()->json(["success"=>'data deleted',201]);
+        $category = Category::find($id);
+        $image_path='img/product/catagory/thumbnail/'.$category->thumbnail_image;
+        
+        if (File::exists($image_path)) {
+            //File::delete($image_path);
+            unlink($image_path);
         }
-        return response()->json(["error"=>'error',422]);
+        $category->delete();
+        return response()->json($category);
     
     }
 }
