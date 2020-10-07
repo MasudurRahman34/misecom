@@ -49,10 +49,9 @@ class BrandController extends Controller
             $brand->description = $request->description;
             if ($image = $request->file('thumbnail_image')) {
                 $img=time().'.'.$image->getClientOriginalExtension();
-               $image=Image::make($image);
-                
-                $thumbnailPath='img/product/brand/thumbnail/';
-                $image->save($thumbnailPath.$img);
+              
+                $thumbnailPath='img/product/brand/thumbnail';
+                $image->move($thumbnailPath,$img);
                 // $img=time().'.'.$image->getClientOriginalExtension();
                  
                 // $image->move('public/img/product/section/thumnail',$img);

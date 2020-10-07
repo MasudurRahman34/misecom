@@ -82,6 +82,20 @@
             <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                    <span class="pcoded-mtext">Section</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="{{ route('section.list', []) }}">
+                            <span class="pcoded-mtext">Manage Section</span>
+                        </a>
+                    </li>
+                   
+                </ul>
+            </li>
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                     <span class="pcoded-mtext">Brand</span>
                 </a>
                 <ul class="pcoded-submenu">
@@ -93,6 +107,7 @@
                    
                 </ul>
             </li>
+           
 
             <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">

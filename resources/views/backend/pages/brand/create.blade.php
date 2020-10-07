@@ -56,7 +56,7 @@
 
             <div class="col-md-12 col-sm-12">
                 <div class="modal fade" id="brand" tabindex="-1" role="dialog" aria-labelledby="brandCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header bg-info">
                           <h5 class="modal-title" id="modalLabel">Add brand</h5>

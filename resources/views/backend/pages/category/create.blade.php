@@ -41,8 +41,11 @@
                                 <tr>
                                     <th></th>
                                     <th> Name</th>
-                                    <th> parent_catagories</th>
-                                    <th>Created Date</th>
+                                    <th>section</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Image</th>
+                                    <th>Parent_catagories</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -53,7 +56,7 @@
             </div>
 
             <div class="col-md-5 col-sm-5">
-                <div class="modal fade" id="catagory" tabindex="-1" role="dialog" aria-labelledby="catagoryCenterTitle" aria-hidden="true">
+                <div class="modal fade" data-backdrop="static" data-keyboard="false" id="catagory" tabindex="-1" role="dialog" aria-labelledby="catagoryCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -62,8 +65,9 @@
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
+                        <form id="myform" method="post" action="javascript:void(0)" enctype="multipart/form-data">
                         <div class="modal-body">
-                            <form id="myform" method="post" action="javascript:void(0)" novalidate="">
+                            
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">Category Name</label>
                                     <div class="col-sm-5">
@@ -76,62 +80,76 @@
                                     <div class="col-sm-5">
                                         <span class="messages"></span>
                                         <select class="form-control "  id="category_id" name="category_id">
-                                            ,<option value="">Primary Catagory</option>
+                                            <option value="">Primary Catagory</option>
                                             @foreach ($categories as $categorie)
                                             <option value="{{$categorie->id}}">{{$categorie->name}}</option>
                                             @endforeach
-                                            </select>
+                                        </select>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary" id="submit">Save</button>
-                        </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Section</label>
+                                    <div class="col-sm-5">
+                                        <span class="messages"></span>
+                                        <select class="form-control "  id="section_id" name="section_id">
+                                           
+                                            @foreach ($sections as $section)
+                                            <option value="{{$section->id}}">{{$section->name}}</option>
+                                            @endforeach
+                                            <option value="" selected>None</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">status</label>
+                                    <div class="col-sm-5">
+                                        <span class="messages"></span>
+                                        <select class="form-control "  id="status" name="status">
+                                            <option value="0">Active</option>
+                                            <option value="1">Inactiove</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Description</label>
+                                    <div class="col-sm-5">
+                                        <textarea name="description" id="description" cols="10" rows="5" class="form-control"></textarea>
+                                        <span class="messages"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Thumbnail Image(50*59 px)</label>
+                                    <div class="col-sm-5">
+                                        <span class="messages"></span>
+                                        <input id="thumbnail_image" type="file" class="form-control" name="thumbnail_image" multiple="multiple" onchange="readURL(this);">
+                                        <input type="hidden" name="hidden_image" id="hidden_image">
+                                       
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">preview</label>
+                                    <div id="img_preview">
+                                        
+                                        <style>
+                                            img{
+                                                padding: 5px;
+                                            }
+                                        </style>
+                                        <img id="modal-preview" src="https://via.placeholder.com/150" alt="Preview" class="form-group hidden" width="100" height="100">
+                    
+                                        </div>
+                                    </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" id="submit">Save</button>
+                                </div>
+                    </form>
                       </div>
                     </div>
                   </div>
-            
-
-                <!-- Basic Inputs Validation start -->
-                {{-- <div class="card">
-                    <div class="card-header">
-                        <h3 class="" id="title">Add Category</h3>
-                        <h5>Basic Inputs Validation</h5>
-                        <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
-
-                    </div>
-                    <div class="card-block">
-                        <form id="myform" method="post" action="javascript:void(0)" novalidate="">
-                            <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Category Name</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Text Input Validation" required>
-                                    <span class="messages"></span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Parent Category(optional)</label>
-                                <div class="col-sm-5">
-                                    <span class="messages"></span>
-                                    <select class="form-control "  id="category_id" name="category_id">
-                                        ,<option value="">Primary Catagory</option>
-                                        @foreach ($categories as $categorie)
-                                        <option value="{{$categorie->id}}">{{$categorie->name}}</option>
-                                        @endforeach
-                                        </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class=""></label>
-                                <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-primary m-b-0" id="submit" >Submit</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </div>
@@ -142,17 +160,28 @@
 @section('script')
     <script>
         dataDismiss();
+        var SITEURL = '{{URL::to('')}}';
+        function readURL(input, id) {
+            id = id || '#modal-preview';
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                $(id).attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+            $('#modal-preview').removeClass('hidden');
+            $('#start').hide();
+        }}
+        function delPreviewImage(e){
+            console.log();
+            $(e).remove();
+            $('#thumbnail_image').val("");
+        }
+        
         var table= $('#sampleTable').DataTable({
                 dom: 'lBfrtip',
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf',
-                    {
-                    extend: 'print',
-                    exportOptions: {
-                        columns: ':visible'
-                            }
-                    },
-                    'colvis',
+                    'copy', 'excel','colvis',
                 ],
                 columnDefs: [ {
                     // targets: -1,
@@ -160,18 +189,21 @@
                 } ],
                 processing:true,
                 serverSide:true,
-                ajax:"{{url('admin/categories/show')}}",
+                ajax:"{{url('/api/admin/categories/show')}}",
                 columns:[
                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                     { data: 'name', name: 'name' },
+                    { data: 'section_id', name: 'sectoin_id' },
+                    { data: 'description', name: 'description' },
+                    { data: 'status', name: 'status' },
+                    { data: 'thumbnail_image', name: 'thumbnail_image' },
                     { data: 'parent_catagories', name: 'parent_catagories' },
-                    { data: 'created_at', name: 'created_at' },
                     { data: 'action', name: 'action' }
                 ]
             });
 
             //submit function
-            $('#submit').click(function(e) {
+            $('#myform').on('submit',function(e) {
                 e.preventDefault();
                 var id=$('#submit').val();
                 if(id>0){
@@ -186,24 +218,26 @@
                         }
                 });
                 if (id>0) {
-                    var url="{{url('admin/categories/update')}}"+"/"+id;
+                    var url="{{url('/api/admin/categories/update')}}"+"/"+id;
                 }else{
-                var url="{{url('admin/categories/store')}}"
+                var url="{{url('/api/admin/categories/store')}}"
                 }
+                var formData=new FormData(this);
                 $.ajax({
 
                     type: "post",
                     url: url,
-                    data: {
-                        name: $('#name').val(),
-                        category_id: $('#category_id').val(),
-                    },
+                    data:formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
                     success: function (result) {
                         console.log(result);
                         if (result.error==false) {
                             successNotification();
                             removeUpdateProperty("catagory");
                             document.getElementById("myform").reset();
+                            $('#modal-preview').attr('src','');
                         }
                         if(result.error==true){
                             getError(result.message);
@@ -216,20 +250,26 @@
             function btnEdit(id)
             {
                 setUpdateProperty(id, "catagory","catagory","submit");
-                var url="{{url('/admin/categories/edit')}}";
+                var url="{{url('/api/admin/categories/edit')}}";
                 $.ajax({
                     type:'GET',
                     url:url+"/"+id,
-                    success:function(data) {
-                        $('#name').val(data.name);
-                        $('#category_id').val(data.name);
-                        console.log(data);
+                    success:function(response) {
+                        console.log(response);
+                        $('#name').val(response.data.name);
+                        $('#category_id').val(response.data.category_id);
+                        $('#section_id').val(response.data.section_id);
+                        $('#description').val(response.data.description);
+                        $('#status').val(response.data.status);
+                        $('#modal-preview').attr('src', SITEURL +'/img/product/catagory/thumbnail/'+response.data.thumbnail_image);
+                        $('#hidden_image').attr('src', SITEURL +'/img/product/catagory/thumbnail/'+response.data.thumbnail_image);
+                        console.log(response.data);
                         }
                      });
              }
             //delete
             function btnDelete (id) {
-                var url = "{{url('/admin/categories/delete')}}";
+                var url = "{{url('/api/admin/categories/delete')}}";
                 $.ajax({
                    url:url+"/"+id,
                    type:"GET",

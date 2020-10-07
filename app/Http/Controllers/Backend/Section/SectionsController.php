@@ -38,9 +38,7 @@ use imageUpload;
             })
             ->addColumn('action',function ($row){
                 return view('backend.pages.section.action',compact('row'));
-                // $btn = '<button class="btn btn-info btn-sm" onClick="editsection('.$row['id'].')"><i class="fa fa-edit"></i></button>'.
-                //         '<button  onClick="deleteSections('.$row['id'].')" class="btn btn-danger btn-sm delete_section"><i class="fa fa-trash-o"></i></button>';
-                // return $btn;
+
         })
        
         ->rawColumns(['thumbnail_image','action'])
@@ -61,13 +59,10 @@ use imageUpload;
             $section->status = $request->status;
             if ($image = $request->file('thumbnail_image')) {
                 $img=time().'.'.$image->getClientOriginalExtension();
-               $image=Image::make($image);
                 
-                $thumbnailPath='img/product/section/thumbnail/';
-                $image->save($thumbnailPath.$img);
-                // $img=time().'.'.$image->getClientOriginalExtension();
-                 
-                // $image->move('public/img/product/section/thumnail',$img);
+                $thumbnailPath='img/product/section/thumbnail';
+                $image->move($thumbnailPath,$img);
+                
                 $section->thumbnail_image = $img;
             }
             
@@ -138,7 +133,7 @@ use imageUpload;
     public function destroy($sections)
     {
         $section= Sections::find($sections);
-        $image_path='/img/product/section/thumnail/'.$section->thumbnail_image;
+        $image_path='img/product/section/thumbnail/'.$section->thumbnail_image;
         if (File::exists($image_path)) {
             //File::delete($image_path);
             unlink($image_path);

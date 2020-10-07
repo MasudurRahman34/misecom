@@ -41,3 +41,13 @@ Route::group([ 'prefix'=>'admin/brand', 'namespace'=>'Backend\Brand'], function 
     Route::get('/destroy/{id}','BrandController@destroy')->name('brands.delete');
 
 });
+
+
+
+Route::group([ 'prefix'=>'admin/categories', 'namespace'=>'Backend\Catagory'], function () {
+    Route::post('/store','CategoryController@store')->name('categories.store');
+    Route::get('/show','CategoryController@syncTable')->name('categories.show');
+    Route::get('/edit/{id}','CategoryController@edit')->name('categories.edt');
+    Route::post('/update/{id}','CategoryController@update')->name('categories.update');
+    Route::get('/delete/{id}','CategoryController@destroy')->name('categories.delete');
+});

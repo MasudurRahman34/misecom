@@ -71,7 +71,7 @@ Route::group([ 'prefix'=>'admin/supplier', 'namespace'=>'Backend\Supplier'], fun
 
 //brand
 
-    Route::group([ 'prefix'=>'admin/brand', 'namespace'=>'Backend\Brand'], function () {
+Route::group([ 'prefix'=>'admin/brand', 'namespace'=>'Backend\Brand'], function () {
     Route::get('/list','BrandController@index')->name('brands.index');
     Route::post('/store','BrandController@store')->name('brands.store');
     Route::get('/synctable','BrandController@syncTable')->name('brands.synctable');
@@ -82,14 +82,9 @@ Route::group([ 'prefix'=>'admin/supplier', 'namespace'=>'Backend\Supplier'], fun
 });
 //category
 
-
-    Route::get('admin/categories','backend\CategoryController@index')->name('categories.index');
-    Route::post('admin/categories/store','backend\CategoryController@store')->name('categories.store');
-    Route::get('admin/categories/show','backend\CategoryController@show')->name('categories.show');
-    Route::get('admin/categories/edit/{id}','backend\CategoryController@edit')->name('categories.edt');
-    Route::post('admin/categories/update/{id}','backend\CategoryController@update')->name('categories.update');
-    Route::get('admin/categories/delete/{id}','backend\CategoryController@destroy')->name('categories.delete');
-
+Route::group([ 'prefix'=>'admin/categories', 'namespace'=>'Backend\Catagory'], function () {
+    Route::get('/','CategoryController@index')->name('categories.index');
+});
 
 //product
 

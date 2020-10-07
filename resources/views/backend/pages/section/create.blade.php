@@ -78,8 +78,8 @@
                                     <div class="col-sm-5">
                                         <span class="messages"></span>
                                         <select class="form-control "  id="status" name="status">
-                                                ,<option value="1" selected>Active</option>
-                                                ,<option value="0" >Inactive</option>
+                                                <option value="1" selected>Active</option>
+                                                <option value="0" >Inactive</option>
                                         </select>
                                     </div>
                                 </div>
