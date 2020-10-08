@@ -10,9 +10,17 @@ use App\Models\Frontend\Cart;
 use App\Models\Frontend\Order;
 use Session;
 use Auth;
+use User;
 
 class CheckoutController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -45,7 +53,7 @@ class CheckoutController extends Controller
         //
 
         $order = new Order();
-        if (Auth::check()) { $order->user_id = Auth::id();}
+        if (Auth::check()) { $order->user_id = Auth::guard('web')->user()->id;}
         $order->ip_address = request()->ip();  
         $order->totalprice = $request->total_amount;
         

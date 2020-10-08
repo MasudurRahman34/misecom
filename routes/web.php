@@ -24,7 +24,7 @@ Route::get('/', function () {
 //     return view('frontend.pages.myapp.index');
 // });
 
- Route::get('/shop','Frontend\testfrontendController@index')->name('shop');
+ Route::get('/','Frontend\testfrontendController@index')->name('shop');
 
  //allCategoryProduct
  //Route::get('/shop/all-product', function () {  return view('frontend.pages.product.all-category-product'); })->name('allcategoryproduct');

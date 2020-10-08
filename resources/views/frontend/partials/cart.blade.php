@@ -1,12 +1,16 @@
 
-
-<div class="col-sm-8 col-xs-6 header-right">
+   
+<div class="col-sm-8 col-xs-6 header-right" >
+    
     <div id="cart" class="btn-group btn-block">
-        <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button"><span id="cart-total" style="color: red ">{{ App\Models\Frontend\Cart::totalItems() }} item(s)</span><i class="fa fa-caret-down"></i></button>
+        <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button" style="color: tomato">
+            <div id="changeid"><i class="fa fa-caret-down"></i> <span id="cart-total" style="color: red ">{{ App\Models\Frontend\Cart::totalItems() }} item(s) in cart</span></div>
+            
+        </button>
         <ul class="dropdown-menu pull-right cart-dropdown-menu">
             <li>
                 @if  (App\Models\Frontend\Cart::totalItems() > 0)
-                <table class="table table-striped">
+                <table class="table table-striped" id="update_table_id">
                     <tbody>
                         {{-- <tr>
                             <td class="text-center"><a href="#"><img class="img-thumbnail" title="iPhone" alt="iPhone" src="{{ asset('frontend/image/product/7product50x59.jpg') }}"></a></td>
@@ -67,7 +71,7 @@
                             </tr>
                           </tbody>
                     </table>
-                    <p class="text-right"> <span class="btn-viewcart"><a href="{{ route('carts', ['id'=>'carts']) }}"><strong><i class="fa fa-shopping-cart"></i> View Cart</strong></a></span> <span class="btn-checkout"><a href="checkout.html"><strong><i class="fa fa-share"></i> Checkout</strong></a></span> </p>
+                    <p class="text-right"> <span class="btn-viewcart"><a href="{{ route('carts', ['id'=>'carts']) }}"><strong><i class="fa fa-shopping-cart"></i> View Cart</strong></a></span> <span class="btn-checkout"><a href="{{ route('checkout', ['id'=>'checkout']) }}"><strong><i class="fa fa-share"></i> Checkout</strong></a></span> </p>
                    
                 @endif
                
@@ -75,17 +79,70 @@
             </li>
         </ul>
     </div>
-    <ul class="list-inline pull-right cart-dropdown-menu">
+
+    <ul class="list-inline pull-right " style=" padding-top: 5px;">
                             
-      <li class="dropdown"><a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span>My Account</span> <span class="caret"></span></a>
-          <ul class="dropdown-menu dropdown-menu-right">
-              <li><a href="register.html">Register</a></li>
-              <li><a href="login.html">Login</a></li>
-          </ul>
-      </li>
-      <li><a href="#" id="wishlist-total" title="Wish List (0)"><i class="fa fa-heart"></i> <span>Wish List</span><span> (0)</span></a></li>
-      <li></li>
-    </ul>
+        {{-- <li class="dropdown"><a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span>My Account</span> <span class="caret"></span></a>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </li> --}}
+         <!-- Authentication Links -->
+         <li ><a href="#" id="wishlist-total" title="Wish List (0)"><i class="fa fa-heart" style="color: red"></i> <span>Wish List</span><span> (0)</span></a></li>
+         @guest
+         <li class="dropdown">
+             <a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span>My Account</span> <span class="caret"></span></a>
+             <ul class="dropdown-menu dropdown-menu-right">
+              <li class="nav-item dropdown">
+                  <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+              </li>
+              @if (Route::has('register'))
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+              </li>
+          @endif
+      @else
+          <li class="nav-item dropdown">
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  {{ Auth::user()->name }}
+              </a>
+   
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"><i class="fa fa-caret-down"></i>
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                      {{ __('Logout') }}
+                  </a>
+   
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                  </form>
+
+                  <a class="dropdown-item" href=""> <i class="fa fa-caret-down"></i>
+                   {{ __('Profile') }} 
+                  </a>
+                  <br>
+                  <a class="dropdown-item" href=""> <i class="fa fa-caret-down"></i>
+                    {{ __('Your orders') }} 
+                   </a>
+
+                
+              </div>
+              
+              
+
+             
+               
+
+          </li>
+         
+
+      @endguest
+             </ul>
+         </li>
+        </ul>
+
     
     {{-- <div id="search" class="input-group">
         <input type="text" name="search" value="" placeholder="Search" class="form-control input-lg" />

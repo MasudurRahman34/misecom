@@ -2340,7 +2340,10 @@ video {
 /*about page start*/
 ul {
 	padding: 0;
-	margin: 0;
+	margin: -1;
+}
+.pull-right ul{
+	margin: -1;
 }
 .services {
 	margin: 50px 0 80px;
