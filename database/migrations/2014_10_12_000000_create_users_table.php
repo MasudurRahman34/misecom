@@ -19,8 +19,23 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            //user_id-address
             $table->string('ip_address')->nullable();
+
+            //billind-details
+            $table->string('Billing_Details_first_name')->nullable();
+            $table->string('Billing_Details_last_name')->nullable();
+            $table->string('Billing_Details_address')->nullable();
+            $table->string('Billing_Details_contact_number')->nullable();
+            $table->string('Billing_Details_city')->nullable();
+            $table->string('Billing_Details_post_code')->nullable();
+            $table->string('Billing_Details_country')->nullable();
+            $table->string('Billing_Details_region')->nullable();
+
             $table->rememberToken();
+            //soft-delete
+            $table->softDeletes();
             $table->timestamps();
         });
     }

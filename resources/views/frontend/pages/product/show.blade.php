@@ -6,8 +6,8 @@
 
 @section('breadcrumb')
 <ul class="breadcrumb">
-    <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-    <li><a href="category.html">Desktops</a></li>
+    <li><a href="{{ route('shop') }}"><i class="fa fa-home"></i></a></li>
+    <li><a href="{{ route('shop', ['id'=>'shop']) }}">Shop</a></li>
     <li><a href="#">Product Details</a></li>
 </ul>
 @endsection
@@ -45,7 +45,7 @@
             </ul>
         </div>
         <div class="col-sm-6">
-            <h1 class="productpage-title">iPod Classic</h1>
+            <h1 class="productpage-title">{{ $product->product_title }}</h1>
             <div class="rating product"> <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span> <span class="review-count"> <a href="#" onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;">1 reviews</a> / <a href="#" onClick="$('a[href=\'#tab-review\']').trigger('click'); return false;">Write a review</a></span>
                 <hr>
                 <!-- AddThis Button BEGIN -->
@@ -55,27 +55,24 @@
             </div>
             <ul class="list-unstyled productinfo-details-top">
                 <li>
-                    <h2 class="productpage-price">$122.00</h2>
+                    <h2 class="productpage-price">Taka: {{ $product->offerPrice }}</h2>
                 </li>
-                <li><span class="productinfo-tax">Ex Tax: $100.00</span></li>
+                <li><span class="productinfo-tax">Ex Tax: 15%</span></li>
             </ul>
             <hr>
             <ul class="list-unstyled product_info">
                 <li>
                     <label>Brand:</label>
-                    <span> <a href="#">Apple</a></span></li>
+                    <span> <a href="#">{{ $product->brand->name }}</a></span></li>
                 <li>
                     <label>Product Code:</label>
-                    <span> product 20</span></li>
+                    <span> product {{ $product->id }}</span></li>
                 <li>
                     <label>Availability:</label>
-                    <span> In Stock</span></li>
+                    <span> {{ $product->stockAmount  < 1 ? 'No Item is Available' : $product->stockAmount.' in stock' }} </span></li>
             </ul>
             <hr>
-            <p class="product-desc"> More room to move.		
-                With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go.	
-                Cover Flow.		
-                Browse through your music collection by flipping..</p>
+            <p class="product-desc">{{ $product->product_description }} </p>
                 {{-- <div class="form-group">
                     <label class="control-label qty-label" for="input-quantity">size</label>
                     <input type="size" name="size" value="" size="3" id="input-quantity" class="form-control productpage-size my-2" />
@@ -85,12 +82,12 @@
                 
                 <div class="form-group">
                     <label class="control-label qty-label" for="input-quantity">Qty</label>
-                    <input type="number" name="quantity" value="1" size="2" id="input-quantity" class="form-control productpage-qty" />
+                    <input type="number" name="quantity" value="1" size="2" id="input-quantity" class="form-control productpage-qty"  min="1"/>
                     
                     <input type="hidden" name="product_id" value="48" />
                     <div class="btn-group">
-                        <button type="button" data-toggle="tooltip" class="btn btn-default wishlist" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
-                        <button type="button" id="button-cart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block addtocart">Add to Cart</button>
+                        <button type="button" data-toggle="tooltip" class="btn btn-default wishlist wishlist-btn" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
+                        <button type="button" id="{{ $product->id }}" value="{{ $product->id }}" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block addtocart show-product-addtocart-btn">Add to Cart</button>
                       
                     </div>
                 </div>

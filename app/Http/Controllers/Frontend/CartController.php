@@ -65,10 +65,13 @@ class CartController extends Controller
       if (!is_null($cart)) {
         $cart->increment('product_quantity');
       }else {
+
         $cart = new Cart();
+
         if (Auth::check()) {
           $cart->user_id = Auth::id();
         }
+        
         $cart->ip_address = request()->ip();
         $cart->product_id = $request->product_id;
         $cart->save();
@@ -80,6 +83,57 @@ class CartController extends Controller
     // return json_encode(['status' => 'success', 'Message' => 'Item added to cart', 'totalItems' => Cart::totalItems()]);
 
     }
+
+    public function ProductStore(Request $request)
+    {
+        
+    $this->validate($request, [
+        'product_id' => 'required',
+        'product_quantity' => 'required'
+      ],
+      [
+        'product_id.required' => 'Please give a product',
+        'product_quantity.required' => 'Please give a product'
+      ]);
+  
+      if (Auth::check()) {
+        $cart = Cart::where('user_id', Auth::id())
+        ->where('product_id', $request->product_id)
+        ->where('order_id', NULL)
+        ->first();
+      }else {
+        $cart = Cart::where('ip_address', request()->ip())
+        ->where('product_id', $request->product_id)
+        ->where('order_id', NULL)
+        ->first();
+      }
+  
+  
+      //reduce duplicate entry by add to cart
+      if (!is_null($cart)) {
+        $cart->product_quantity = $request->product_quantity;
+        $cart->save();
+      }else {
+
+          $cart = new Cart();
+
+          if (Auth::check()) {
+            $cart->user_id = Auth::id();
+          }
+          
+          $cart->ip_address = request()->ip();
+          $cart->product_id = $request->product_id;
+          $cart->product_quantity = $request->product_quantity;
+          $cart->save();
+      }
+      $totalItems= Cart::totalItems();
+      return redirect()->back()
+            ->with('success',"Item added to cart",'totalItems', $totalItems);
+
+    // return json_encode(['status' => 'success', 'Message' => 'Item added to cart', 'totalItems' => Cart::totalItems()]);
+
+    }
+
 
     /**
      * Display the specified resource.

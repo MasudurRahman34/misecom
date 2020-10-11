@@ -25,6 +25,7 @@ Route::get('/', function () {
 // });
 
  Route::get('/','Frontend\testfrontendController@index')->name('shop');
+ Route::get('Product/{slug}', 'Frontend\testfrontendController@productshow')->name('product.show');
 
  //allCategoryProduct
  //Route::get('/shop/all-product', function () {  return view('frontend.pages.product.all-category-product'); })->name('allcategoryproduct');
@@ -44,9 +45,9 @@ Route::get('/shop/about-us', function () {
 });
 
 
-Route::get('/shop/single-product', function () {
-    return view('frontend.pages.product.show');
-})->name('single.product.show');
+// Route::get('/shop/single-product', function () {
+//     return view('frontend.pages.product.show');
+// })->name('single.product.show');
 
 //end-frontend
 //Route::get('/', function () { return view('welcome'); });

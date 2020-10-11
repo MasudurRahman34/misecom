@@ -51,7 +51,6 @@
 
 @endsection   
 <!--end section--> 
-
 @section('script')
 
 <script>
@@ -61,82 +60,6 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });  
-
-function addtocart(){
-
-    $('.addtocart-btn').on("click",function (e) { 
-        var id = $(this).attr('id');
-         console.log(id);
-        //e.preventDefault();
-        //alert(" product " +id+ " is added to card");
-
-        var url = "{{ url('/') }}";
-        $.ajax({
-            type: "Post",
-            url: url+"/api/carts/store",
-            data: {
-                product_id:id,
-            },
-            
-            success: function (data) {
-
-                //let $rout = '{{ route('carts') }}';
-                alert(`Item added to cart successfully !!`);
-                $("#changeid").load(" #changeid > *");
-                $("#update_table_id").load(" #update_table_id > *");
-                $("#cart-total").html(data.totalItems);
-                //location.reload();
-                // $('#exampleModalCenter').modal('show')
-                // setTimeout(2000);
-                
-                // data = JSON.parse(data);
-                // if(data == 'success'){
-                    
-                //     // toast
-                //     alertify.set('notifier','position', 'top-center');
-                //     alertify.success('Item added to cart successfully !! Total Items: '+data.totalItems+ '<br />To checkout <a href="{{ route('carts') }}">go to checkout page</a>');
-    
-                //     $("#totalItems").html(data.totalItems);
-                //  }
-            }
-        });
-    });
-}
-addtocart();
-    
-
-
-$('.btn-cart-delete').on("click",function (e) { 
-    // alert('ok');
-  let cart_id = $(this).attr("id");
-    console.log(cart_id);
-      var url = "{{ url('/') }}";
-      $.ajax({
-          type: "Post",
-          url: url+"/api/carts/delete/"+cart_id,
-          data: {
-              cart_id:cart_id,
-          },
-          
-          success: function (data) {
-            //let $rout = '{{ route('carts') }}';
-              alert(`Cart update successfully !!`);
-             // location.reload();
-             $("#changeid").load(" #changeid > *");
-             $("#update_table_id").load(" #update_table_id > *");
-              $("#cart-total").html(data.totalItems);
-              //setTimeout(worker, 2000);
-              // $('#exampleModalCenter').modal('show')
-              // data = JSON.parse(data);
-              //if(data == 'success'){
-              //     // toast
-              //     alertify.set('notifier','position', 'top-center');
-              //     alertify.success('Item added to cart successfully !! Total Items: '+data.totalItems+ '<br />To checkout <a href="{{ route('carts') }}">go to checkout page</a>');
-              //     $("#totalItems").html(data.totalItems);
-              //}
-          }
-    });
-  });
  
 // 		$.ajax({
 // 		  url: 'https://randomuser.me/api/?results=20&gender=male&nat=us',

@@ -68,9 +68,15 @@ class testfrontendController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function productshow($slug)
     {
-        //
+        $product = Product::where('slug', $slug)->first();
+        if (!is_null($product)) {
+          return view('frontend.pages.product.show', compact('product'));
+        }else {
+          session()->flash('errors', 'Sorry !! There is no product by this URL..');
+          return redirect()->route('shop');
+        }
     }
 
     /**

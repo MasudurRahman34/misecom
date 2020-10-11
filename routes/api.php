@@ -24,9 +24,22 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'carts'], function(){
     Route::get('/', 'Frontend\CartController@index')->name('carts');
     Route::post('/store', 'Frontend\CartController@store')->name('carts.store');
+
+    Route::post('/Pstore', 'Frontend\CartController@ProductStore')->name('carts.productstore');
+    
     Route::post('/update/{id}', 'Frontend\CartController@update')->name('carts.update');
     Route::post('/delete/{id}', 'Frontend\CartController@destroy')->name('carts.delete');
   });
+
+  
+//WishlistController
+  Route::group(['prefix' => 'wishlist'], function(){
+    Route::get('/', 'Frontend\WishlistController@index')->name('wishlist');
+    Route::post('/store', 'Frontend\WishlistController@store')->name('wishlist.store');
+   // Route::post('/update/{id}', 'Frontend\WishlistController@update')->name('wishlist.update');
+    Route::post('/delete/{id}', 'Frontend\WishlistController@destroy')->name('wishlist.delete');
+  });
+
 Route::group([ 'prefix'=>'admin/section', 'namespace'=>'Backend\Section'], function () {
     Route::post('/store', 'SectionsController@store')->name('section.store');
     Route::post('/update/{section}', 'SectionsController@update')->name('section.update');

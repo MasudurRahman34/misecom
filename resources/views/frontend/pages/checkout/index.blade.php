@@ -35,6 +35,7 @@
                       I want to use a new address</label>
                   </div>
                   <br>
+
                   <div id="payment-new"  style="">
                     <div class="form-group required">
                       <label for="input-payment-firstname" class="col-sm-2 control-label">First Name</label>
@@ -42,18 +43,28 @@
                         <input type="text" class="form-control" id="input-payment-firstname" placeholder="First Name" value="" name="Billing_Details_firstname">
                       </div>
                     </div>
+
                     <div class="form-group required">
                       <label for="input-payment-lastname" class="col-sm-2 control-label">Last Name</label>
                       <div class="col-sm-10">
                         <input type="text" class="form-control" id="input-payment-lastname" placeholder="Last Name" value="" name="Billing_Details_lastname">
                       </div>
                     </div>
+
                     <div class="form-group required">
                       <label for="input-payment-address-1" class="col-sm-2 control-label">Address </label>
                       <div class="col-sm-10">
                         <input type="text" class="form-control" id="input-payment-address-1" placeholder="Address" value="" name="Billing_Details_address">
                       </div>
                     </div>
+
+                    <div class="form-group required">
+                      <label for="input-payment-address-1" class="col-sm-2 control-label">Contact Number </label>
+                      <div class="col-sm-10">
+                        <input type="tel" class="form-control" id="input-payment-contact-number" placeholder="contact Number" value="" name="Billing_Details_contact_number">
+                      </div>
+                    </div>
+
                     <div class="form-group required">
                       <label for="input-payment-city" class="col-sm-2 control-label">City</label>
                       <div class="col-sm-10">
@@ -133,8 +144,22 @@
                   <div id="shipping-new" style="">
                     <div class="form-group required">
                       <label for="input-shipping-lastname" class="col-sm-2 control-label"> Name</label>
-                      <div class="col-sm-6">
-                        <input type="text" class="form-control" id="input-shipping-lastname" placeholder="Last Name" value="" name="Delivery_Details_name">
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input-shipping-name" placeholder="Name" value="" name="Delivery_Details_name">
+                      </div>
+                    </div>
+
+                    <div class="form-group required">
+                      <label for="input-shipping-email" class="col-sm-2 control-email"> email</label>
+                      <div class="col-sm-10">
+                        <input type="email" class="form-control" id="input-shipping-email" placeholder="your email" value="" name="Delivery_Details_emailAddress">
+                      </div>
+                    </div>
+
+                    <div class="form-group required">
+                      <label for="input-shipping-phone_number" class="col-sm-2 control-label"> Contact Number</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="input-shipping-phone_number" placeholder="Contact number" value="" name="Delivery_Details_phone_number">
                       </div>
                     </div>
                    

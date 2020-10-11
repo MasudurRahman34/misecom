@@ -11,6 +11,228 @@
 
 
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
-
 <script data-cfasync="false" src="{{ asset('frontend/js/script.js') }}"></script>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        
+    alert('ok');
+    
+    $.ajaxSetup({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });  
+    
+    function addtoWishlist(){
+    
+        $('.wishlist-btn').on("click",function (e) { 
+            var id = $(this).attr('id');
+            console.log(id);
+            //e.preventDefault();
+            //alert(" product " +id+ " is added to card");
+        
+            var url = "{{ url('/') }}";
+            $.ajax({
+                type: "Post",
+                url: url+"/api/wishlist/store",
+                data: {
+                    product_id:id,
+                },
+                
+                success: function (data) {
+        
+                    //let $rout = '{{ route('carts') }}';
+                    alert(`Item added to your wishlist !!`);
+                    $("#changeid").load(" #changeid > *");
+                    $("#update_table_id").load(" #update_table_id > *");
+                    $("#wishlist-total").load(" #wishlist-total > *");
+                    //wishlisttotal
+                    $("#cart-total").html(data.totalItems);
+                    $("#cart-total").html(data.wishlisttotal);
+                    //location.reload();
+                    // $('#exampleModalCenter').modal('show')
+                    // setTimeout(2000);
+                    
+                    // data = JSON.parse(data);
+                    // if(data == 'success'){
+                        
+                    //     // toast
+                    //     alertify.set('notifier','position', 'top-center');
+                    //     alertify.success('Item added to cart successfully !! Total Items: '+data.totalItems+ '<br />To checkout <a href="{{ route('carts') }}">go to checkout page</a>');
+        
+                    //     $("#totalItems").html(data.totalItems);
+                    //  }
+                }
+            });
+        });
+    };        
+    function addtocart(){
+        $('.addtocart-btn').on("click",function (e) { 
+            var id = $(this).attr('id');
+            console.log(id);
+            //e.preventDefault();
+            //alert(" product " +id+ " is added to card");
+        
+            var url = "{{ url('/') }}";
+            $.ajax({
+                type: "Post",
+                url: url+"/api/carts/store",
+                data: {
+                    product_id:id,
+                },
+                
+                success: function (data) {
+        
+                    //let $rout = '{{ route('carts') }}';
+                    alert(`Item added to cart successfully !!`);
+                    $("#changeid").load(" #changeid > *");
+                    $("#update_table_id").load(" #update_table_id > *");
+                    $("#cart-total").html(data.totalItems);
+                    //location.reload();
+                    // $('#exampleModalCenter').modal('show')
+                    // setTimeout(2000);
+                    
+                    // data = JSON.parse(data);
+                    // if(data == 'success'){
+                        
+                    //     // toast
+                    //     alertify.set('notifier','position', 'top-center');
+                    //     alertify.success('Item added to cart successfully !! Total Items: '+data.totalItems+ '<br />To checkout <a href="{{ route('carts') }}">go to checkout page</a>');
+        
+                    //     $("#totalItems").html(data.totalItems);
+                    //  }
+                }
+            });
+        });
+    };
+    function showProduct_addtocart(){
+        $('.show-product-addtocart-btn').on("click",function (e) { 
+            var id = $(this).attr('id');
+        
+
+            console.log(id, product_quantity);
+            //e.preventDefault();
+            //alert(" product " +id+ " is added to card");
+        
+            var url = "{{ url('/') }}";
+            var product_quantity = $('#input-quantity').val();
+            console.log(product_quantity);
+            $.ajax({
+                type: "Post",
+                url: url+"/api/carts/Pstore",
+                data: {
+                    product_id:id,
+                    product_quantity:product_quantity,
+                },
+                
+                success: function (data) {
+        
+                    //let $rout = '{{ route('carts') }}';
+                    alert(`Item added to cart successfully !!`);
+                    $("#changeid").load(" #changeid > *");
+                    $("#update_table_id").load(" #update_table_id > *");
+                    $("#cart-total").html(data.totalItems);
+                    //location.reload();
+                    // $('#exampleModalCenter').modal('show')
+                    // setTimeout(2000);
+                    
+                    // data = JSON.parse(data);
+                    // if(data == 'success'){
+                        
+                    //     // toast
+                    //     alertify.set('notifier','position', 'top-center');
+                    //     alertify.success('Item added to cart successfully !! Total Items: '+data.totalItems+ '<br />To checkout <a href="{{ route('carts') }}">go to checkout page</a>');
+        
+                    //     $("#totalItems").html(data.totalItems);
+                    //  }
+                }
+            });
+        });
+    };
+
+    function deleteAddtocart(){
+        $('.btn-cart-delete').on("click",function (e) { 
+            // alert('ok');
+            let cart_id = $(this).attr("id");
+            console.log(cart_id);
+            var url = "{{ url('/') }}";
+            $.ajax({
+                type: "Post",
+                url: url+"/api/carts/delete/"+cart_id,
+                data: {
+                    cart_id:cart_id,
+                },
+                
+                success: function (data) {
+                    //let $rout = '{{ route('carts') }}';
+                    alert(`Cart update successfully !!`);
+                    // location.reload();
+                    $("#changeid").load(" #changeid > *");
+                    $("#update_table_id").load(" #update_table_id > *");
+                    $("#wishlist-total").load(" #wishlist-total > *");
+                    $("#cart-total").html(data.wishlisttotal);
+                    //setTimeout(worker, 2000);
+                    // $('#exampleModalCenter').modal('show')
+                    // data = JSON.parse(data);
+                    //if(data == 'success'){
+                    //     // toast
+                    //     alertify.set('notifier','position', 'top-center');
+                    //     alertify.success('Item added to cart successfully !! Total Items: '+data.totalItems+ '<br />To checkout <a href="{{ route('carts') }}">go to checkout page</a>');
+                    //     $("#totalItems").html(data.totalItems);
+                    //}
+                }
+            });
+        });
+
+    };
+
+    function deleteWishlist(){
+        $('.btn-wishlist-delete').on("click",function (e) { 
+        // alert('ok');
+        let id = $(this).attr("id");
+        console.log(id);
+        var url = "{{ url('/') }}";
+        $.ajax({
+            type: "Post",
+            url: url+"/api/wishlist/delete/"+id,
+            data: {
+                id:id,
+            },
+            
+            success: function (data) {
+                //let $rout = '{{ route('carts') }}';
+                alert(`wishlist update successfully !!`);
+                 location.reload();
+                $("#changeid").load(" #changeid > *");
+                $("#update_table_id").load(" #update_table_id > *");
+                $("#cart-total").html(data.wishlisttotal);
+                //setTimeout(worker, 2000);
+                // $('#exampleModalCenter').modal('show')
+                // data = JSON.parse(data);
+                //if(data == 'success'){
+                //     // toast
+                //     alertify.set('notifier','position', 'top-center');
+                //     alertify.success('Item added to cart successfully !! Total Items: '+data.totalItems+ '<br />To checkout <a href="{{ route('carts') }}">go to checkout page</a>');
+                //     $("#totalItems").html(data.totalItems);
+                //}
+            }
+        });
+    });
+
+    };
+        addtoWishlist();
+        addtocart();
+        showProduct_addtocart();
+        deleteAddtocart();
+        deleteWishlist();
+
+});
+    
+     
+    
+    </script>
 
