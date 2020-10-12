@@ -22,7 +22,7 @@
 
         {{-- main-section --}}
 
-        @include('frontend.pages.product.allproduct')
+        @include('frontend.pages.product.index')
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

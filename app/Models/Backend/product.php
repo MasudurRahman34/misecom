@@ -5,6 +5,8 @@ namespace App\Models\Backend;
 use Illuminate\Database\Eloquent\Model;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
+use App\Models\Sections;
 class Product extends Model
 {
   use SoftDeletes;
@@ -29,6 +31,11 @@ class Product extends Model
     public function images()
     {
       return $this->hasMany(ProductImage::class);
+    }
+
+    public function sections()
+    {
+      return $this->belongsTo(Sections::class);
     }
 
 

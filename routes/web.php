@@ -30,7 +30,9 @@ Route::get('/', function () {
  //allCategoryProduct
  //Route::get('/shop/all-product', function () {  return view('frontend.pages.product.all-category-product'); })->name('allcategoryproduct');
 
-Route::get('/shop/all-product','Frontend\testfrontendController@allCategoryProduct')->name('allProduct');
+ //allcategoryProduct
+Route::get('/shop/category/{id}/product','Frontend\testfrontendController@allcategoryProduct')->name('allcategoryProduct');
+Route::get('/shop/all-product','Frontend\testfrontendController@allProduct')->name('allProduct');
 Route::get('/shop/carts','Frontend\CartController@index')->name('cart.index'); 
 
 Route::get('/shop/checkout','Frontend\CheckoutController@index')->name('checkout'); 

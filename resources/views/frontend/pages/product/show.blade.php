@@ -86,7 +86,7 @@
                     
                     <input type="hidden" name="product_id" value="48" />
                     <div class="btn-group">
-                        <button type="button" data-toggle="tooltip" class="btn btn-default wishlist wishlist-btn" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
+                        <button type="button" data-toggle="tooltip" class="btn btn-primary wishlist-btn"  id="{{ $product->id }}" value="{{ $product->id }}" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
                         <button type="button" id="{{ $product->id }}" value="{{ $product->id }}" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block addtocart show-product-addtocart-btn">Add to Cart</button>
                       
                     </div>
@@ -156,7 +156,9 @@
         </div>
     </div>
     <h3 class="productblock-title">Related Products</h3>
-    
+</div>
+<div class="col-xl-8 col-md-12 col-sm-4 col">
+    @include('frontend.pages.product.partials.category-wise-product')
 </div>
 
 

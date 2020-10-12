@@ -14,7 +14,7 @@ class CreateSectionsTable extends Migration
     public function up()
     {
         Schema::create('sections', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name', 100);
             $table->unsignedTinyInteger('status')->default('0')->commnent('0=inactiove, 1=active');
             $table->string('thumbnail_image',100)->nullable();

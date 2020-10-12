@@ -26,9 +26,9 @@ class CreateCategoriesTable extends Migration
             $table->string('meta_keywords')->nullable();
             $table->tinyInteger('status')->nullable();
             $table->string('offer_id')->nullable()->comment('offer_table');
-            $table->unsignedBigInteger('section_id')->nullable()->comment('section_table');;
-            $table->unsignedBigInteger('category_id')->nullable()->comment('catagory_table');;
-            $table->unsignedBigInteger('user_id')->nullable()->comment('user_table');;
+            $table->unsignedBigInteger('sections_id')->nullable()->comment('section_table');
+            $table->unsignedBigInteger('category_id')->nullable()->comment('catagory_table');
+            $table->unsignedBigInteger('user_id')->nullable()->comment('user_table');
             //$table->unsignedBigInteger('parent_id ')->nullable();
             //$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             //$table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');

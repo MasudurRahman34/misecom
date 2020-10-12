@@ -56,7 +56,7 @@
                   </td>
                   <td class="text-left">
                     
-                    <button type="button" class="btn btn-danger btn-wishlist-delete" id="{{ $wishlist->id }}" value="{{ $wishlist->id }}" >Delete </button>
+                    <button type="button" class="btn btn-danger btn-wishlist-delete" id="{{ $wishlist->id }}" value="{{ $wishlist->id }}" ><i class="fa fa-times" aria-hidden="true"></i> Delete </button>
 
               
               </td>

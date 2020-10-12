@@ -21,12 +21,17 @@ class Category extends Model
 
     public function categories()
     {
-        return $this->hasMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function childrenCategories()
     {
         return $this->hasMany(Category::class)->with('categories');
+    }
+
+    public function subCategory()
+    {
+        return $this->hasMany(Category::class,'category_id');
     }
 
     public function products() {
@@ -43,5 +48,9 @@ class Category extends Model
         'name'=>'required','string','max:255',
 
     ];
+    public function sections()
+    {
+      return $this->belongsTo(Setions::class);
+    }
 
 }

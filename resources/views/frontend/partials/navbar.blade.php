@@ -8,45 +8,29 @@
                 <li><a href="{{ route('shop', ['id'=>'shop']) }}"   class="parent"  >Home</a> </li>
                 <li><a href="{{ route('allProduct') }}"   class="parent"  >Shop</a> </li>
 
-                <li><a href="#" class="active parent">man <i class="fa fa-caret-down"></i> </a>
-                    <ul>
-                       
-                        <li><a href="singale-blog.html" >Singale Blog Page</a></li>
-                        <li><a href="register.html">Register Page</a></li>
-                        <li><a href="contact.html">Contact Page</a></li>
-                    </ul>
-                </li>
-                <li><a href="#" class="active parent">Woman <i class="fa fa-caret-down"></i> </a>
-                    <ul>
-                       
-                        <li><a href="singale-blog.html" >Singale Blog Page</a></li>
-                        <li><a href="register.html">Register Page</a></li>
-                        <li><a href="contact.html">Contact Page</a></li>
-                    </ul>
-                </li>
-                <li><a href="#" class="active parent">Fashio & Beauty <i class="fa fa-caret-down"></i> </a>
-                    <ul>
-                       
-                        <li><a href="singale-blog.html" >Singale Blog Page</a></li>
-                        <li><a href="register.html">Register Page</a></li>
-                        <li><a href="contact.html">Contact Page</a></li>
-                    </ul>
-                </li>
-                <li><a href="#" class="active parent">Home & Family <i class="fa fa-caret-down"></i> </a>
-                    <ul>
-                       
-                        <li><a href="singale-blog.html" >Singale Blog Page</a></li>
-                        <li><a href="register.html">Register Page</a></li>
-                        <li><a href="contact.html">Contact Page</a></li>
-                    </ul>
-                </li>
-                <li><a href="#" class="active parent">others<i class="fa fa-caret-down"></i></a>
-                    <ul>
-                        <li><a href="blog.html" class="parent"  >Blog</a></li>
-                        <li><a href="about-us.html" >About us</a></li>
-                        <li><a href="contact.html" >Contact Us</a> </li>
-                    </ul>
-                </li>
+
+                @foreach ( App\Models\Sections::orderBy('name','asc')->get() as $section )
+                    <li><a href="{{ route('allcategoryProduct',[$section->id]) }}" class="active parent"> {{ $section->name }} <i class="fa fa-caret-down"></i> </a>
+                        <ul>
+
+                            @foreach ($section->categories as $category)
+                            <li>
+                                <a href="{{ route('allcategoryProduct',[$category->id]) }}" >{{ $category->name }} {{ $category->id }}</a>
+                            </li>
+                            @endforeach
+
+                        </ul>
+                    </li>
+                @endforeach
+               
+                    <li><a href="#" class="active parent">others<i class="fa fa-caret-down"></i></a>
+                        <ul>
+                            <li><a href="blog.html" class="parent"  >Blog</a></li>
+                            <li><a href="about-us.html" >About us</a></li>
+                            <li><a href="contact.html" >Contact Us</a> </li>
+                        </ul>
+                    </li> 
+                
             </ul>
         </div>
     </div>

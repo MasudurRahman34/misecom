@@ -27,7 +27,7 @@
                  
                   <td class="text-left">Quantity</td>
                   <td class="text-right">Unit Price</td>
-                  <td class="text-right">Unit Total</td>
+                  <td class="text-right">Total Unit Price</td>
                 </tr>
               </thead>
               <tbody>

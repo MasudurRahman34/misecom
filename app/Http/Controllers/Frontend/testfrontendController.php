@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Backend\Product;
+use App\Models\Backend\Category;
+use DB;
 
 class testfrontendController extends Controller
 {
@@ -25,11 +27,11 @@ class testfrontendController extends Controller
         $all_products = Product::latest()->get();
 
        // return response()->json($products);
-       return view('frontend\pages\myapp\index', compact($products,'products'));
+       return view('frontend.pages.myapp.index', compact($products,'products'));
     }
-    public function allCategoryProduct()
+    public function allProduct()
     {
-        $products = Product::latest()->get();
+        $products = Product::orderBy('id','desc')->get();
         $latest_products = Product::latest()->get();
         $featured_products = Product::latest()->get();
         $bestseller_products = Product::latest()->get();
@@ -38,7 +40,27 @@ class testfrontendController extends Controller
         $all_products = Product::latest()->get();
 
        // return response()->json($products);
-       return view('frontend.pages.product.all-category-product', compact($products,'products'));
+       return view('frontend.pages.product.partials.all-products', compact($products,'products'));
+    }
+
+ 
+    public function allcategoryProduct($id)
+    {
+        if(!is_null($id)){
+
+           // $products = Product::where('category_id',$id)->with('categories')->orWhere('categories.id',$id)->get();
+           $products = Product::with('categories')->where('category_id', $id)->orwhere('id',$id)->get();
+           //$products = Product::with('categories')->where('category_id', $id)->orwhere('id',$id)->with('sections')->orWhere('id',$id)->get();
+            //$products =Category::Where('id',$ct_id)->get();
+                //->leftJoin('categories', 'products.category_id', '=', 'categories.id')->get();
+                //->orWhere('categories.id',$id)->get();
+                    // return response()->json($products);
+                        if(!is_null($products)){
+                            return view('frontend.pages.product.partials.all-category-subcategory-product', compact($products,'products'));
+                        } return view('frontend\partials\errors');
+        }
+        return view('frontend\partials\errors');
+        
     }
 
     /**
@@ -71,11 +93,14 @@ class testfrontendController extends Controller
     public function productshow($slug)
     {
         $product = Product::where('slug', $slug)->first();
+
+        $categories_id = $product->categories->id;
         if (!is_null($product)) {
-          return view('frontend.pages.product.show', compact('product'));
+            $Product_category = product::where('category_id', $categories_id)->get();
+                return view('frontend.pages.product.show', compact('product','Product_category'));
         }else {
-          session()->flash('errors', 'Sorry !! There is no product by this URL..');
-          return redirect()->route('shop');
+            session()->flash('errors', 'Sorry !! There is no product by this URL..');
+                return redirect()->route('shop');
         }
     }
 
