@@ -10,12 +10,13 @@
 
 
                 @foreach ( App\Models\Sections::orderBy('name','asc')->get() as $section )
-                    <li><a href="{{ route('allcategoryProduct',[$section->id]) }}" class="active parent"> {{ $section->name }} <i class="fa fa-caret-down"></i> </a>
+                {{-- <li><a href="{{ route('allcategoryProduct',[$section->id]) }}" class="active parent"> {{ $section->name }} <i class="fa fa-caret-down"></i> </a> --}}
+                    <li><a href="#" class="active parent" class="ex2"> {{ $section->name }} <i class="fa fa-caret-down"></i> </a>
                         <ul>
 
                             @foreach ($section->categories as $category)
                             <li>
-                                <a href="{{ route('allcategoryProduct',[$category->id]) }}" >{{ $category->name }} {{ $category->id }}</a>
+                                <a href="{{ route('allcategoryProduct',[$category->id]) }}" class="ex2" >{{ $category->name }}</a>
                             </li>
                             @endforeach
 

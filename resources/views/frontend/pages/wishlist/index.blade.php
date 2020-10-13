@@ -8,15 +8,16 @@
   <li><a href="index.html"><i class="fa fa-home"></i></a></li>
   <li><a href="">Shoping Cart</a></li>
   <li><a href="">Wishlist</a></li>
+  <li>Shopping Cart  | My Wishlist Items:  @if  (App\Models\Frontend\Wishlist::totalWishlist() > 0)  {{ App\Models\Frontend\Wishlist::totalWishlist() }}</li>
 </ul>
 @endsection
 @section('shop-content')
 
 @include('frontend.partials.sidebar')
-    <div class="row">
-      <div class="col-md-8" id="content">
-        <h1>Shopping Cart  | My Wishlist Items:  @if  (App\Models\Frontend\Wishlist::totalWishlist() > 0)  {{ App\Models\Frontend\Wishlist::totalWishlist() }}</h1>
-       
+    <div class="row justify-content-start">
+      <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-auto" id="content">
+        <h1></h1>
+       <hr>
           <div class="table-responsive" id="cart_tale_id">
             <table class="table table-bordered">
               <thead>

@@ -5,7 +5,7 @@
 @endsection
 @section('content')
 
-<div class="container col-2">
+<div class="container col">
     <div id="app">
         @include('frontend.partials.flash-massage ') 
     </div>

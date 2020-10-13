@@ -2,7 +2,7 @@
    
 <div class="col-sm-8 col-xs-6 header-right" >
     
-    <div id="cart" class="btn-group btn-block">
+    <div id="cart" class="btn-group ">
         <a href="{{ route('carts', ['id'=>'carts']) }}">
             {{-- <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button" >view cart</i></button> --}}
         </a>    
@@ -95,7 +95,7 @@
          <li ><a href="{{ route('wishlist', ['id'=>'wishlist']) }}" id="wishlist-total" title="Wish List (0)"><i class="fa fa-heart" style="color: red"></i> <span>Wish List</span><span> ({{ App\Models\Frontend\Wishlist::totalWishlist() }})</span></a></li>
          @guest
          <li class="dropdown">
-             <a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span>My Account</span> <span class="caret"></span></a>
+             <a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span>My Account</span> </a>
              <ul class="dropdown-menu dropdown-menu-right">
               <li class="nav-item dropdown">
                   <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

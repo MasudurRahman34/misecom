@@ -13,6 +13,10 @@
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
 <script data-cfasync="false" src="{{ asset('frontend/js/script.js') }}"></script>
 
+{{-- bootstap-js --}}
+
+
+
 
 
 <script type="text/javascript">
@@ -224,6 +228,95 @@
     });
 
     };
+
+    function cart_delete() {
+
+$('.btn-cart-delete').on("click", function (e) { 
+    // alert('ok');
+  let cart_id = $(this).attr("id");
+    console.log(cart_id);
+    var url = "{{ url('/') }}";
+      $.ajax({
+          type: "Post",
+          url: url+"/api/carts/delete/"+cart_id,
+          data: {
+              cart_id:cart_id,
+          },
+          
+          success: function (data) {
+            //let $rout = '{{ route('carts') }}';
+              alert(`Cart update successfully !!`);
+              location.reload();
+              $("#changeid").load(" #changeid > *");
+              $("#update_table_id").load(" #update_table_id > *");
+              $("#cart_tale_id").load(" #cart_tale_id > *");
+              $("#cart-total").html(data.totalItems);
+              //setTimeout(worker, 2000);
+              // $('#exampleModalCenter').modal('show')
+              // data = JSON.parse(data);
+              //if(data == 'success'){
+              //     // toast
+              //     alertify.set('notifier','position', 'top-center');
+              //     alertify.success('Item added to cart successfully !! Total Items: '+data.totalItems+ '<br />To checkout <a href="{{ route('carts') }}">go to checkout page</a>');
+              //     $("#totalItems").html(data.totalItems);
+              //}
+          }
+    });
+
+    if(cart_id<=0){
+      $( "#calculation" ).hide();
+
+    };
+  });
+ 
+};
+
+    function update(){
+        $('.btn-cart-submit').on("click",function (e) { 
+          // alert('ok');
+        let cart_id = $(this).attr("id");
+          console.log(cart_id);
+        $("#product_quantity").val(cart_id);
+
+          let product_quantity= $("#product_quantity_"+cart_id).val();
+            console.log(product_quantity);
+          var url = "{{ url('/') }}";
+            $.ajax({
+                type: "Post",
+                url: url+"/api/carts/update/"+cart_id,
+                data: {
+                    cart_id:cart_id,
+                    product_quantity:product_quantity,
+                },
+                
+                success: function (data) {
+                  //let $rout = '{{ route('carts') }}';
+                    alert(`Cart update successfully !!`);
+                    location.reload();
+                    $("#changeid").load(" #changeid > *");
+                    $("#update_table_id").load(" #update_table_id > *");
+                    $("#cart_tale_id").load(" .product_quantity > *");
+                    cart_tale_id
+                    //$("#content").load(" #content > *");
+                    $("#cart-total").html(data.totalItems);
+                    
+                    // $('#exampleModalCenter').modal('show')
+                    // data = JSON.parse(data);
+                    //if(data == 'success'){
+                    //     // toast
+                    //     alertify.set('notifier','position', 'top-center');
+                    //     alertify.success('Item added to cart successfully !! Total Items: '+data.totalItems+ '<br />To checkout <a href="{{ route('carts') }}">go to checkout page</a>');
+                    //     $("#totalItems").html(data.totalItems);
+                    //}
+                }
+          });
+        });
+
+    };
+
+    update();
+
+    cart_delete();
         addtoWishlist();
         addtocart();
         showProduct_addtocart();

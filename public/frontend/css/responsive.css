@@ -289,7 +289,7 @@
 	.header-right #cart{float: left;}
 
 	.header-right #search{margin: 10px auto; float: none;}
-	.header-right #cart{float: none;}
+	.header-right #cart{float: right;}
 	#content .product-grid .product-grid-item,.grid-list-wrapper .product-grid{width:100%;}
 	
 	/* CMS banner block */	

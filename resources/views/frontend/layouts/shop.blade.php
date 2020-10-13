@@ -12,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 @include('frontend.partials.style')
-
+@yield('styles')
 </head>
 <body>
 <div class="preloader loader" style="display: block;"> <img src="{{ asset('frontend/image/loader.gif') }}"  alt="#"/></div>
@@ -22,10 +22,11 @@
 </header>
 @include('frontend.partials.navbar')     
 
-<div class="container">
+<div class="conainer">
+    
     @yield('breadcrumb')
     {{-- main --}}
-    <div class="row">
+    
         <div class="app">
             @include('frontend.partials.flash-massage')
         </div>
@@ -33,14 +34,14 @@
         {{-- siad-bar --}}
         {{-- end siad-bar --}}
         @yield('shop-content')
-    </div>
+    
     {{-- end-main --}}
 </div>
 @include('frontend.partials.footer')
-@include('frontend.partials.script')
+
 
 @yield('script')
-
+@include('frontend.partials.script')
 
 </body>
 

@@ -43,7 +43,7 @@ class testfrontendController extends Controller
        return view('frontend.pages.product.partials.all-products', compact($products,'products'));
     }
 
- 
+  
     public function allcategoryProduct($id)
     {
         if(!is_null($id)){

@@ -4,10 +4,10 @@
         <div class="category_block">
             <ul class="box-category treeview-list treeview">
                 @foreach ( App\Models\Backend\Category::orderBy('name','desc')->whereNull('category_id')->get() as $category)
-                    <li><a href="{{ route('allcategoryProduct',[$category->id]) }}" class="activSub">{{ $category->name }} {{ $category->id }}</a>
+                    <li> <h4> <a href="{{ route('allcategoryProduct',[$category->id]) }}" class="activSub ex2"> <i class="fa fa-dot-circle-o" aria-hidden="true"></i> {{ $category->name }}</a></h4>
                         <ul>
                             @foreach ($category->subCategory as $subCategory)
-                                <li><a href="{{ route('allcategoryProduct',[$subCategory->id]) }}">{{ $subCategory->name }} {{ $subCategory->id }}</a></li>
+                                <li><a class="ex2" href="{{ route('allcategoryProduct',[$subCategory->id]) }}">{{ $subCategory->name }}</a></li>
                             @endforeach
                             
 
