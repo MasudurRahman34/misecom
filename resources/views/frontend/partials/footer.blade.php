@@ -1,7 +1,21 @@
 {{-- <footer></footer> --}}
 <footer>
+
     <div class="container">
-        <div class="footer-top-cms">
+        <div class="col md-12 smedia" style="float: left">
+        <div class="col-md-4">
+            <h1 style="text-align: center"><a href="#">Facebook</a> </h1>
+        </div>
+        <div class="col-md-4" style="float: left">
+            <h1 style="text-align: center"><a href="">Youtube</a></h1>
+        </div>
+        <div class="col-md-4" style="float: left">
+            <h1 style="text-align: center"><a href="">Instragram</a></h1>
+        </div>
+        </div>
+        <br>
+        <hr>
+        {{-- <div class="footer-top-cms">
             <div class="footer-logo"> <a href="#"><img alt="index.html" src="{{ asset('frontend/image/logo-footer.png') }}"></a> </div>
             <div class="footer-desc"> <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </span> </div>
             <div class="footer-social">
@@ -14,7 +28,8 @@
                     <li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
                 </ul>
             </div>
-        </div>
+        </div> --}}
+
         <div class="">
         <div class="row text-center">
             <div class="col-sm-4 footer-block ">
@@ -40,22 +55,20 @@
         
             <div class="col-sm-4 footer-block">
                 <div class="content_footercms_right">
-                    <div class="footer-contact">
+                    <div class="footer-contact" >
                         <h5 class="contact-title footer-title">Contact</h5>
-                        <ul class="ul-wrapper">
-                            <li><i class="fa fa-mobile"></i><span class="phone2">+ 0987-654-321</span></li>
-                            <li><i class="fa fa-envelope"></i><span class="mail2"><a href="#">info@localhost.com</a></span></li>
-                            <li><span class=""> Warehouse & Offices,12345 Street name, California,USA</span></li>
-                           
-                            
-                        </ul>
+                            <ul class="ul-wrapper" >
+                                <li><span class="phone2"> + 0987-654-321</span></li>
+                                <li><span class="mail2"><a href="#"> </i>info@localhost.com</a></span></li>
+                                <li><span class=""> Warehouse & Offices,12345 Street name, California,USA</span></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
+    
     <a id="scrollup">Scroll</a> 
 </footer>
 <div class="footer-bottom">

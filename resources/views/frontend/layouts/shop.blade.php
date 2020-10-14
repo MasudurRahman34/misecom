@@ -15,34 +15,29 @@
 @yield('styles')
 </head>
 <body>
-<div class="preloader loader" style="display: block;"> <img src="{{ asset('frontend/image/loader.gif') }}"  alt="#"/></div>
-<header>
-    @include('frontend.partials.header')
-    {{-- @include('frontend.partials.cart')      --}}
-</header>
-@include('frontend.partials.navbar')     
+    <div class="preloader loader" style="display: block;"> <img src="{{ asset('frontend/image/loader.gif') }}"  alt="#"/></div>
+    <header>
+        @include('frontend.partials.header')
+        {{-- @include('frontend.partials.cart')      --}}
+    </header>
+    @include('frontend.partials.navbar')     
 
-<div class="conainer">
-    
-    @yield('breadcrumb')
-    {{-- main --}}
-    
-        <div class="app">
-            @include('frontend.partials.flash-massage')
-        </div>
-       
-        {{-- siad-bar --}}
-        {{-- end siad-bar --}}
-        @yield('shop-content')
-    
-    {{-- end-main --}}
-</div>
-@include('frontend.partials.footer')
+    <div class="conainer">
+        @yield('breadcrumb')
+        {{-- main --}}
+            <div class="app">
+                @include('frontend.partials.flash-massage')
+            </div>
+            @yield('shop-content')
+        
+        {{-- end-main --}}
+    </div>
+    @include('frontend.partials.footer')
 
-
-@yield('script')
-@include('frontend.partials.script')
-
+    @yield('script')
+    @include('frontend.partials.script')
+{{-- </div>
+</div> --}}
 </body>
 
 <!-- Mirrored from html.lionode.com/focus/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Sep 2020 07:07:57 GMT -->

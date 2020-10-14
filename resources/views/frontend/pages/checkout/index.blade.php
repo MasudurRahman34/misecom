@@ -40,19 +40,11 @@
 
                     <div id="payment-new"  style="">
                       <div class="form-group required">
-                        <label for="input-payment-firstname" class="col-sm-2 control-label">First Name</label>
+                        <label for="input-payment-name" class="col-sm-2 control-label"> Name</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="input-payment-firstname" placeholder="First Name" value="" name="Billing_Details_firstname">
+                          <input type="text" class="form-control" id="input-payment-name" placeholder=" Name" value="" name="Billing_Details_name">
                         </div>
                       </div>
-
-                      <div class="form-group required">
-                        <label for="input-payment-lastname" class="col-sm-2 control-label">Last Name</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="input-payment-lastname" placeholder="Last Name" value="" name="Billing_Details_lastname">
-                        </div>
-                      </div>
-
                       <div class="form-group required">
                         <label for="input-payment-address-1" class="col-sm-2 control-label">Address </label>
                         <div class="col-sm-10">
@@ -73,43 +65,8 @@
                           <input type="text" class="form-control" id="input-payment-city" placeholder="City" value="" name="Billing_Details_city">
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label for="input-payment-postcode" class="col-sm-2 control-label">Post Code</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="input-payment-postcode" placeholder="Post Code" value="" name="Billing_Details_postcode">
-                        </div>
-                      </div>
                       <div class="form-group required">
-                        <label for="input-payment-country" class="col-sm-2 control-label">Country</label>
-                        <div class="col-sm-10">
-                          <select class="form-control" id="input-payment-country" name="Billing_Details_country_id">
-                            <option value=""> --- Please Select --- </option>
-                            <option value="244">Aaland Islands</option>
-                            <option value="1">Afghanistan</option>
-                            <option value="2">Albania</option>
-                            <option value="3">Algeria</option>
-                            <option value="4">American Samoa</option>
-                            <option value="5">Andorra</option>
-                            <option value="6">Angola</option>
-                            <option value="7">Anguilla</option>
-                            <option value="8">Antarctica</option>
-                            <option value="9">Antigua and Barbuda</option>
-                            <option value="10">Argentina</option>
-                            <option value="11">Armenia</option>
-                            <option value="12">Aruba</option>
-                            <option value="252">Ascension Island (British)</option>
-                            <option value="13">Australia</option>
-                            <option value="14">Austria</option>
-                            <option value="15">Azerbaijan</option>
-                            <option value="16">Bahamas</option>
-                            <option value="17">Bahrain</option>
-                            <option value="18">Bangladesh</option>
-
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group required">
-                        <label for="input-payment-zone" class="col-sm-2 control-label">Region / State</label>
+                        <label for="input-payment-zone" class="col-sm-2 control-label">Region</label>
                         <div class="col-sm-10">
                           <select class="form-control" id="input-payment-zone" name="Billing_Details_zone_id">
                             <option value=""> --- Please Select --- </option>
@@ -353,50 +310,5 @@
 
 @section('script')
 <script type="text/javascript">
-
-$(document).ready(function () {
-        //set ajax token
-       $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-          }
-          });  
-        function checkout(){
-          //set submit-button
-          $('#button-confirm').click(function (e) { 
-            e.preventDefault();
-              let total_amount = $('.total_amount').attr('id'); 
-                console.log(total_amount);
-                //set Url
-                let url = "{{ url('/') }}";
-
-                  //set ajax for post request
-
-                $.ajax({
-                  type: "post",
-                  url: url+"/checkout/store/",
-                  data:{
-                      total_amount:total_amount,
-                  },
-                
-                  success: function (response) {
-                    console.log(response);
-                    if(response){
-                      alert('your order is complate. Thank You');
-                      location.reload();
-                      //$("#divid").load(" #divid > *");
-                      $("#changeid").load(" #changeid > *");
-                      //$("#update_table_id").load(" #update_table_id > *");
-
-                    }
-                    
-                  }
-                });
-              });  
-            };
-        checkout();    
-
-});
-
 </script>   
 @endsection
