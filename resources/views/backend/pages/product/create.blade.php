@@ -9,24 +9,11 @@
                 <div class="page-header-title">
                     <div class="d-inline">
                         <h4> products</h4>
-                        <span>manage products</span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="page-header-breadcrumb">
-                    <ul class="breadcrumb-title">
-                        <li class="breadcrumb-item">
-                            <a href="index-1.htm"> <i class="feather icon-home"></i> </a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#!">Admin</a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#!">Dashboard</a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#!">products</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="col-lg-4 float-right">
+                <button class="btn btn-primary btn-icon" data-toggle="modal" data-target="#product"><i class="ti-plus"></i></button>
             </div>
         </div>
     </div>
@@ -34,115 +21,206 @@
     <!-- Page-body start -->
     <div class="page-body">
         <div class="row">
-            @include('backend.partials.massage')
-            <div class="col-md-7 col-sm-7">
-                {{-- @if($errors->has())
-                    @foreach ($errors->all() as $error)
-                        <div>{{ $error }}</div>
-                    @endforeach
-                @endif --}}
-
-                <div class="flash-message">
-                    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-                      @if(Session::has('alert-' . $msg))
-                      <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
-                      @endif
-                    @endforeach
-                  </div>
-
-                <div class="card">
-                    <div class="card-header table-card-header">
-                        <h5>Export products As you Need</h5>
-                    </div>
-                    <div class="card-block">
-                        <div class="dt-responsive table-responsive">
-                            <table class="table table-hover table-bordered" id="sampleTable">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Title</th>
-                                    <th>desctoption</th>
-                                    <th>Price</th>
-                                    <th>Created Date</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
+            <div class="col-md-12">
+                <div class="dt-responsive table-responsive">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>sku</th>
+                        <th>Title</th>
+                        <th>desctoption</th>
+                        <th>Sell Price</th>
+                        {{-- <th>Created Date</th> --}}
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                </table>
                 </div>
             </div>
-
-            <div class="col-md-5 col-sm-5">
-
-                <!-- Basic Inputs Validation start -->
-                <div class="card">
-                    <div class="card-header table-card-header">
-                        <h5 class="" id="title" >Add Product</h5>
-                        {{-- <h5>Basic Inputs Validation</h5>
-                        <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
-
-                    </div>
-                    <div class="card-block">
-                        <form id="myform" method="post" action="javascript:void(0)" novalidate="">
-                            <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Product Title</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" name="product_title" id="product_title" placeholder="Text Input Validation" required>
-                                    <span class="messages"></span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Price</label>
-                                <div class="col-sm-5">
-                                    <input type="number" min="1" max="30000" class="form-control" name="Price" id="Price" required>
-                                    <span class="messages"></span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Product Description</label>
-                                <div class="col-sm-10">
-                                    <textarea rows="5" cols="5" class="form-control" name="product_description" id="product_description"  placeholder="Default"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-5 col-form-label"> Category</label>
-                                <div class="col-sm-5">
-                                    <span class="messages"></span>
-                                    <select class="form-control "  id="category_id" name="category_id">
-                                      
-                                        @if($categories)
-                                            @foreach ($categories as $categorie)
-                                            <option value="{{$categorie->id}}" class="col-sm-4">{{$categorie->name}}</option>
-                                            @endforeach
-                                        @else
-                                            <option value="">no data found</option>
-                                        @endif
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-5 col-form-label"> Brnd</label>
-                                <div class="col-sm-5">
-                                    <span class="messages"></span>
-                                    <select class="form-control "  id="brand" name="brand">
-                                       
-                                        @foreach ($brands as $brand)
-                                        <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
-                                        @endforeach
+            <div class="col-md-12">
+                <div class="modal fade bd-example-modal-lg" id="product" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">New Product</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <form action="javascipt::void(0)" id="product_form" enctype="multipart/form-data">
+                          {{-- <form action="{{route('products.store')}}" id="product_form" method="post" enctype="multipart/form-data"> --}}
+                            {{-- @csrf --}}
+                            <div class="modal-body">
+                                <div class="row">
+                                    {{-- <div class="col-sm-12">
+                                        <h6>Official Information</h6>
+                                        <hr>
+                                    </div> --}}
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Product Title</label>
+                                            <input type="text" class="form-control" id="product_title" name="product_title" value="">
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="message-text" class="form-control-label">Buying Price</label>
+                                            <input type="number" class="form-control" id="buy_price" name="buy_price" value="" step="any">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="message-text" class="form-control-label">Selling Price</label>
+                                            <input type="number" class="form-control" id="sell_price" name="sell_price" value="" step="any">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="message-text" class="form-control-label">Offer</label>
+                                        <select class="form-control m-b-1" id="offer" name="offer" required>
+                                            <option value="100">100</option>
+                                            <option value="80">80</option>
+                                            <option value="60">60</option>
+                                            <option value="50">50</option>
+                                            <option value="40">40</option>
+                                            <option value="20">20</option>
+                                            <option value="0" selected>0</option>
                                         </select>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Description</label>
+                                            <textarea cols="5" rows="5" class="form-control" id="product_description" name="product_description" value=""></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Section</label>
+                                            <select class="form-control m-b-1" id="section_id" name="section_id" required>
+                                                <option>--Please Select--</option>
+                                                @foreach ($sections as $section)
+                                                    <option value="{{$section->id}}">{{$section->name}}</option>
+                                                @endforeach
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Catagory</label>
+                                            <select class="form-control m-b-1" id="catagory_id" name="catagory_id" required>
+                                                <option>--Please Select--</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Brand</label>
+                                            <select class="form-control m-b-1" id="brand_id" name="brand_id" required>
+                                                <option>--Please Select--</option>
+                                                {{-- @foreach ($brands as $brand)
+                                                    <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                                @endforeach --}}
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Color</label>
+                                            <select class="form-control m-b-1" id="color" name="color" required>
+                                                <option value="Black">Black</option>
+                                                <option value="White">White</option>
+                                                <option value="Red">Red</option>
+                                                <option value="Maroon">Maroon</option>
+                                                <option value="Purple">Purple</option>
+                                                <option value="Mix">Mix</option>
+                                                {{-- @foreach ($brands as $brand)
+                                                    <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                                @endforeach --}}
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Fabric</label>
+                                            <select class="form-control m-b-1" id="fabric_id" name="fabric_id" required>
+                                                @foreach ($fabrics as $fabric)
+                                                    <option value="{{$fabric->id}}">{{$fabric->name}}</option>
+                                                @endforeach
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Sleeve</label>
+                                            <select class="form-control m-b-1" id="sleeve" name="sleeve" required>
+                                                <option value="Half">Half</option>
+                                                <option value="Full">Full</option>
+                                                <option value="3 Quarter">3 Quarter</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Supplier</label>
+                                            <select class="form-control m-b-1" id="supplier_id" name="supplier_id" required>
+                                                <option>--Please Select--</option>
+                                                @foreach ($suppliers as $supllier)
+                                                    <option value="{{$supllier->id}}">{{$supllier->official_name}}</option>
+                                                @endforeach
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Status</label>
+                                            <select class="form-control m-b-1" id="status" name="status" required>
+                                                <option value="0">Active</option>
+                                                <option value="0">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Image Upload</h5>
+                                                {{-- <div class="card-header-right">
+                                                    <ul class="list-unstyled card-option">
+                                                        <li><i class="feather icon-maximize full-card"></i></li>
+                                                        <li><i class="feather icon-minus minimize-card"></i></li>
+                                                        <li><i class="feather icon-trash-2 close-card"></i></li>
+                                                    </ul>
+                                                </div> --}}
+                                            </div>
+                                            <div class="card-block">
+                                                <input type="file" name="images[]" id="images" class="filer_input1" multiple="multiple">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class=""></label>
-                                <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-primary m-b-0" id="submit" >Submit</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" id="submit" class="btn btn-primary" id="submit">Save</button>
+                            </div>
+                          </form>
+                                    
                                 </div>
                             </div>
-                        </form>
+                
+                      </div>
                     </div>
-                </div>
+                  </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -150,39 +228,15 @@
 <div class="clearix"></div>
 @endsection
 @section('script')
+    {{-- <script src="'public\backend\files\assets\pages\jquery.filer\js\jquery.filer.min.js'"></script>
+    <script src="..\files\assets\pages\filer\custom-filer.js" type="text/javascript"></script> --}}
     <script>
        
-        function required()
-            {
-                var product_title = $('#product_title').val();
-                var product_description = $('#product_description').val();
-                if (product_title === "" && product_description === "" )
-                {
-                alert("Please input Value in empty field");
-                return false;
-                }
-                else 
-                {
-                return true; 
-                }
-            }
-
-            function setUpdateProperty(id,  propertyName){
-                    $("#submit").html("Update "+propertyName+"");
-                    $("#title").html("Update "+propertyName+"");
-                    $("#submit").val(id);
-                }    
 
         var table= $('#sampleTable').DataTable({
                 dom: 'lBfrtip',
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf',
-                    {
-                    extend: 'print',
-                    exportOptions: {
-                        columns: ':visible'
-                            }
-                    },
+                    'copy', 'excel',
                     'colvis',
                 ],
                 columnDefs: [ {
@@ -191,27 +245,23 @@
                 } ],
                 processing:true,
                 serverSide:true,
-                ajax:"{{url('admin/products/show')}}",
+                ajax:"{{url('/api/admin/product/synctable')}}",
                 columns:[
                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                    { data: 'sku', name: 'sku' },
                     { data: 'product_title', name: 'product_title' },
                     { data: 'product_description', name: 'product_description' },
-                    { data: 'Price', name: 'Price' },
-                    { data: 'created_at', name: 'created_at' },
+                    { data: 'sell_price', name: 'sell_price' },
                     { data: 'action', name: 'action' }
                 ]
             });
 
             //submit function
-            $('#submit').click(function(e) {
+            $('#product_form').submit(function(e) {
                 e.preventDefault();
-                required();
+               
                 var id=$('#submit').val();
-                if(id>0){
-                    console.log(`submit id:`+id);
-                }
-                
-                
+                var from_data= new FormData(this)
 
                 $.ajaxSetup({
                     headers: {
@@ -219,39 +269,28 @@
                         }
                 });
                 if (id>0) {
-                    var url="{{url('admin/products/update')}}"+"/"+id;
+                    var url="{{url('/api/admin/product/update')}}"+"/"+id;
                 }else{
-                var url="{{url('admin/products/store')}}"
+                var url="{{url('/api/admin/product/store')}}"
                 }
                 $.ajax({
                     type: "post",
                     url: url,
-                    data: {
-                        product_title: $('#product_title').val(),
-                        product_description: $('#product_description').val(),
-                        Price: $('#Price').val(),
-                        category_id: $('#category_id option:selected').val(),
-                        brand: $('#brand option:selected').val(),
-                       
-                    },
+                    data: from_data,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                        
                     success: function (result) {
-                        if (result.success) {
-                            console.log(result);
-                            alert('data added to server.');
-                            document.getElementById("myform").reset();
-                            setTimeout( function() 
-                                        {table.draw()},600);
+                        console.log(result);
+                        if (result.error==false) {
+                            successNotification();
+                           // removeUpdateProperty("catagory");
+                            document.getElementById("product_form").reset();
+                            $('.jFiler-items').empty();
                         }
-                        if(result.errors){
-
-                            function getError(errorMessage){
-                                    for (err in errorMessage) {
-                                    $('<div>'+errorMessage[err]+'</div>').insertAfter('#'+err).addClass('text-danger').attr('id','error');
-                                    console.log(err);
-                                }
-                                getError(result.errors);    
-                                Session:errors('ERRRORS');
-                            }
+                        if(result.error==true){
+                            getError(result.message);
                         }
                     }
 
@@ -286,7 +325,42 @@
                        table.draw();
                    }
                })
-            }   
+            } 
+            
+            function setCatagoryBrand(res){
+                if(res.data.catagories!=""){
+                            var option="<option>--Please Select--</option>";
+                            res.data.catagories.forEach(element => {
+                            option+=("<option value='"+element.id+"'>"+element.name+"</option>");
+                        });
+                        $('#catagory_id').html(option);
+                        }
+                       
+                        if(res.data.brands!=""){
+                            br_option="<option>--Please Select--</option>";
+                            res.data.brands.forEach(element => {
+                            br_option+=("<option value='"+element.id+"'>"+element.name+"</option>");
+                        });              
+                       
+                        $('#brand_id').html(br_option);
+                        }
+            } 
+
+            $('#section_id').change(function(e){
+                var section_id=$('#section_id option:selected').val();
+                var url="{{url('/api/admin/section/getCatagoryBrand')}}";
+                $.ajax({
+                    type:"GET",
+                    url:url+"/"+section_id,
+                    success:function(res){
+                       // console.log(res.data);
+                       setCatagoryBrand(res);
+                        
+                    }
+                })
+                //console.log(section_id);
+
+            });
     </script>
 
     @endsection

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Backend\Brand;
+use App\Models\Backend\Category;
 use Illuminate\Database\Eloquent\Model;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,4 +24,13 @@ class Sections extends Model
         'name'=>'required','string','max:100',
 
     ];
+    public function catagories()
+    {
+        return $this->hasMany(Category::class,'section_id','id');
+    }
+    public function brands()
+    {
+        return $this->hasMany(Brand::class,'section_id','id');
+    }
+
 }

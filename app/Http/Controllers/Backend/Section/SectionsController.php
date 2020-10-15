@@ -89,6 +89,12 @@ use imageUpload;
         return $this->success($section);   
     }
 
+    public function getCatagoryBrand($sections)
+    {
+        $section = Sections::with(['brands','catagories'])->find($sections);
+        return $this->success($section);   
+    }
+
    
     public function update(Request $request, $section)
     {
@@ -133,11 +139,14 @@ use imageUpload;
     public function destroy($sections)
     {
         $section= Sections::find($sections);
-        $image_path='img/product/section/thumbnail/'.$section->thumbnail_image;
-        if (File::exists($image_path)) {
-            //File::delete($image_path);
-            unlink($image_path);
+        if(!empty ($section->thumbnail_image)){
+            $image_path='img/product/section/thumbnail/'.$section->thumbnail_image;
+            if (File::exists($image_path)) {
+                //File::delete($image_path);
+                unlink($image_path);
+            }
         }
+       
         $section->delete();
         return $this->success($section);
     }

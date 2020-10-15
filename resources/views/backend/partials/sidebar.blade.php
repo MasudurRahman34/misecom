@@ -126,12 +126,29 @@
             <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                    <span class="pcoded-mtext">Supplier</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="{{ route('supplier.list', []) }}">
+                            <span class="pcoded-mtext">Manage Supplier</span>
+                        </a>
+                    </li>
+                   
+                </ul>
+            </li>
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                     <span class="pcoded-mtext">product</span>
                 </a>
                 <ul class="pcoded-submenu">
                     <li class="">
                         <a href="{{ route('products.index', []) }}">
                             <span class="pcoded-mtext">Manage product</span>
+                        </a>
+                        <a href="{{ route('product.quantity.index', []) }}">
+                            <span class="pcoded-mtext">Product Quantity</span>
                         </a>
                     </li>
                    

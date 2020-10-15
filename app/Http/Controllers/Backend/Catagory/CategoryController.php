@@ -13,6 +13,7 @@ use App\Models\Backend\Category;
 use App\Models\Sections;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use App\Traits\ApiResponse;
 use App\Traits\imageUpload;
 use Illuminate\Support\Facades\URL;
@@ -76,6 +77,8 @@ class CategoryController extends Controller
             try {
             $category= new Category();
             $category->name = $request->name;
+            //$slugable = $request->name."-".$category->id;
+            $category->slug = Str::slug($request->name)."-".rand(1,2000);
             $category->category_id = $request->category_id;
             $category->section_id = $request->section_id;
             $category->status = $request->status;
@@ -110,13 +113,15 @@ class CategoryController extends Controller
     {
         //
 
-        $catagories= Category::with('childrenCategories')->get();
+        $catagories= Category::with(['childrenCategories','section'])->get();
             return $data_table_render = DataTables::of($catagories)
                 ->addIndexColumn()
                 ->editColumn('thumbnail_image', function($raw){
+                    if(!empty($raw->thumbnail_image)){
                     $url= URL::to('/img/product/catagory/thumbnail/'.$raw->thumbnail_image);
                      $img='<img src='.$url.' border="0" width="40" class="img-rounded" align="center" />';
                      return $img;
+                    }
                 })
                 ->addColumn('parent_catagories',function($catagories){
                     return view('backend.pages.category.child_category',compact('catagories'));
@@ -194,14 +199,15 @@ class CategoryController extends Controller
     {
         //
         $category = Category::find($id);
-        $image_path='img/product/catagory/thumbnail/'.$category->thumbnail_image;
         
-        if (File::exists($image_path)) {
-            //File::delete($image_path);
-            unlink($image_path);
+        if(!empty($category->thumbnail_image)){
+            $image_path='img/product/catagory/thumbnail/'.$category->thumbnail_image;
+            if (File::exists($image_path)) {
+                //File::delete($image_path);
+                unlink($image_path);
+            }
         }
         $category->delete();
         return response()->json($category);
-    
     }
 }

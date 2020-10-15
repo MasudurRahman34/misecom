@@ -30,7 +30,7 @@ $(document).ready(function(){
 										<li>{{fi-progressBar}}</li>\
 									</ul>\
 									<ul class="list-inline pull-right">\
-										<li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+										<li><a class="feather icon-trash-2 close-card jFiler-item-trash-action"></a></li>\
 									</ul>\
 								</div>\
 							</div>\
@@ -56,7 +56,7 @@ $(document).ready(function(){
 											<li><span class="jFiler-item-others">{{fi-icon}}</span></li>\
 										</ul>\
 										<ul class="list-inline pull-right">\
-											<li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+											<li><a class="feather icon-trash-2 close-card jFiler-item-trash-action"></a></li>\
 										</ul>\
 									</div>\
 								</div>\
