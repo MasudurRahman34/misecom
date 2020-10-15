@@ -29,7 +29,14 @@
                         <div class="item">
 
                         <div class="product-thumb transition">
-                            <div class="image product-imageblock"> <a href="{{ route('product.show',[$product->slug] ) }}"><img src="{{ asset('frontend/image/product/product.jpg') }}" alt="iPod Classic" title="iPod Classic" class="img-responsive" /> </a>
+                            @php $i = 1; @endphp
+                                @foreach ($product->product_images as $image)
+                                    @if ($i > 0)
+                                        <div class="image product-imageblock"> <a href="{{ route('product.show',[$product->slug] ) }}"><img src="{{ asset('img/product/'.$image->link ) }}" alt="iPod Classic" title="iPod Classic" class="img-responsive" /> </a>
+                                    @endif
+
+                                    @php $i--; @endphp
+                                @endforeach    
                                 <div class="button-group">
                                     <button type="button" class="wishlist wishlist-btn" id="{{ $product->id }}" value="{{ $product->id }}" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
                                     <button type="button" class="addtocart-btn" id="{{ $product->id }}" value="{{ $product->id }}" >Add to Bag </button>

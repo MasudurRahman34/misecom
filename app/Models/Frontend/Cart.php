@@ -49,10 +49,10 @@ class Cart extends Model
     return $carts;
   }
 
-/**
- * total Items in the cart
- * @return integer total item
- */
+  /**
+   * total Items in the cart
+   * @return integer total item
+  */
   public static function totalItems()
   {
     $carts = Cart::totalCarts();

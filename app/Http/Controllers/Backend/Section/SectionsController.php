@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use DataTables;
-use App\Models\Sections;
+use App\Models\Section;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Traits\ApiResponse;
@@ -28,7 +28,7 @@ use imageUpload;
    
     public function syncTable()
     {
-        $sections= Sections::get();
+        $sections= Section::get();
         return $data_table_render = DataTables::of($sections)
             ->addIndexColumn()
             ->editColumn('thumbnail_image', function($raw){
@@ -47,14 +47,14 @@ use imageUpload;
     }
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), Sections::$rules);
+        $validator = Validator::make($request->all(), Section::$rules);
         
         if($validator->fails()) {
             return $this->error($validator->errors(),200);
         }else{
             DB::beginTransaction();
             try {
-            $section= new Sections();
+            $section= new Section();
             $section->name = $request->name;
             $section->status = $request->status;
             if ($image = $request->file('thumbnail_image')) {
@@ -85,21 +85,27 @@ use imageUpload;
 
     public function edit($sections)
     {
-        $section = Sections::find($sections);
+        $section = Section::find($sections);
+        return $this->success($section);   
+    }
+
+    public function getCatagoryBrand($sections)
+    {
+        $section = Section::with(['brands','catagories'])->find($sections);
         return $this->success($section);   
     }
 
    
     public function update(Request $request, $section)
     {
-        $validator = Validator::make($request->all(), Sections::$rules);
+        $validator = Validator::make($request->all(), Section::$rules);
         
         if($validator->fails()) {
             return $this->error($validator->errors(),200);
         }else{
             DB::beginTransaction();
             try {
-            $section= Sections::find($section);
+            $section= Section::find($section);
             $section->name = $request->name;
             $section->status = $request->status;
            
@@ -132,12 +138,15 @@ use imageUpload;
    
     public function destroy($sections)
     {
-        $section= Sections::find($sections);
-        $image_path='img/product/section/thumbnail/'.$section->thumbnail_image;
-        if (File::exists($image_path)) {
-            //File::delete($image_path);
-            unlink($image_path);
+        $section= Section::find($sections);
+        if(!empty ($section->thumbnail_image)){
+            $image_path='img/product/section/thumbnail/'.$section->thumbnail_image;
+            if (File::exists($image_path)) {
+                //File::delete($image_path);
+                unlink($image_path);
+            }
         }
+       
         $section->delete();
         return $this->success($section);
     }

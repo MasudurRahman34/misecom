@@ -3,14 +3,19 @@
         <div class="columnblock-title">Categories</div>
         <div class="category_block">
             <ul class="box-category treeview-list treeview">
-                @foreach ( App\Models\Backend\Category::orderBy('name','desc')->whereNull('category_id')->get() as $category)
-                    <li> <h4> <a href="{{ route('allcategoryProduct',[$category->id]) }}" class="activSub ex2"> <i class="fa fa-dot-circle-o" aria-hidden="true"></i> {{ $category->name }}</a></h4>
+                @foreach ( App\Models\Section::orderBy('name','asc')->get() as $sections )
+                {{-- <li><a href="{{ route('allcategoryProduct',[$section->id]) }}" class="active parent"> {{ $section->name }} <i class="fa fa-caret-down"></i> </a> --}}
+                    <li><a href="#" class="active parent" class="ex2"> {{ $sections->name }} </a>
                         <ul>
-                            @foreach ($category->subCategory as $subCategory)
-                                <li><a class="ex2" href="{{ route('allcategoryProduct',[$subCategory->id]) }}">{{ $subCategory->name }}</a></li>
+                             @foreach ( App\Models\Backend\Category::orderBy('name','desc')->where('section_id',$sections->id)->whereNull('category_id')->get() as $category)
+                                <li> <h4> <a href="{{ route('allcategoryProduct',[$category->id]) }}" class="activSub ex2"> <i class="fa fa-dot-circle-o" aria-hidden="true"></i> {{ $category->name }}</a></h4>
+                                    <ul>
+                                        @foreach ($category->subCategory as $subCategory)
+                                            <li><a class="ex2" href="{{ route('allcategoryProduct',[$subCategory->id]) }}">{{ $subCategory->name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </li>
                             @endforeach
-                            
-
                         </ul>
                     </li>
                 @endforeach

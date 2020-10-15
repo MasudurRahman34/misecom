@@ -246,13 +246,13 @@
                                       <td class="text-left"><a href="">{{ $cart->product->product_title }}</a></td>
                                     
                                       <td class="text-right">  x {{  $cart->product_quantity  }}  </td>
-                                      <td class="text-right">  {{ $cart->product->Price }} Taka  </td>
+                                      <td class="text-right">  {{ $cart->product->offer_price }} Taka  </td>
                                       <td class="text-right"> 
                                           @php
-                                          $total_price += $cart->product->Price * $cart->product_quantity;
+                                          $total_price += $cart->product->offer_price * $cart->product_quantity;
                                           @endphp
                           
-                                          {{ $cart->product->Price * $cart->product_quantity }} Taka
+                                          {{ $cart->product->offer_price * $cart->product_quantity }} Taka
                                       </td>
                                     </tr>
                                   @endforeach
@@ -276,7 +276,7 @@
                                 </tr>
                                 <tr>
                                   <td class="text-right" colspan="4"><strong>Total:</strong></td>
-                                  <td class="text-right total_amount" id="{{ $total }}" >{{ $total }}</td>
+                                  <td class="text-right total_amount" id="{{ $total }}" >{{ $total }} Taka</td>
                                 </tr>
                               </tfoot>
                             </table>

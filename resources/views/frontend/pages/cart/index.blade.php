@@ -19,8 +19,6 @@
 
     <div class="row justify-content-center">
       <div class="col-xl-9 col-lg-9 col-md-9 col-sm  col-sm-auto" id="content">
-        <h3></h3>
-        <hr>
         <div id="accordion" class="panel-group">
           <div class="panel panel-default">
                   <div class="table-responsive p owl-animated-in" id="cart_tale_id">
@@ -52,7 +50,7 @@
                           @else
                           <td class="text-center"><a href="product.html"><img class="img-thumbnail" title="iPhone" alt="iPhone" src="{{ asset('frontend/image/product/2product50x59.jpg') }}"></a></td>
                           @endif --}}
-                          <td class="text-center" style="max-width: 130px;"><a href="product.html"><img style="max-width: 75%; class="img-thumbnail" title="iPhone" alt="iPhone" src="{{ asset('frontend/image/product/product.jpg') }}"></a></td>
+                          <td class="text-center" style="max-width: 130px;"><a href=""> <img style="max-width: 75%; class="img-thumbnail" title="iPhone" alt="iPhone" src="{{ asset('img/product/'.$cart->product->product_images->first()->link) }}"></a></td>
                           {{-- {{ route('products.show', $cart->product->slug) }} --}}
 
                           <td class="text-left"><a href="" >{{ $cart->product->product_title }}</a></td>
@@ -64,10 +62,10 @@
                               <button class="btn btn-primary btn-cart-submit" name="btm-submit" id="{{ $cart->id }}" title="update you cart {{ $cart->id }}" data-toggle="tooltip" type="submit" data-original-title="Update" ><i class="fa fa-refresh"></i></button>
                               <button  class="btn btn-danger btn-cart-delete" title="" data-toggle="tooltip"  id="{{ $cart->id }}" type="button" data-original-title="Remove"><i class="fa fa-times-circle"></i></button>
                               </span></div></td>
-                          <td class="text-right">{{ $cart->product->Price }} Taka</td>
+                          <td class="text-right">{{ $cart->product->offer_price }} Taka</td>
                           <td class="text-right">
                             @php
-                            $total_price += $cart->product->Price * $cart->product_quantity;
+                            $total_price += $cart->product->offer_price * $cart->product_quantity;
                             @endphp
             
                             {{ $cart->product->Price * $cart->product_quantity }} Taka

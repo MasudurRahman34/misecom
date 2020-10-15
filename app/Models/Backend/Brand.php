@@ -4,7 +4,7 @@ namespace App\Models\Backend;
 
 use Illuminate\Database\Eloquent\Model;
 use DateTimeInterface;
-Use App\Models\Sections;
+Use App\Models\Section;
 
 class Brand extends Model
 {
@@ -27,7 +27,7 @@ class Brand extends Model
     }
     public function section()
     {
-        return $this->bellongsTO(Sections::class);
+        return $this->bellongsTO(Section::class);
     }
 
 

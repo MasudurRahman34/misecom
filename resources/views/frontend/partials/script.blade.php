@@ -314,7 +314,9 @@
                     console.log(response);
                     if(response){
                         alert('your order is complate. Thank You');
-                        location.reload();
+                         var url = "<?php echo URL::to('shop/invoice'); ?>";
+                         //window.open(url, '_blank');
+                         window.open(url);
                         //$("#divid").load(" #divid > *");
                         $("#changeid").load(" #changeid > *");
                         //$("#update_table_id").load(" #update_table_id > *");

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Backend\Brand;
-use App\Models\Sections;
+use App\Models\Section;
 use App\Traits\ApiResponse;
 use App\Traits\imageUpload;
 use DB;
@@ -29,7 +29,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $sections=Sections::get();
+        $sections=Section::get();
         //return view('backend.pages.category.create', compact('categories'));
         return view('backend.pages.brand.create',  compact('sections'));
     }

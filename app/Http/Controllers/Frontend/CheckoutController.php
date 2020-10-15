@@ -32,6 +32,10 @@ class CheckoutController extends Controller
         return view('frontend.pages.checkout.index');
     }
 
+    public function invoice()
+    {
+        return view('frontend.pages.invoice.invoice');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -67,8 +71,7 @@ class CheckoutController extends Controller
               }
 
               session()->flash('success', 'Your order has taken successfully !!! Please wait admin will soon confirm it.');
-            return redirect()->route('shop');
-
+            return redirect()->back();
         }
     }
 

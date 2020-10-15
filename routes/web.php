@@ -38,6 +38,9 @@ Route::get('/shop/carts','Frontend\CartController@index')->name('cart.index');
 Route::get('/shop/checkout','Frontend\CheckoutController@index')->name('checkout'); 
 Route::post('/checkout/store','Frontend\CheckoutController@store')->name('checkout.store'); 
 
+Route::get('/shop/invoice','Frontend\CheckoutController@invoice')->name('invoice'); 
+
+
 
 Route::get('/shop/contact', function () {
     return view('frontend.pages.contact.index');
@@ -103,14 +106,13 @@ Route::group([ 'prefix'=>'admin/categories', 'namespace'=>'Backend\Catagory'], f
 
 //product
 
+Route::group([ 'prefix'=>'admin/product', 'namespace'=>'Backend\Product'], function () {
+    Route::get('/list','ProductController@index')->name('products.index');
+});
 
-Route::get('admin/products','backend\ProductController@index')->name('products.index');
-Route::post('admin/products/store','backend\ProductController@store')->name('products.store');
-Route::get('admin/products/show','backend\ProductController@show')->name('products.show');
-Route::get('admin/products/edit/{id}','backend\ProductController@edit')->name('products.edt');
-Route::post('admin/products/update/{id}','backend\ProductController@update')->name('products.update');
-Route::get('admin/products/delete/{id}','backend\ProductController@destroy')->name('products.delete');
-
+Route::group([ 'prefix'=>'admin/product/quantity', 'namespace'=>'Backend\Product'], function () {
+    Route::get('/list','ProductController@quantity_index')->name('product.quantity.index');
+});
 
 
 

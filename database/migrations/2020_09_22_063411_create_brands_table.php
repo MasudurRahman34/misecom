@@ -19,8 +19,8 @@ class CreateBrandsTable extends Migration
             $table->text('description')->nullable();
             $table->string('thumbnail_image')->nullable();
             $table->string('status')->nullable();
-            $table->string('section_id')->nullable()->comment('section_table');
-            $table->string('user_id')->nullable()->comment('user_table');
+            $table->unsignedBigInteger('section_id')->nullable()->comment('section_table');
+            $table->unsignedBigInteger('user_id')->nullable()->comment('user_table');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -5,6 +5,7 @@ namespace App\Models\Backend;
 use Illuminate\Database\Eloquent\Model;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Section;
 
 class Category extends Model
 {
@@ -48,9 +49,10 @@ class Category extends Model
         'name'=>'required','string','max:255',
 
     ];
-    public function sections()
+    public function section()
     {
-      return $this->belongsTo(Setions::class);
+      return $this->belongsTo(Section::class);
     }
+
 
 }

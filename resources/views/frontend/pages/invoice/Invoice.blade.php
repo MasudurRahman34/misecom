@@ -15,9 +15,9 @@
 
 <!-- Stylesheet
 ======================= -->
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/all.min.css">
-<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/invoice/css/bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/invoice/css/all.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/invoice/css/stylesheet.css') }}">
 </head>
 <body>
 <!-- Container -->
@@ -26,7 +26,7 @@
   <header>
   <div class="row align-items-center">
     <div class="col-sm-7 text-center text-sm-left mb-3 mb-sm-0">
-      <img id="logo" src="css/logo.png" title="Koice" alt="Koice">
+      <img id="logo" src="{{ asset('frontend/invoice/css/logo.png') }}" title="Koice" alt="Koice">
     </div>
     <div class="col-sm-5 text-center text-sm-right">
       <h4 class="text-7 mb-0">Invoice</h4>

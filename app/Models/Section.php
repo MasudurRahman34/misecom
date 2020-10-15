@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Backend\Brand;
+use App\Models\Backend\Category;
 use Illuminate\Database\Eloquent\Model;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-use App\Models\Backend\Category;
-class Sections extends Model
+class Section extends Model
 {
     use SoftDeletes;
     protected $dates=[
@@ -25,11 +25,16 @@ class Sections extends Model
 
     ];
 
-    public function categories()
-    {
-        return $this->hasMany(Category::class,);
-    }
     public function products() {
         return $this->hasMany(Product::class);
     }
+    public function catagories()
+    {
+        return $this->hasMany(Category::class);
+    }
+    public function brands()
+    {
+        return $this->hasMany(Brand::class,'section_id','id');
+    }
+
 }

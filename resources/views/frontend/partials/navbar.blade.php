@@ -9,14 +9,14 @@
                 <li><a href="{{ route('allProduct') }}"   class="parent"  >Shop</a> </li>
 
 
-                @foreach ( App\Models\Sections::orderBy('name','asc')->get() as $section )
+                @foreach ( App\Models\Section::orderBy('name','asc')->get() as $sections )
                 {{-- <li><a href="{{ route('allcategoryProduct',[$section->id]) }}" class="active parent"> {{ $section->name }} <i class="fa fa-caret-down"></i> </a> --}}
-                    <li><a href="#" class="active parent" class="ex2"> {{ $section->name }} <i class="fa fa-caret-down"></i> </a>
+                    <li><a href="#" class="active parent" class="ex2"> {{ $sections->name }} <i class="fa fa-caret-down"></i> </a>
                         <ul>
 
-                            @foreach ($section->categories as $category)
+                            @foreach ($sections->catagories as $catagory)
                             <li>
-                                <a href="{{ route('allcategoryProduct',[$category->id]) }}" class="ex2" >{{ $category->name }}</a>
+                                <a href="{{ route('allcategoryProduct',[$catagory->id]) }}" class="ex2" >{{ $catagory->name }}</a>
                             </li>
                             @endforeach
 

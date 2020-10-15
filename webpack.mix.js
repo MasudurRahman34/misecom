@@ -23,6 +23,10 @@ mix.styles([
         'public/backend/files/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css',
         'public/backend/files/assets/pages/data-table/extensions/buttons/css/buttons.dataTables.min.css',
         //
+        //dropzone
+        'public/backend/files/assets/pages/jquery.filer/css/jquery.filer.css',
+        'public/backend/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css',
+        //
     //plungins end
 
     'public/backend/files/assets/css/style.css',
@@ -64,9 +68,10 @@ mix.styles([
         'public/backend/files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js',
         //form plugins
         'public/backend/files/bower_components/bootstrap-notify/bootstrap-notify.min.js',
-        //'public/backend/files/assets/js/modal.js',
-        // 'public/backend/files/assets/js/modalEffects.js',
-        // 'public/backend/files/assets/js/classie.js',
+        //dropzzone
+        'public/backend/files/assets/pages/jquery.filer/js/jquery.filer.min.js',
+        'public/backend/files/assets/pages/filer/custom-filer.js',
+        'public/backend/files/assets/pages/filer/jquery.fileuploads.init.js',
         //
         //helper pluging
         'resources/js/helper/helper.js',

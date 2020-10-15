@@ -1,7 +1,5 @@
 
-   
 <div class="col-sm-8 col-xs-6 header-right" >
-    
     <div id="cart" class="btn-group ">
         <a href="{{ route('carts', ['id'=>'carts']) }}">
             {{-- <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button" >view cart</i></button> --}}
@@ -28,22 +26,22 @@
                             @endphp
                               @foreach (App\Models\Frontend\Cart::totalCarts() as $cart)
                             <tr>
-                              
-                              {{-- @if ($cart->product->images->count() > 0)
+
+                              {{-- @if ($cart->product->product_images->count() > 0)
                               <img src="{{ asset('images/products/'. $cart->product->images->first()->image) }}" width="60px">
                               @else
                               <td class="text-center"><a href="product.html"><img class="img-thumbnail" title="iPhone" alt="iPhone" src="{{ asset('frontend/image/product/2product50x59.jpg') }}"></a></td>
                               @endif --}}
-                              <td class="text-center" style="max-width: 130px;"><a href=""> <img style="max-width: 75%; class="img-thumbnail" title="iPhone" alt="iPhone" src="{{ asset('frontend/image/product/product.jpg') }}"></a></td>
+                              <td class="text-center" style="max-width: 130px;"><a href=""> <img style="max-width: 75%; class="img-thumbnail" title="iPhone" alt="iPhone" src="{{ asset('img/product/'.$cart->product->product_images->first()->link) }}"></a></td>
                               {{-- {{ route('products.show', $cart->product->slug) }} --}}
             
                               <td class="text-left"><a href="" >{{ $cart->product->product_title }}</a></td>  
                               <td class="text-right">x {{!! $cart->product_quantity !!}}</td>
-                              <td class="text-right">{{ $cart->product->Price }} Taka</td>
+                              <td class="text-right">{{ $cart->product->offer_price }} Taka</td>
                               <td class="text-center"><button class="btn btn-danger btn-cart-delete btn-xs"  id="{{ $cart->id }}" title="Remove" type="button"><i class="fa fa-times"></i></button></td>
                             </tr>
                             @php
-                            $total_price += $cart->product->Price * $cart->product_quantity;
+                            $total_price += $cart->product->offer_price * $cart->product_quantity;
                             @endphp
                             @endforeach
                         </tr>

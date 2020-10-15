@@ -71,7 +71,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">Category Name</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" name="name" id="name" placeholder="Text Input Validation" required>
+                                        <input type="text" class="form-control" name="name" id="name" required>
                                         <span class="messages"></span>
                                     </div>
                                 </div>
@@ -105,8 +105,8 @@
                                     <div class="col-sm-5">
                                         <span class="messages"></span>
                                         <select class="form-control "  id="status" name="status">
-                                            <option value="0">Active</option>
-                                            <option value="1">Inactiove</option>
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
                                             
                                         </select>
                                     </div>
@@ -193,7 +193,7 @@
                 columns:[
                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                     { data: 'name', name: 'name' },
-                    { data: 'section_id', name: 'sectoin_id' },
+                    { data: 'section.name', name: 'section.name' },
                     { data: 'description', name: 'description' },
                     { data: 'status', name: 'status' },
                     { data: 'thumbnail_image', name: 'thumbnail_image' },
@@ -270,16 +270,19 @@
             //delete
             function btnDelete (id) {
                 var url = "{{url('/api/admin/categories/delete')}}";
+                var con=confirm("Danger ! You Are Going To Delete Data ");
+                if(con==true){
                 $.ajax({
                    url:url+"/"+id,
                    type:"GET",
                    dataType:"json",
                    success:function(data) {
                        console.log(data)
-                       alert('data success fully deleted');
+                       //alert('data success fully deleted');
                        table.draw();
                    }
                })
+                }
             }   
     </script>
 
