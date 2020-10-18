@@ -49,7 +49,7 @@ class testfrontendController extends Controller
         if(!is_null($id)){
 
            // $products = Product::where('category_id',$id)->with('categories')->orWhere('categories.id',$id)->get();
-           $products = Product::with('categories')->where('id',$id)->orwhere('category_id', $id)->orWhere('id',$id)->get();
+           $products = Product::where('category_id',$id)->with('categories')->where('id',$id)->orwhere('category_id', $id)->get();
            //$products = Product::with('categories')->where('category_id', $id)->orwhere('id',$id)->with('sections')->orWhere('id',$id)->get();
             //$products =Category::Where('id',$ct_id)->get();
                 //->leftJoin('categories', 'products.category_id', '=', 'categories.id')->get();

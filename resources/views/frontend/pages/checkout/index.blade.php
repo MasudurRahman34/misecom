@@ -42,33 +42,33 @@
                       <div class="form-group required">
                         <label for="input-payment-name" class="col-sm-2 control-label"> Name</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="input-payment-name" placeholder=" Name" value="" name="Billing_Details_name">
+                          <input type="text" class="form-control" id="Billing_Details_name" placeholder=" Name" value="" name="Billing_Details_name">
                         </div>
                       </div>
                       <div class="form-group required">
                         <label for="input-payment-address-1" class="col-sm-2 control-label">Address </label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="input-payment-address-1" placeholder="Address" value="" name="Billing_Details_address">
+                          <input type="text" class="form-control" id="Billing_Details_address" placeholder="Address" value="" name="Billing_Details_address">
                         </div>
                       </div>
 
                       <div class="form-group required">
                         <label for="input-payment-address-1" class="col-sm-2 control-label">Contact Number </label>
                         <div class="col-sm-10">
-                          <input type="tel" class="form-control" id="input-payment-contact-number" placeholder="contact Number" value="" name="Billing_Details_contact_number">
+                          <input type="tel" class="form-control" id="Billing_Details_contact_number" placeholder="contact Number" value="" name="Billing_Details_contact_number">
                         </div>
                       </div>
 
                       <div class="form-group required">
                         <label for="input-payment-city" class="col-sm-2 control-label">City</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="input-payment-city" placeholder="City" value="" name="Billing_Details_city">
+                          <input type="text" class="form-control" id="Billing_Details_city" placeholder="City" value="" name="Billing_Details_city">
                         </div>
                       </div>
                       <div class="form-group required">
                         <label for="input-payment-zone" class="col-sm-2 control-label">Region</label>
                         <div class="col-sm-10">
-                          <select class="form-control" id="input-payment-zone" name="Billing_Details_zone_id">
+                          <select class="form-control" id="Billing_Details_zone_id" name="Billing_Details_zone_id">
                             <option value=""> --- Please Select --- </option>
                             <option selected="selected" value="3121">Al Hasakah</option>
                             <option value="3122">Al Ladhiqiyah</option>
@@ -104,49 +104,51 @@
                       <div class="form-group required">
                         <label for="input-shipping-lastname" class="col-sm-2 control-label"> Name</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="input-shipping-name" placeholder="Name" value="" name="Delivery_Details_name">
+                          <input type="text" class="form-control" id="Delivery_Details_name" placeholder="Name" value="" name="Delivery_Details_name">
                         </div>
                       </div>
-
-                      <div class="form-group required">
-                        <label for="input-shipping-email" class="col-sm-2 control-email"> email</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="input-shipping-email" placeholder="your email" value="" name="Delivery_Details_emailAddress">
-                        </div>
-                      </div>
-
-                      <div class="form-group required">
-                        <label for="input-shipping-phone_number" class="col-sm-2 control-label"> Contact Number</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="input-shipping-phone_number" placeholder="Contact number" value="" name="Delivery_Details_phone_number">
-                        </div>
-                      </div>
-                    
                       <div class="form-group required">
                         <label for="input-shipping-address-1" class="col-sm-2 control-label">Address 1</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="input-shipping-address-1" placeholder="Address 1" value="" name="Delivery Details_address_1">
+                          <input type="text" class="form-control" id="Delivery_Details_address_1" placeholder="Address 1" value="" name="Delivery_Details_address_1">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="input-shipping-address-2" class="col-sm-2 control-label">Address 2</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="input-shipping-address-2" placeholder="Address 2" value="" name="Delivery Details_address_2">
+                          <input type="text" class="form-control" id="Delivery_Details_address_2" placeholder="Address 2" value="" name="Delivery_Details_address_2">
                         </div>
                       </div>
                       <div class="form-group required">
+                        <label for="input-shipping-phone_number" class="col-sm-2 control-label"> Contact Number</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="Delivery_Details_phone_number" placeholder="Contact number" value="" name="Delivery_Details_phone_number">
+                        </div>
+                      </div>
+
+                      <div class="form-group required">
+                        <label for="input-shipping-email" class="col-sm-2 control-email"> email (Optional)</label>
+                        <div class="col-sm-10">
+                          <input type="email" class="form-control" id="Delivery_Details_emailAddress" placeholder="your email" value="" name="Delivery_Details_emailAddress">
+                        </div>
+                      </div>
+
+                     
+                    
+                     
+                      <div class="form-group required">
                         <label for="input-shipping-city" class="col-sm-2 control-label">City</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="input-shipping-city" placeholder="City" value="" name="Delivery Details_city">
+                          <input type="text" class="form-control" id="Delivery_Details_city" placeholder="City" value="" name="Delivery_Details_city">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="input-shipping-postcode" class="col-sm-2 control-label">Post Code</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="input-shipping-postcode" placeholder="Post Code" value="123456" name="Delivery Details_postcode">
+                          <input type="text" class="form-control" id="Delivery_Details_postcode" placeholder="Post Code" value="" name="Delivery_Details_postcode">
                         </div>
                       </div>
-                      <div class="form-group required">
+                      {{-- <div class="form-group required">
                         <label for="input-shipping-country" class="col-sm-2 control-label">Country</label>
                         <div class="col-sm-10">
                           <select class="form-control" id="input-shipping-country" name="Delivery Details_country_id">
@@ -159,11 +161,11 @@
                             <option value="239">Zimbabwe</option>
                           </select>
                         </div>
-                      </div>
+                      </div> --}}
                       <div class="form-group required">
                         <label for="input-shipping-zone" class="col-sm-2 control-label">Region / State</label>
                         <div class="col-sm-10">
-                          <select class="form-control" id="input-shipping-zone" name="Delivery Details_zone_id">
+                          <select class="form-control" id="Delivery_Details_zone_id" name="Delivery_Details_zone_id">
                             <option value=""> --- Please Select --- </option>
                             <option selected="selected" value="3121">Al Hasakah</option>
                             <option value="3122">Al Ladhiqiyah</option>
@@ -197,7 +199,7 @@
                   <p>Please select the preferred payment method to use on this order.</p>
                   <div class="radio">
                     <label>
-                      <input type="radio" checked="checked" value="cod" name="payment_method">
+                      <input type="radio" checked="checked" value="Cash on Delivery" name="payment_method" id="payment_method">
                       Cash On Delivery </label>
                   </div>
                   <p><strong>Add Comments About Your Order</strong></p>

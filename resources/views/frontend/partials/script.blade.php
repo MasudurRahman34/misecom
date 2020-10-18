@@ -105,7 +105,7 @@
                 });
             });
         };
-        function showProduct_addtocart(){
+        function singleProductDetails_addtocart(){
             $('.show-product-addtocart-btn').on("click",function (e) { 
                 var id = $(this).attr('id');
 
@@ -123,6 +123,7 @@
                     data: {
                         product_id:id,
                         product_quantity:product_quantity,
+                        //product_size: $('#product_size option:selected').val(),
                     },
                     
                     success: function (data) {
@@ -296,6 +297,25 @@
             //set submit-button
             $('#button-confirm').click(function (e) { 
                 e.preventDefault();
+                let Billing_Details_name =$('#Billing_Details_name').val();
+                let Billing_Details_address =$('#Billing_Details_address').val();
+                let Billing_Details_contact_number =$('#Billing_Details_contact_number').val();
+                let Billing_Details_city=$('#Billing_Details_city').val();
+                let Billing_Details_zone_id =$('#Billing_Details_zone_id').val();
+                
+                //delivery-details or shipping details
+                let Delivery_Details_name =$('#Delivery_Details_name').val();
+                let Delivery_Details_address_1= $("#Delivery_Details_address_1").val();
+                let Delivery_Details_address_2= $("#Delivery_Details_address_2").val();
+                let Delivery_Details_phone_number = $("#Delivery_Details_phone_number").val();
+                let Delivery_Details_emailAddress = $("#Delivery_Details_emailAddress").val();
+                let Delivery_Details_city = $("#Delivery_Details_city").val();
+                let Delivery_Details_postcode = $("#Delivery_Details_postcode").val();
+                let Delivery_Details_zone_id = $("#Delivery_Details_zone_id").val();
+                let payment_method = $("#payment_method:checked").val();
+
+
+
                 let total_amount = $('.total_amount').attr('id'); 
                 console.log(total_amount);
                 //set Url
@@ -308,6 +328,23 @@
                     url: url+"/checkout/store/",
                     data:{
                         total_amount:total_amount,
+                        //billing-data
+                        Billing_Details_name:Billing_Details_name,
+                        Billing_Details_address:Billing_Details_address,
+                        Billing_Details_contact_number:Billing_Details_contact_number,
+                        Billing_Details_city:Billing_Details_city,
+                        Billing_Details_region:Billing_Details_zone_id,
+                        //delivery-data
+                        delivery_clint_name:Delivery_Details_name,
+                        delivery_clint_phone_number:Delivery_Details_phone_number,
+                        delivery_clint_emailAddress:Delivery_Details_emailAddress,
+                        delivery_shipping_address_1:Delivery_Details_address_1,
+                        delivery_shipping_address_2:Delivery_Details_address_2,
+                        delivery_city:Delivery_Details_city,
+                        delivery_post_code:Delivery_Details_postcode,
+                        delivery_region:Delivery_Details_zone_id,
+                        payment_option:payment_method,
+
                     },
                 
                     success: function (response) {
@@ -316,7 +353,12 @@
                         alert('your order is complate. Thank You');
                          var url = "<?php echo URL::to('shop/invoice'); ?>";
                          //window.open(url, '_blank');
-                         window.open(url);
+                         setTimeout(function () {
+                            window.location.replace(url); //will redirect to your blog page (an ex: blog.html)
+                            }, 2000);
+
+                         //window.location.replace(url);
+                         //window.open(url);
                         //$("#divid").load(" #divid > *");
                         $("#changeid").load(" #changeid > *");
                         //$("#update_table_id").load(" #update_table_id > *");
@@ -332,7 +374,7 @@
         cart_delete();
         addtoWishlist();
         addtocart();
-        showProduct_addtocart();
+        singleProductDetails_addtocart();
         deleteAddtocart();
         deleteWishlist();
 

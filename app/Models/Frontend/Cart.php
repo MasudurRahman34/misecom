@@ -31,23 +31,23 @@ class Cart extends Model
         return $this->belongsTo(User::class);
       }
     
-    //   public function order()
-    //   {
-    //     return $this->belongsTo(Order::class);
-    //   }
+      // public function order()
+      // {
+      //   return $this->belongsTo(Order::class);
+      // }
     
-      public static function totalCarts()
-  {
-    if (Auth::check()) {
-      $carts = Cart::where('user_id', Auth::id())
-      ->orWhere('ip_address', request()->ip())
-      ->where('order_id', NULL)
-      ->get();
-    }else {
-      $carts = Cart::where('ip_address', request()->ip())->where('order_id', NULL)->get();
+    public static function totalCarts()
+    {
+      if (Auth::check()) {
+        $carts = Cart::where('user_id', Auth::id())
+        ->orWhere('ip_address', request()->ip())
+        ->where('order_id', NULL)
+        ->get();
+      }else {
+        $carts = Cart::where('ip_address', request()->ip())->where('order_id', NULL)->get();
+      }
+      return $carts;
     }
-    return $carts;
-  }
 
   /**
    * total Items in the cart

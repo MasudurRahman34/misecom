@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
 
             //billind-details
             $table->string('Billing_Details_first_name')->nullable();
-            $table->string('Billing_Details_last_name')->nullable();
+            $table->string('Billing_Details_name')->nullable();
             $table->string('Billing_Details_address')->nullable();
             $table->string('Billing_Details_contact_number')->nullable();
             $table->string('Billing_Details_city')->nullable();

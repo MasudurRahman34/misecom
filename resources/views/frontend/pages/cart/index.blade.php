@@ -68,7 +68,7 @@
                             $total_price += $cart->product->offer_price * $cart->product_quantity;
                             @endphp
             
-                            {{ $cart->product->Price * $cart->product_quantity }} Taka
+                            {{ $cart->product->offer_price * $cart->product_quantity }} Taka
                           </td>
                         </tr>
                         @endforeach

@@ -94,10 +94,10 @@
                         <div id="product">
         
                             
-                                <label class="control-label qty-label" for="input-quantity">Size</label>
+                                <label class="control-label qty-label" for="product_size">Size</label>
                                     <div class="form-group">
-                                        <select class="custom-select" required>
-                                            <option value="">Open this select menu</option>
+                                        <select class="custom-select" required id="product_size" name="product_size">
+                                            <option value=""> select product size</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
                                             <option value="3">Three</option>
@@ -124,11 +124,11 @@
                     </div>
                 </div>
             </div> 
-            <div class="col-md-8"> 
+            <div class="col-md-12"> 
                 <div class="productinfo-tab">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab-description" data-toggle="tab">Description</a></li>
-                        <li><a href="#tab-review" data-toggle="tab">Reviews (1)</a></li>
+                        {{-- <li><a href="#tab-review" data-toggle="tab">Reviews (1)</a></li> --}}
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab-description">
@@ -138,7 +138,7 @@
                                 </div>
                             </div>
                             <!-- cpt_container_end --></div>
-                        <div class="tab-pane" id="tab-review">
+                        {{-- <div class="tab-pane" id="tab-review">
                             <form class="form-horizontal">
                                 <div id="review"></div>
                                 <h2>Write a review</h2>
@@ -176,7 +176,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>  
