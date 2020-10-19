@@ -33,12 +33,15 @@ Route::get('/', function () {
  //allcategoryProduct
 Route::get('/shop/category/{id}/product','Frontend\testfrontendController@allcategoryProduct')->name('allcategoryProduct');
 Route::get('/shop/all-product','Frontend\testfrontendController@allProduct')->name('allProduct');
+
+//cart-controller
 Route::get('/shop/carts','Frontend\CartController@index')->name('cart.index'); 
 
-Route::get('/shop/checkout','Frontend\CheckoutController@index')->name('checkout'); 
-Route::post('/checkout/store','Frontend\CheckoutController@store')->name('checkout.store'); 
+//checkout-controller
+Route::get('/checkout','Frontend\OrderController@index')->name('checkout'); 
+Route::post('/checkout/store','Frontend\OrderController@store')->name('checkout.store'); 
 
-Route::get('/shop/invoice','Frontend\CheckoutController@invoice')->name('invoice'); 
+Route::get('/shop/invoice','Frontend\OrderController@invoice')->name('invoice'); 
 
 
 
@@ -112,6 +115,10 @@ Route::group([ 'prefix'=>'admin/product', 'namespace'=>'Backend\Product'], funct
 
 Route::group([ 'prefix'=>'admin/product/quantity', 'namespace'=>'Backend\Product'], function () {
     Route::get('/list','ProductController@quantity_index')->name('product.quantity.index');
+});
+
+Route::group([ 'prefix'=>'admin/order', 'namespace'=>'Backend\Order'], function () {
+    Route::get('/list','OrderController@index')->name('order.index');
 });
 
 

@@ -5,21 +5,60 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Frontend\Cart;
+use App\Models\Frontend\Order;
+use Session;
+use Auth;
+use App\User;
 
-class CheckoutController extends Controller
+class OrderController extends Controller
 {
 
     public function __construct()
     {
         $this->middleware('auth');
     }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
+    public function index()
+    {
+        //
+        $user_id= Auth::guard('web')->user()->id;
+
+        $user =User::find($user_id);
+        //$user->order->latest()->first();
+
+        return view('frontend.pages.checkout.index',compact('user'));
+    }
+
+    //ajax_table
+    public function ajax_checkout_table(){
+
+        return view('frontend.pages.checkout.partials.ajax_checkout_table');
+    }
+
+   
+    //
+    public function invoice()
+    {
+        $user_id= Auth::guard('web')->user()->id;
+
+        //$user=User::find($user_id);
+        
+            $user_order = Order::all()->where('user_id',$user_id)->last();
+            $order_id= $user_order->id;
+            $order_carts_items = Cart::where('order_id',$order_id)->get();
+            //$cart_product->
+            //order_details =Order::where('user_id',);
+            return view('frontend.pages.invoice.invoice',compact('user_order','order_carts_items'));
+
+
+        return redirect()->round('shop');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -38,6 +77,21 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'delivery_clint_name'  => 'required',
+            'delivery_clint_phone_number'  => 'required',
+            'delivery_shipping_address_1'  => 'required',
+            'delivery_shipping_address_2'  => 'required',
+            'delivery_city'  => 'required',
+            'payment_option'  => 'required',
+            'delivery_region'  => 'required',
+            // 'Billing_Details_name'  => 'required',
+            'Billing_Details_address'  => 'required',
+            'Billing_Details_contact_number'  => 'required',
+            'Billing_Details_contact_number'  => 'required',
+
+          ]);
         //
         $user_id= Auth::guard('web')->user()->id;
     

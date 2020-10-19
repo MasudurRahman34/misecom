@@ -216,90 +216,96 @@
               </div>
             </div>
             {{-- confirm order --}}
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="ajax_checkout_table">
               <div class="panel-heading">
+                <h4 class="panel-title"><a class="accordion-toggle" data-parent="#accordion" data-toggle="collapse" href="#collapse-checkout-confirm" aria-expanded="true">Step 6: Confirm Order <i class="fa fa-caret-down"></i></a></h4>
+              </div>
+            <div class="panel-heading">
                 <h4 class="panel-title"><a class="accordion-toggle" data-parent="#accordion" data-toggle="collapse" href="#collapse-checkout-confirm" aria-expanded="true">Step 6: Confirm Order <i class="fa fa-caret-down"></i></a></h4>
               </div>
             
                 <div id="collapse-checkout-confirm" class="panel-collapse collapse in" aria-expanded="true" style="">
-                  <div class="panel-body">
+                  <div class="panel-body" > 
+                    {{-- start-ajax_checkout_table --}}
                     @if  (App\Models\Frontend\Cart::totalItems() > 0)
-                      <div class="table-responsive">
-                      <table class="table table-bordered table-hover">
-                        <thead>
-                          <tr>
-                            <td>no</td>
-                            <td class="text-left">Product Name</td>
-                            <td class="text-right">Quantity</td>
-                            <td class="text-right">Unit Price</td>
-                            <td class="text-right">Total</td>
-                          </tr>
-                        </thead>
-
-                      
-
-                              <tbody>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                    <td>no</td>
+                                    <td class="text-left">Product Name</td>
+                                    <td class="text-right">Quantity</td>
+                                    <td class="text-right">Unit Price</td>
+                                    <td class="text-right">Total</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 @php
                                 $total_price = 0;
                                 @endphp
-                                  @foreach (App\Models\Frontend\Cart::totalCarts() as $cart)
-                                    <tr>
-                                      <td>  {{ $loop->index + 1 }}</td>
-                                      <td class="text-left"><a href="">{{ $cart->product->product_title }}</a></td>
-                                    
-                                      <td class="text-right">  x {{  $cart->product_quantity  }}  </td>
-                                      <td class="text-right">  {{ $cart->product->offer_price }} Taka  </td>
-                                      <td class="text-right"> 
-                                          @php
-                                          $total_price += $cart->product->offer_price * $cart->product_quantity;
-                                          @endphp
-                          
-                                          {{ $cart->product->offer_price * $cart->product_quantity }} Taka
-                                      </td>
-                                    </tr>
-                                  @endforeach
-                            </tbody>
-                              <tfoot>
+                                @foreach (App\Models\Frontend\Cart::totalCarts() as $cart)
                                 <tr>
-                                  <td class="text-right" colspan="4"><strong>Sub-Total + vat(15%):</strong></td>
-                                  @php
-                                  $vat=15/100;
-                                  $vat_amount=$vat* $total_price;
-                                    $sub_total = $total_price + $vat_amount;
-                                      $shipping_rate=50;
-                                        $total= $sub_total+$shipping_rate;
-                                  @endphp
-
-                                  <td class="text-right">{{ $sub_total }} Taka</td>
+                                    <td>  {{ $loop->index + 1 }}</td>
+                                    <td class="text-left"><a href="">{{ $cart->product->product_title }}</a></td>
+                                
+                                    <td class="text-right">  x {{  $cart->product_quantity  }}  </td>
+                                    <td class="text-right">  {{ $cart->product->offer_price }} Taka  </td>
+                                    <td class="text-right"> 
+                                        @php
+                                        $total_price += $cart->product->offer_price * $cart->product_quantity;
+                                        @endphp
+                        
+                                        {{ $cart->product->offer_price * $cart->product_quantity }} Taka
+                                    </td>
+                                </tr>
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td class="text-right" colspan="4"><strong>Sub-Total + vat(15%):</strong></td>
+                                    @php
+                                        $vat=15/100;
+                                            $vat_amount=$vat* $total_price;
+                                                $sub_total = $total_price + $vat_amount;
+                                                    $shipping_rate=50;
+                                                        $total= $sub_total+$shipping_rate;
+                                    @endphp
+                                    <td class="text-right">{{ $sub_total }} Taka</td>
                                 </tr>
                                 <tr>
-                                  <td class="text-right" colspan="4"><strong>Flat Shipping Rate:</strong></td>
-                                  <td class="text-right">50.00 Taka</td>
+                                    <td class="text-right" colspan="4"><strong>Flat Shipping Rate:</strong></td>
+                                    <td class="text-right">50.00 Taka</td>
                                 </tr>
                                 <tr>
-                                  <td class="text-right" colspan="4"><strong>Total:</strong></td>
-                                  <td class="text-right total_amount" id="{{ $total }}" >{{ $total }} Taka</td>
+                                    <td class="text-right" colspan="4"><strong>Total:</strong></td>
+                                    <td class="text-right total_amount" id="{{ $total }}" >{{ $total }} Taka</td>
                                 </tr>
-                              </tfoot>
+                                </tfoot>
                             </table>
-                          </div>
-                          <div class="buttons">
-                            <div class="pull-right">
-                              <input type="button" data-loading-text="Loading..." class="btn btn-primary" id="button-confirm" value="Confirm Order">
+                        </div>
+                            <div class="buttons">
+                                <div class="pull-right">
+                                    <input type="button" data-loading-text="Loading..." class="btn btn-primary" id="button-confirm" value="Confirm Order">
+                                </div>
                             </div>
-                          </div>
                         @else
                         <div class="row alert alert-warning">
-                          <strong>There is no item in your cart.</strong>
-                          <br>
+                            <strong>There is no item in your cart to checkout.</strong>
+                                <br>
                         </div>
                         <div class="buttons">
-                          <div class="pull-left"><a class="btn btn-default" href="{{ route('shop') }}">Continue Shopping</a></div>
+                            <div class="pull-left"><a class="btn btn-default" href="{{ route('shop') }}">Continue Shopping</a></div>
                         </div>
-                        <br/>
-                      @endif
-                  </div>
+                            <br/>
+                    @endif
+                    {{-- end-ajax_checkout_table --}}
                 </div>
+            </div>   
+              
+            
+        
+
+                   
             </div>
           </div>
         </div>

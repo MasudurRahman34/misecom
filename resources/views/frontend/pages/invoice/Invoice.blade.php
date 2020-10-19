@@ -54,23 +54,31 @@
       </address>
     </div>
     <div class="col-sm-6 order-sm-0"> <strong>Invoiced To:</strong>
-      <address>
-         <br>
-      <br>
+      <address>{{ $user_order->user->Billing_Details_last_name }}
+         <br>{{ $user_order->user->Billing_Details_address }}
+      <br>{{ $user_order->user->Billing_Details_contact_number }}
   
       </address>
     </div>
   </div>  
+  <div class="row ">
+    <div class="col-sm-6 flot-right"> <strong>Payment Option:</strong>
+      <address>
+     {{ $user_order->payment_option }}<br>
+      </address>
+    </div>
+  </div>
   <div class="card">
     <div class="card-header px-2 py-0">
       <table class="table mb-0">
         <thead>
           <tr>
-            <td class="col-3 border-0"><strong>Product</strong></td>
-			      <td class="col-4 border-0"><strong>Size</strong></td>
-            <td class="col-2 text-center border-0"><strong>Rate</strong></td>
-			      <td class="col-1 text-center border-0"><strong>QTY</strong></td>
-            <td class="col-2 text-right border-0"><strong>Amount</strong></td>
+            {{-- <td class="col border-0"><strong>Product code</strong></td> --}}
+            <td class="col border-0"><strong>Product name</strong></td>
+			      <td class="col border-0"><strong>Size</strong></td>
+            <td class="col text-center border-0"><strong>Rate</strong></td>
+			      <td class="col text-center border-0"><strong>QTY</strong></td>
+            <td class="col text-right border-0"><strong>Amount</strong></td>
           </tr>
         </thead>
       </table>
@@ -84,14 +92,16 @@
             @endphp
           @foreach ($order_carts_items as $cart)
           <tr>
-            <td class="col-3 border-0">{{ $cart->product->product_title }}</td>
-            <td class="col-4 text-1 border-0">ok</td>
-            <td class="col-2 text-center border-0">{{ $cart->product->offer_price }}</td>
-            <td class="col-1 text-center border-0">{{ $cart->product_quantity }}</td>
+            <td class="col border-0">{{ $cart->product->product_title }}</td>
+            {{-- <td class="col-1 border-0">{{ $cart->product->sku }}</td> --}}
+           
+            <td class="col text-1 border-0">ok</td>
+            <td class="col text-center border-0">{{ $cart->product->offer_price }}</td>
+            <td class="col text-center border-0">{{ $cart->product_quantity }}</td>
             @php
               $total_price += $cart->product->offer_price * $cart->product_quantity;
             @endphp
-            <td class="col-2 text-right border-0">{{ $cart->product->offer_price * $cart->product_quantity }}</td>
+            <td class="col text-right border-0">{{ $cart->product->offer_price * $cart->product_quantity }}</td>
           </tr>
               
           @endforeach  
@@ -123,12 +133,18 @@
               @php
               $vat=15/100;
               $vat_amount=$vat* $total_price;
+              $shipping_rate=50;
+              $sub_total =$total_price + $vat_amount;
+              $total= $sub_total+$shipping_rate;
                @endphp
               <td class="bg-light-2 text-right">{{ $vat_amount }} </td>
             </tr>
             <tr>
+              <td colspan="4" class="bg-light-2 text-right"><strong>Flat Shipping Rate:</strong></td>
+              <td class="bg-light-2 text-right">50.00 </td>
+            </tr><tr>
               <td colspan="4" class="bg-light-2 text-right"><strong>Total:</strong></td>
-              <td class="bg-light-2 text-right">{{ $total_price + $vat_amount }}</td>
+              <td class="bg-light-2 text-right">{{ $total }}</td>
             </tr>
           </tbody>
         </table>

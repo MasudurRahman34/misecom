@@ -42,7 +42,7 @@
                     </form>
                 </div>
             </div> --}}
-            @include('frontend.partials.cart')
+            @include('frontend.pages.cart.partials.cart')
         </div>
     </div>
 </div>

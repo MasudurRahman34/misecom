@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Auth;
 use App\Models\Backend\product;
 
+use App\Models\Frontend\Order;
+
 class Cart extends Model
 {
     //
@@ -30,6 +32,11 @@ class Cart extends Model
       {
         return $this->belongsTo(User::class);
       }
+
+      public function order()
+  {
+    return $this->belongsTo(Order::class);
+  }
     
       // public function order()
       // {

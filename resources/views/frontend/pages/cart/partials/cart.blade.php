@@ -5,7 +5,7 @@
             {{-- <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button" >view cart</i></button> --}}
         </a>    
         <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button" style="color: tomato">
-            <div id="changeid"><i class="fa fa-caret-down"></i> <span id="cart-total" style="color: red ">{{ App\Models\Frontend\Cart::totalItems() }} item(s) in cart</span></div>
+            <div id="changeid"><i class="fa fa-refresh fa-spin"></i> <span id="cart-total" style="color: red ">{{ App\Models\Frontend\Cart::totalItems() }} item(s) in cart</span></div>
             
         </button> 
         <ul class="dropdown-menu pull-right cart-dropdown-menu" id="ajax_header_cart">
@@ -41,10 +41,10 @@
                   {{ Auth::user()->name }}
               </a>
    
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"><i class="fa fa-caret-down"></i>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{{ route('logout') }}"
                      onclick="event.preventDefault();
-                                   document.getElementById('logout-form').submit();">
+                                   document.getElementById('logout-form').submit();"><i class="fa fa-caret-down"></i>
                       {{ __('Logout') }}
                   </a>
    
@@ -55,19 +55,11 @@
                   <a class="dropdown-item" href=""> <i class="fa fa-caret-down"></i>
                    {{ __('Profile') }} 
                   </a>
-                  <br>
+                  
                   <a class="dropdown-item" href=""> <i class="fa fa-caret-down"></i>
                     {{ __('Your orders') }} 
                    </a>
-
-                
               </div>
-              
-              
-
-             
-               
-
           </li>
          
 

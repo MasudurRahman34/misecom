@@ -23,7 +23,12 @@ class CartController extends Controller
     }
 
     public function ajax_header_cart(){
-      return view('frontend.partials.ajax_header_cart');
+      return view('frontend.pages.cart.partials.ajax_header_cart');
+    }
+
+    //ajax_cart_table
+    public function ajax_cart_table(){
+      return view('frontend.pages.cart.partials.ajax_cart_table');
     }
 
     /**

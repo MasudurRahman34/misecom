@@ -24,11 +24,18 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'carts'], function(){
     Route::get('/', 'Frontend\CartController@index')->name('carts');
     Route::get('/ajax_header_cart', 'Frontend\CartController@ajax_header_cart')->name('ajax_header_cart');
+    Route::get('/ajax_cart_table', 'Frontend\CartController@ajax_cart_table')->name('ajax_cart_table');
     Route::post('/store', 'Frontend\CartController@store')->name('carts.store');
     Route::post('/Pstore', 'Frontend\CartController@ProductStore')->name('carts.productstore');
     Route::post('/update/{id}', 'Frontend\CartController@update')->name('carts.update');
     Route::post('/delete/{id}', 'Frontend\CartController@destroy')->name('carts.delete');
   });
+// Checkout Routes
+Route::group(['prefix' => 'checkout'], function(){
+
+    Route::get('/ajax_checkout_table', 'Frontend\OrderController@ajax_checkout_table')->name('ajax_checkout_table');
+
+  });  
 
   
 //WishlistController
@@ -92,4 +99,13 @@ Route::group([ 'prefix'=>'admin/product/quantity', 'namespace'=>'Backend\Product
     Route::post('/update/{id}','ProductController@quantity_update')->name('product.quantity.update');
     Route::get('/destroy/{id}','ProductController@quantity_destroy')->name('product.quantity.delete');
     
+});
+
+Route::group([ 'prefix'=>'admin/order', 'namespace'=>'Backend\Order'], function () {
+  Route::post('/store','OrderController@store')->name('order.store');
+  Route::get('/synctable','OrderController@syncTable')->name('order.synctable');
+  Route::get('/edit/{id}','OrderController@edit')->name('order.edt');
+  Route::post('/update/{id}','OrderController@update')->name('order.update');
+  Route::get('/destroy/{id}','OrderController@destroy')->name('order.delete');
+
 });

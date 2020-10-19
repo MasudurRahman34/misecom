@@ -4,11 +4,19 @@ namespace App\Models\Frontend;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\User;
+use App\Models\Frontend\Cart;
+
 class Order extends Model
 {
     //
 
-    public function carts() {
-        return $this->hasMany(Cart::class);
+    public function cart() {
+        return $this->hasMany(Cart::class,'order_id','id');
+    }
+
+    public function user()
+    {
+      return $this->belongsTo(User::class);
     }
 }

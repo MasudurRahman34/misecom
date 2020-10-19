@@ -11,7 +11,7 @@
                                 <li> <h4> <a href="{{ route('allcategoryProduct',[$category->id]) }}" class="activSub ex2"> <i class="fa fa-dot-circle-o" aria-hidden="true"></i> {{ $category->name }}</a></h4>
                                     <ul>
                                         @foreach ($category->subCategory as $subCategory)
-                                            <li><a class="ex2" href="{{ route('allcategoryProduct',[$subCategory->id]) }}">{{ $subCategory->name }}</a></li>
+                                            <li><a class="ex2" href="{{ route('allcategoryProduct',[$subCategory->id]) }}"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> {{ $subCategory->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </li>
