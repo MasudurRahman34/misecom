@@ -22,6 +22,10 @@ class CartController extends Controller
         return view('frontend.pages.cart.index');
     }
 
+    public function ajax_header_cart(){
+      return view('frontend.partials.ajax_header_cart');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -25,7 +25,22 @@
                 headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
-        });  
+        });
+
+        function ajax_header_cart(){
+            $.ajax({
+                type: "get",
+                url: "{{url('api/carts/ajax_header_cart')}}",
+                success: function (response) {
+                    $('#ajax_header_cart').html(response);
+                    deleteAddtocart();
+                    
+                }
+            });
+        }
+        
+        ajax_header_cart();
+        
         function addtoWishlist(){
             $('.wishlist-btn').on("click",function (e) { 
             var id = $(this).attr('id');
@@ -84,10 +99,11 @@
                     success: function (data) {
             
                         //let $rout = '{{ route('carts') }}';
-                        alert(`Item added to cart successfully !!`);
+                        alert(`added to card`);
                         $("#changeid").load(" #changeid > *");
                         $("#update_table_id").load(" #update_table_id > *");
                         $("#cart-total").html(data.totalItems);
+                        ajax_header_cart();
                         //location.reload();
                         // $('#exampleModalCenter').modal('show')
                         // setTimeout(2000);
@@ -171,15 +187,7 @@
                         $("#update_table_id").load(" #update_table_id > *");
                         $("#wishlist-total").load(" #wishlist-total > *");
                         $("#cart-total").html(data.wishlisttotal);
-                        //setTimeout(worker, 2000);
-                        // $('#exampleModalCenter').modal('show')
-                        // data = JSON.parse(data);
-                        //if(data == 'success'){
-                        //     // toast
-                        //     alertify.set('notifier','position', 'top-center');
-                        //     alertify.success('Item added to cart successfully !! Total Items: '+data.totalItems+ '<br />To checkout <a href="{{ route('carts') }}">go to checkout page</a>');
-                        //     $("#totalItems").html(data.totalItems);
-                        //}
+                        ajax_header_cart();
                     }
                 });
             });

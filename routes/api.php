@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 // Cart Routes
 Route::group(['prefix' => 'carts'], function(){
     Route::get('/', 'Frontend\CartController@index')->name('carts');
+    Route::get('/ajax_header_cart', 'Frontend\CartController@ajax_header_cart')->name('ajax_header_cart');
     Route::post('/store', 'Frontend\CartController@store')->name('carts.store');
     Route::post('/Pstore', 'Frontend\CartController@ProductStore')->name('carts.productstore');
     Route::post('/update/{id}', 'Frontend\CartController@update')->name('carts.update');
