@@ -1,6 +1,6 @@
-@extends('backend.layouts.app')
+@extends('frontend.layouts.app-user')
 @section('title', 'brand Management')
-@section('admin-content')
+@section('user-content')
 <div class="page-wrapper">
     <!-- Page-header start -->
     <div class="page-header">
@@ -128,7 +128,7 @@
                 } ],
                 processing:true,
                 serverSide:true,
-                ajax:"{{url('/api/admin/order/synctable')}}",
+                ajax:"{{url('/user/order/synctable')}}",
                 columns:[
                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                     { data: 'id', name: 'id' }, 
@@ -142,64 +142,64 @@
                     { data: 'action', name: 'action' }
                 ]
             });
- $(document).ready(function () {
-    $('#myform').on('submit',function(e) {
+//  $(document).ready(function () {
+//     $('#myform').on('submit',function(e) {
                
-               var id=$('#submit').val();
-               if(id>0){
-                   console.log(`submit id:`+id);
-               }
-               var formData=new FormData(this);
-               $.ajaxSetup({
-                   headers: {
-                           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                       }
-               });
-               if (id>0) {
-                   var url="{{url('/api/admin/order/update')}}"+"/"+id;
-               }
-               $.ajax({
+//                var id=$('#submit').val();
+//                if(id>0){
+//                    console.log(`submit id:`+id);
+//                }
+//                var formData=new FormData(this);
+//                $.ajaxSetup({
+//                    headers: {
+//                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//                        }
+//                });
+//                if (id>0) {
+//                    var url="{{url('/user/order/update')}}"+"/"+id;
+//                }
+//                $.ajax({
 
-                   type: "post",
-                   url: url,
+//                    type: "post",
+//                    url: url,
                
-                    data:formData,
-                    cache:false,
-                    contentType: false,
-                    processData: false,
+//                     data:formData,
+//                     cache:false,
+//                     contentType: false,
+//                     processData: false,
  
-                   success: function (result) {
-                       console.log(result);
-                       if (result.error==false) {
-                           $( "div").remove( ".text-danger" );
-                           successNotification();
-                           removeUpdateProperty("order");
-                           document.getElementById("myform").reset();
-                       }
-                       if(result.error==true){
-                           getError(result.message);
-                       }
-                   }
+//                    success: function (result) {
+//                        console.log(result);
+//                        if (result.error==false) {
+//                            $( "div").remove( ".text-danger" );
+//                            successNotification();
+//                            removeUpdateProperty("order");
+//                            document.getElementById("myform").reset();
+//                        }
+//                        if(result.error==true){
+//                            getError(result.message);
+//                        }
+//                    }
 
-               });
-           });    
- });
+//                });
+//            });    
+//  });
 //             //submit function
             
 //             //edit view
-            function btnEdit(id)
-            {
-                setUpdateProperty(id, "order","brand","submit");
-                var url="{{url('/api/admin/order/edit')}}";
-                $.ajax({
-                    type:'GET',
-                    url:url+"/"+id,
-                    success:function(result) {
+            // function btnEdit(id)
+            // {
+            //     setUpdateProperty(id, "order","brand","submit");
+            //     var url="{{url('/user/order/edit')}}";
+            //     $.ajax({
+            //         type:'GET',
+            //         url:url+"/"+id,
+            //         success:function(result) {
                        
 
-                        }
-                     });
-             }
+            //             }
+            //          });
+            //  }
 //             //delete
 //             function btnDelete (id) {
 //                 var url = "{{url('/api/admin/brand/destroy')}}";

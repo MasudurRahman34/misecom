@@ -69,7 +69,7 @@
         //     });
         // }
         // ajax_checkout_table();
-        
+      
 
         //wish-list-
         function addtoWishlist(){
@@ -87,9 +87,10 @@
                     },
                     
                     success: function (data) {
-            
+                        
                         //let $rout = '{{ route('carts') }}';
-                        alert(`Item added to your wishlist !!`);
+                        //alert(`Item added to your wishlist !!`);
+                        $(".alert").alert()
                         $("#changeid").load(" #changeid > *");
                         $("#update_table_id").load(" #update_table_id > *");
                         $("#wishlist-total").load(" #wishlist-total > *");

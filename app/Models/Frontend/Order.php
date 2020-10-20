@@ -12,7 +12,7 @@ class Order extends Model
     //
 
     public function cart() {
-        return $this->hasMany(Cart::class,'order_id','id');
+        return $this->hasMany(Cart::class);
     }
 
     public function user()

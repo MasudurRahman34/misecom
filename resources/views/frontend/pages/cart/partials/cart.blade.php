@@ -56,7 +56,7 @@
                    {{ __('Profile') }} 
                   </a>
                   
-                  <a class="dropdown-item" href=""> <i class="fa fa-caret-down"></i>
+                  <a class="dropdown-item" href="{{ route('orderindex.user', []) }}"> <i class="fa fa-caret-down"></i>
                     {{ __('Your orders') }} 
                    </a>
               </div>

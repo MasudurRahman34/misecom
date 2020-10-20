@@ -11,6 +11,11 @@ use Session;
 use Auth;
 use App\User;
 
+use DB;
+Use Image;
+Use File;
+use DataTables;
+
 class OrderController extends Controller
 {
 
@@ -58,6 +63,66 @@ class OrderController extends Controller
 
         return redirect()->round('shop');
     }
+
+
+    //order-page
+
+    public function orderindex(){
+        $user_id= Auth::guard('web')->user()->id;
+        $order= Order::where('user_id',$user_id)->get();
+        return view('frontend.pages.order.create',compact('order'));
+    }
+
+    public function syncTable()
+    {
+        $user_id= Auth::guard('web')->user()->id;
+        $data= Order::where('user_id',$user_id)->with('cart')->get();
+        //$order_carts_items = Cart::whereNotNull('order_id')->get();
+        return $data_table_render = DataTables::of($data)
+            ->addIndexColumn()
+            // ->editColumn('product.name', function($raw){
+            //     $name = $raw->product->product_title;
+            //     return $name;
+            // })
+            ->editColumn('is_paid', function($raw){
+                
+                return (($raw['is_paid']== 0) ? 'NOT Paid' : 'Payment Complete');
+            })
+            ->editColumn('is_completed', function($raw){
+                
+                return (($raw['is_completed']== 0) ? 'NOT Complate' : ' Complete');
+            })
+           
+            ->addColumn('OrderDetails',function ($row){
+                return view('backend.pages.order.action-orderDetails',compact('row'));
+            }) 
+            ->addColumn('action',function ($row){
+                return view('backend.pages.order.action',compact('row'));
+            })
+            ->rawColumns(['OrderDetails','action'])
+            ->make(true);
+    }
+
+
+    public function orderDetails($id)
+    {
+        //$user_id= Auth::guard('web')->user()->id;
+
+        //$user=User::find($user_id);
+        
+            $user_order = Order::all()->where('id',$id)->first();
+            $order_id= $user_order->id;
+            $order_carts_items = Cart::where('order_id',$order_id)->get();
+            //$cart_product->
+            //order_details =Order::where('user_id',);
+            return view('backend.pages.order.order_details',compact('user_order','order_carts_items'));
+
+
+        // return redirect()->round('shop');
+    }
+
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -155,7 +220,8 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        return $this->success($order);
     }
 
     /**

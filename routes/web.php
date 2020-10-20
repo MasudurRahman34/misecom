@@ -43,6 +43,16 @@ Route::post('/checkout/store','Frontend\OrderController@store')->name('checkout.
 
 Route::get('/shop/invoice','Frontend\OrderController@invoice')->name('invoice'); 
 
+//user-order-list
+Route::group([ 'prefix'=>'user/order', 'namespace'=>'Frontend'], function () {
+    Route::get('/list','OrderController@orderindex')->name('orderindex.user');
+    Route::get('/orderDetails/{id}','OrderController@orderDetails')->name('orderDetail');
+    Route::get('/synctable','OrderController@syncTable')->name('order.synctable');
+    Route::get('/edit/{id}','OrderController@edit')->name('order.edt');
+    Route::post('/update/{id}','OrderController@update')->name('order.update');
+    Route::get('/destroy/{id}','OrderController@destroy')->name('order.delete');
+});
+
 
 
 Route::get('/shop/contact', function () {
@@ -119,6 +129,7 @@ Route::group([ 'prefix'=>'admin/product/quantity', 'namespace'=>'Backend\Product
 
 Route::group([ 'prefix'=>'admin/order', 'namespace'=>'Backend\Order'], function () {
     Route::get('/list','OrderController@index')->name('order.index');
+    Route::get('/orderDetails/{id}','OrderController@orderDetails')->name('orderDetail');
 });
 
 

@@ -217,9 +217,6 @@
             </div>
             {{-- confirm order --}}
             <div class="panel panel-default" id="ajax_checkout_table">
-              <div class="panel-heading">
-                <h4 class="panel-title"><a class="accordion-toggle" data-parent="#accordion" data-toggle="collapse" href="#collapse-checkout-confirm" aria-expanded="true">Step 6: Confirm Order <i class="fa fa-caret-down"></i></a></h4>
-              </div>
             <div class="panel-heading">
                 <h4 class="panel-title"><a class="accordion-toggle" data-parent="#accordion" data-toggle="collapse" href="#collapse-checkout-confirm" aria-expanded="true">Step 6: Confirm Order <i class="fa fa-caret-down"></i></a></h4>
               </div>
