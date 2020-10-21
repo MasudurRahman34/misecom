@@ -30,12 +30,15 @@ Route::group(['prefix' => 'carts'], function(){
     Route::post('/update/{id}', 'Frontend\CartController@update')->name('carts.update');
     Route::post('/delete/{id}', 'Frontend\CartController@destroy')->name('carts.delete');
   });
+
 // Checkout Routes
-Route::group(['prefix' => 'checkout'], function(){
 
-    Route::get('/ajax_checkout_table', 'Frontend\OrderController@ajax_checkout_table')->name('ajax_checkout_table');
+  Route::group(['prefix' => 'region'], function(){
 
-  });  
+    Route::get('/list', 'Frontend\OrderController@region')->name('regionlist');
+
+  });   
+
 
   
 //WishlistController
@@ -99,6 +102,14 @@ Route::group([ 'prefix'=>'admin/product/quantity', 'namespace'=>'Backend\Product
     Route::post('/update/{id}','ProductController@quantity_update')->name('product.quantity.update');
     Route::get('/destroy/{id}','ProductController@quantity_destroy')->name('product.quantity.delete');
     
+});
+Route::group([ 'prefix'=>'admin/region', 'namespace'=>'Backend\Region'], function () {
+  Route::post('/store','RegionCntroller@store')->name('region.store');
+  Route::get('/synctable','RegionCntroller@syncTable')->name('region.synctable');
+  Route::get('/edit/{id}','RegionCntroller@edit')->name('region.edt');
+  Route::post('/update/{id}','RegionCntroller@update')->name('region.update');
+  Route::get('/destroy/{id}','RegionCntroller@destroy')->name('region.delete');
+
 });
 
 Route::group([ 'prefix'=>'admin/order', 'namespace'=>'Backend\Order'], function () {

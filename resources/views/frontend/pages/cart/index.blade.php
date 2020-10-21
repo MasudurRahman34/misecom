@@ -21,6 +21,7 @@
       <div class="col-xl-9 col-lg-9 col-md-9 col-sm  col-sm-auto" id="content">
         <div id="accordion" class="panel-group">
           <div id="ajax_cart_table">
+            {{-- ajax_cart_table --}}
 
           </div>
           

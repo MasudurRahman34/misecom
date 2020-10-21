@@ -168,6 +168,20 @@
                    
                 </ul>
             </li>
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                    <span class="pcoded-mtext">Shipping Region</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="{{ route('region.index', []) }}">
+                            <span class="pcoded-mtext">Manage Shipping Region</span>
+                        </a>
+                    </li>
+                   
+                </ul>
+            </li>
 
 
             {{-- <li class="pcoded-hasmenu">

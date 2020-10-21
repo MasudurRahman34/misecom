@@ -56,19 +56,21 @@
         }
         ajax_cart_table();
 
-        // function ajax_checkout_table(){
-        //     $.ajax({
-        //         type: "get",
-        //         url: "{{url('api/checkout/ajax_checkout_table')}}",
-        //         success: function (response) {
-        //             $('#ajax_checkout_table').html(response);
-        //             ajax_header_cart();
-        //             checkout(); 
+        function ajax_checkout_table(){
+            $.ajax({
+                type: "get",
+                url: "{{url('api/checkout/ajax_checkout_page')}}",
+                success: function (response) {
+                    $('#ajax_checkout_product_cost').html(response);
+                    ajax_header_cart();
+                    checkout(); 
+
+                 
                 
-        //         }
-        //     });
-        // }
-        // ajax_checkout_table();
+                }
+            });
+        }
+        ajax_checkout_table();
       
 
         //wish-list-
@@ -89,8 +91,8 @@
                     success: function (data) {
                         
                         //let $rout = '{{ route('carts') }}';
-                        //alert(`Item added to your wishlist !!`);
-                        $(".alert").alert()
+                        alert(`Item added to your wishlist !!`);
+                        
                         $("#changeid").load(" #changeid > *");
                         $("#update_table_id").load(" #update_table_id > *");
                         $("#wishlist-total").load(" #wishlist-total > *");
@@ -350,6 +352,27 @@
             });
         };
 
+        function checkoutcalculation(){
+            $("#Delivery_Details_zone_id").on('change', function () {
+                //ajax_checkout_table();
+                var price = $("#Delivery_Details_zone_id").find(':selected').data('id');
+                //price =$("#shipping_cost").val(price);
+                $("#shipping_cost").text(price);
+                alert('your shipping price is '+price+' taka');
+
+                 var sub_total = $("#sub_total").text();
+                 var int_price =parseInt(price);
+                 var int_total= parseInt(sub_total);
+
+                //  var sub_total = $("#hidden_sub_total").val();
+                var total= (int_price+int_total);
+                $('.total_amount').attr('id', total);
+                $('#total').text(total);
+                //alert(total);    
+                 
+            });
+        }
+        checkoutcalculation();
 
         //checkout-page
         function checkout(){
@@ -414,7 +437,7 @@
                          //window.open(url, '_blank');
                          setTimeout(function () {
                             window.location.replace(url); //will redirect to your blog page (an ex: blog.html)
-                            }, 1000);
+                            }, 500);
 
                          //window.location.replace(url);
                          //window.open(url);

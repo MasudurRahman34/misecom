@@ -1,114 +1,114 @@
 @extends('frontend.layouts.app-user')
 @section('title', 'brand Management')
 @section('user-content')
-<div class="page-wrapper">
-    <!-- Page-header start -->
-    <div class="page-header">
-        <div class="row align-items-end">
-            <div class="col-lg-8 col-sm-8">
-                <div class="page-header-title">
-                    <div class="d-inline">
-                        <h4>Manage order</h4>
+    <div class="page-wrapper">
+        <!-- Page-header start -->
+        <div class="page-header">
+            <div class="row align-items-end">
+                <div class="col-lg-8 col-sm-8">
+                    <div class="page-header-title">
+                        <div class="d-inline">
+                            <h4>Manage order</h4>
+                        </div>
                     </div>
                 </div>
+                {{-- <div class="col-lg-4 col-sm-4">
+                    <div class="page-header-breadcrumb">
+                        <ul class="breadcrumb-title">
+                            <li class="breadcrumb-item">
+                                <button class="btn btn-primary btn-icon" data-toggle="modal" data-target="#brand"><i class="ti-plus"></i></button>
+                            </li>
+                        </ul>
+                    </div>
+                </div> --}}
             </div>
-            {{-- <div class="col-lg-4 col-sm-4">
-                <div class="page-header-breadcrumb">
-                    <ul class="breadcrumb-title">
-                        <li class="breadcrumb-item">
-                            <button class="btn btn-primary btn-icon" data-toggle="modal" data-target="#brand"><i class="ti-plus"></i></button>
-                        </li>
-                    </ul>
-                </div>
-            </div> --}}
         </div>
-    </div>
-    <!-- Page-header end -->
-    <!-- Page-body start -->
-    <div class="page-body">
-        <div class="row">
-            @include('backend.partials.massage')
-            <div class="col-md-12 col-sm-12">
+        <!-- Page-header end -->
+        <!-- Page-body start -->
+        <div class="page-body">
+            <div class="row">
+                @include('backend.partials.massage')
+                <div class="col-md-12 col-sm-12">
 
-                <div class="card">
-                    <div class="card-header table-card-header">
-                        <h5>Export List</h5>
-                    </div>
-                    <div class="card-block">
-                        <div class="dt-responsive table-responsive">
-                            <table class="table table-hover table-bordered" id="sampleTable">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th> Order id</th>
-                                    <th> payment_option</th>
-                                   
-                                    <th> payemnt status</th>
-                                    <th> order status</th>
-                                    <th> Total Price</th>
-                                    <th> Order Details</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                            </table>
+                    <div class="card">
+                        <div class="card-header table-card-header">
+                            <h5>Export List</h5>
+                        </div>
+                        <div class="card-block">
+                            <div class="dt-responsive table-responsive">
+                                <table class="table table-hover table-bordered" id="sampleTable">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th> Order id</th>
+                                        <th> payment_option</th>
+                                    
+                                        <th> payemnt status</th>
+                                        <th> order status</th>
+                                        <th> Total Price</th>
+                                        <th> Order Details</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-12 col-sm-12">
-                <div class="modal fade" id="brand" tabindex="-1" role="dialog" aria-labelledby="brandCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header bg-info">
-                          <h5 class="modal-title" id="modalLabel">Add brand</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <form id="myform" method="post" action="javascript:void(0)" enctype="multipart/form-data">
-                        <div class="modal-body">
-                           
-                                
-                                <div class="form-group row">
-                                   
-                                    <label class="col-sm-5 col-form-label">update payment status </label>
-                                    <div class="col-sm-5">
-                                        <span class="messages"></span>
-                                        <select class="form-control "  id="is_paid" name="is_paid">
-                                            <option value="1" selected>Confirm</option>
-                                                <option value="0" >Not Confirm</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">Order Status</label>
-                                    <div class="col-sm-5">
-                                        <span class="messages"></span>
-                                        <select class="form-control "  id="is_completed" name="is_completed">
-                                                <option value="1" selected>Confirm order</option>
-                                                <option value="0" >Not Confirm</option>
-                                        </select>
-                                    </div>
-                                </div>
-                               
-                                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="modal fade" id="brand" tabindex="-1" role="dialog" aria-labelledby="brandCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-info">
+                            <h5 class="modal-title" id="modalLabel">Add brand</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <form id="myform" method="post" action="javascript:void(0)" enctype="multipart/form-data">
+                            <div class="modal-body">
                             
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary" id="submit">submit</button>
+                                    
+                                    <div class="form-group row">
+                                    
+                                        <label class="col-sm-5 col-form-label">update payment status </label>
+                                        <div class="col-sm-5">
+                                            <span class="messages"></span>
+                                            <select class="form-control "  id="is_paid" name="is_paid">
+                                                <option value="1" selected>Confirm</option>
+                                                    <option value="0" >Not Confirm</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Order Status</label>
+                                        <div class="col-sm-5">
+                                            <span class="messages"></span>
+                                            <select class="form-control "  id="is_completed" name="is_completed">
+                                                    <option value="1" selected>Confirm order</option>
+                                                    <option value="0" >Not Confirm</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                
+                                    </div>
+                                
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="submit">submit</button>
+                            </div>
+                        </form>
                         </div>
-                    </form>
-                      </div>
+                        </div>
                     </div>
-                  </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="clearix"></div>
+    <div class="clearix"></div>
 @endsection
 @section('script')
     <script>

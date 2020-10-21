@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 
 use App\Models\Frontend\Cart;
 use App\Models\Frontend\Order;
+use App\Models\Region;
 use Session;
 use Auth;
 use App\User;
-
+use App\Traits\ApiResponse;
 use DB;
 Use Image;
 Use File;
@@ -18,7 +19,7 @@ use DataTables;
 
 class OrderController extends Controller
 {
-
+    use ApiResponse;
     public function __construct()
     {
         $this->middleware('auth');
@@ -35,12 +36,17 @@ class OrderController extends Controller
 
         $user =User::find($user_id);
         //$user->order->latest()->first();
+        $regions = Region::all();
+        return view('frontend.pages.checkout.index',compact('user','regions'));
+    }
 
-        return view('frontend.pages.checkout.index',compact('user'));
+    public function region(){
+        $region = Region::all();
+        return $this->success($region);
     }
 
     //ajax_table
-    public function ajax_checkout_table(){
+    public function ajax_checkout_page_productcost(){
 
         return view('frontend.pages.checkout.partials.ajax_checkout_table');
     }
@@ -94,10 +100,10 @@ class OrderController extends Controller
             })
            
             ->addColumn('OrderDetails',function ($row){
-                return view('backend.pages.order.action-orderDetails',compact('row'));
+                return view('frontend.pages.order.action-orderDetails',compact('row'));
             }) 
             ->addColumn('action',function ($row){
-                return view('backend.pages.order.action',compact('row'));
+                return view('frontend.pages.order.action',compact('row'));
             })
             ->rawColumns(['OrderDetails','action'])
             ->make(true);
@@ -115,7 +121,7 @@ class OrderController extends Controller
             $order_carts_items = Cart::where('order_id',$order_id)->get();
             //$cart_product->
             //order_details =Order::where('user_id',);
-            return view('backend.pages.order.order_details',compact('user_order','order_carts_items'));
+            return view('frontend.pages.order.order_details',compact('user_order','order_carts_items'));
 
 
         // return redirect()->round('shop');

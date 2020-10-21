@@ -7,7 +7,7 @@
         @endphp
         @foreach (App\Models\Frontend\Cart::totalCarts() as $cart)
         <tr>
-          <td class="text-center" style="max-width: 130px;"><a href=""> <img style="max-width: 75%; class="img-thumbnail" title="iPhone" alt="iPhone" src="{{ asset('img/product/'.$cart->product->product_images->first()->link) }}"></a></td>
+          <td class="text-center" style="max-width: 130px;"><a href=""> <img style="max-width: 75%;" class="img-thumbnail" title="iPhone" alt="iPhone" src="{{ asset('img/product/'.$cart->product->product_images->first()->link) }}"></a></td>
           <td class="text-left"><a href="" >{{ $cart->product->product_title }}</a></td>  
           <td class="text-right">x {{!! $cart->product_quantity !!}}</td>
           <td class="text-right">{{ $cart->product->offer_price }} Taka</td>

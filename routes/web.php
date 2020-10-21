@@ -38,6 +38,11 @@ Route::get('/shop/all-product','Frontend\testfrontendController@allProduct')->na
 Route::get('/shop/carts','Frontend\CartController@index')->name('cart.index'); 
 
 //checkout-controller
+Route::group(['prefix' => 'api/checkout','auth'=>'web'], function(){
+
+    Route::get('/ajax_checkout_page', 'Frontend\OrderController@ajax_checkout_page_productcost')->name('ajaxcheckoutproductcost');
+
+  });  
 Route::get('/checkout','Frontend\OrderController@index')->name('checkout'); 
 Route::post('/checkout/store','Frontend\OrderController@store')->name('checkout.store'); 
 
@@ -46,11 +51,11 @@ Route::get('/shop/invoice','Frontend\OrderController@invoice')->name('invoice');
 //user-order-list
 Route::group([ 'prefix'=>'user/order', 'namespace'=>'Frontend'], function () {
     Route::get('/list','OrderController@orderindex')->name('orderindex.user');
-    Route::get('/orderDetails/{id}','OrderController@orderDetails')->name('orderDetail');
+    Route::get('/orderDetails/{id}','OrderController@orderDetails')->name('userorderDetail');
     Route::get('/synctable','OrderController@syncTable')->name('order.synctable');
-    Route::get('/edit/{id}','OrderController@edit')->name('order.edt');
-    Route::post('/update/{id}','OrderController@update')->name('order.update');
-    Route::get('/destroy/{id}','OrderController@destroy')->name('order.delete');
+    // Route::get('/edit/{id}','OrderController@edit')->name('order.edt');
+    // Route::post('/update/{id}','OrderController@update')->name('order.update');
+    // Route::get('/destroy/{id}','OrderController@destroy')->name('order.delete');
 });
 
 
@@ -71,7 +76,7 @@ Route::get('/shop/about-us', function () {
 //Route::get('/', function () { return view('welcome'); });
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', function () {
     return view('backend.layouts.app');
 });
@@ -126,6 +131,10 @@ Route::group([ 'prefix'=>'admin/product', 'namespace'=>'Backend\Product'], funct
 Route::group([ 'prefix'=>'admin/product/quantity', 'namespace'=>'Backend\Product'], function () {
     Route::get('/list','ProductController@quantity_index')->name('product.quantity.index');
 });
+
+Route::group([ 'prefix'=>'admin/region', 'namespace'=>'Backend\Region'], function () {
+    Route::get('/list','RegionCntroller@index')->name('region.index');
+  });
 
 Route::group([ 'prefix'=>'admin/order', 'namespace'=>'Backend\Order'], function () {
     Route::get('/list','OrderController@index')->name('order.index');

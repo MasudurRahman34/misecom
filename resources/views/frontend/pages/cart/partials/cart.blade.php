@@ -9,6 +9,7 @@
             
         </button> 
         <ul class="dropdown-menu pull-right cart-dropdown-menu" id="ajax_header_cart">
+            {{-- ajax_header_cart --}}
             
         </ul>
     </div>

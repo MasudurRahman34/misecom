@@ -23,11 +23,14 @@
  
 <!-- Container -->
 <div class="container-fluid invoice-container">
-    <div class="btn-group btn-group-sm d-print-none d-flex justify-content-center"> 
+    <div class="btn-group btn-group-sm d-print-none "> 
         <a href="javascript:window.print()" class="btn btn-light border text-black-50 shadow-none">
           <i class="fa fa-print"></i> Print</a> 
           <a href="{{ route('shop') }}" class="btn btn-light border text-black-50 shadow-none">
-            <i class="fa fa-download"></i> home</a> </div>
+            <i class="fa fa-download"></i> home</a> 
+            <a href="{{ route('orderindex.user') }}" class="btn btn-light border text-black-50 shadow-none">
+              <i class="fa fa-download"></i>Order List</a> 
+      </div>
     <!-- Header -->
   <header>
   <div class="row align-items-center">
