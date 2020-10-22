@@ -140,7 +140,9 @@
                     
                     success: function (data) {
                         //let $rout = '{{ route('carts') }}';
-                        alert(`wishlist update successfully !!`);
+                        //alert(`wishlist update successfully !!`);
+                        alertify.set('notifier','position', 'top-center');
+                        alertify.success('Item delete from Wishlist');
                         location.reload();
                         $("#changeid").load(" #changeid > *");
                         $("#update_table_id").load(" #update_table_id > *");
@@ -159,25 +161,55 @@
             });
         };
 
+    //    function product_size(){
+        //var size="";
+            $(".product_quantity").on('change', function () {
+                //alert('ok')
+                var quantity =$(this).find('option:selected').attr('id');
+                var size = $(this).val();
+                
+                console.log(size);
+                console.log(quantity);
+                addtocart(size);
+                if(quantity<=10){
+                   // $(".addtocart").css(display, none);
+                   function alert_msg() {  
+
+                    alertify.set('notifier','position', 'top-center');
+                    alertify.alert('out of stock-Try other size').setHeader('This Size is out of Stock'); 
+                    
+                    }
+                    alert_msg();
+                }
+               
+      
+            });   
+        // }  
+
         //all-general-view        
-        function addtocart(){
-            $('.addtocart-btn').on("click",function (e) { 
+        function addtocart(size){
+            $('.addtocart-btn').on("click",function (e) {  
                 var id = $(this).attr('id');
                 console.log(id);
                 //e.preventDefault();
                 //alert(" product " +id+ " is added to card");
                 var url = "{{ url('/') }}";
+            
+                alert(size);
                 $.ajax({
                     type: "Post",
                     url: url+"/api/carts/store",
                     data: {
                         product_id:id,
+                        product_size:size,
                     },
                     
                     success: function (data) {
             
                         //let $rout = '{{ route('carts') }}';
-                        alert(`added to card`);
+                        //alert(`added to card`);
+                        alertify.set('notifier','position', 'top-center');
+                        alertify.success('Item added to Cart');
                         $("#changeid").load(" #changeid > *");
                         $("#update_table_id").load(" #update_table_id > *");
                         $("#cart-total").html(data.totalItems);
@@ -215,7 +247,9 @@
                     
                     success: function (data) {
                         //let $rout = '{{ route('carts') }}';
-                        alert(`Cart Items Removed !!`);
+                        //alert(`Cart Items Removed !!`);
+                        alertify.set('notifier','position', 'top-center');
+                        alertify.success('Item removed from cart');
                         // location.reload();
                         $("#changeid").load(" #changeid > *");
                         $("#update_table_id").load(" #update_table_id > *");
@@ -229,8 +263,7 @@
         };
 
 
-
-        
+ 
         //show-product
         function singleProductDetails_addtocart(){
             $('.show-product-addtocart-btn').on("click",function (e) { 
@@ -256,7 +289,9 @@
                     success: function (data) {
             
                         //let $rout = '{{ route('carts') }}';
-                        alert(`Item added to cart successfully !!`);
+                        //alert(`Item added to cart successfully !!`);
+                        alertify.set('notifier','position', 'top-center');
+                        alertify.success('Item add to Cart');
                         $("#changeid").load(" #changeid > *");
                         $("#update_table_id").load(" #update_table_id > *");
                         $("#cart-total").html(data.totalItems);
@@ -293,7 +328,9 @@
                     },
                     success: function (data) {
                         //let $rout = '{{ route('carts') }}';
-                        alert(`Cart update successfully !!`);
+                        //alert(`Cart update successfully !!`);
+                        alertify.set('notifier','position', 'top-center');
+                        alertify.success('Item delete from Cart');
                         location.reload();
                         $("#changeid").load(" #changeid > *");
                         $("#update_table_id").load(" #update_table_id > *");
@@ -336,7 +373,9 @@
                     },
                     success: function (data) {
                         //let $rout = '{{ route('carts') }}';
-                        alert(`Carts Update Successfully !!`);
+                        //alert(`Carts Update Successfully !!`);
+                        alertify.set('notifier','position', 'top-center');
+                        alertify.success('Item Cart Updated');
                         //location.reload();
                         $("#changeid").load(" #changeid > *");
                         $("#update_table_id").load(" #update_table_id > *");
@@ -441,7 +480,9 @@
                     success: function (response) {
                     console.log(response);
                     if(response){
-                        alert('your order is complate. Thank You');
+                        //alert('your order is complate. Thank You');
+                        alertify.set('notifier','position', 'top-center');
+                        alertify.success('Order Complate Sucessfully. You item will be shipped in 24 hour. Thank You ');
                          var url = "<?php echo URL::to('shop/invoice'); ?>";
                          //window.open(url, '_blank');
                          setTimeout(function () {
@@ -464,7 +505,7 @@
         cart_update();
         cart_delete();
         addtoWishlist();
-        addtocart();
+        // addtocart();
         singleProductDetails_addtocart();
         deleteAddtocart();
         deleteWishlist();
