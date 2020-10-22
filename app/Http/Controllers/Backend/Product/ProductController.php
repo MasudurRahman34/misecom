@@ -125,6 +125,12 @@ use imageUpload;
         $data= Product::all();
         return $data_table_render = DataTables::of($data)
             ->addIndexColumn()
+            ->editColumn('product_image', function($raw){
+                $url= URL::to('/img/product/'.$raw->product_images->link);
+                 $img='<img src='.$url.' border="0" width="40" class="img-rounded" align="center" />';
+                 return $img;
+
+            })
             ->addColumn('action',function ($row){
                 return view('backend.pages.product.action',compact('row'));
         })

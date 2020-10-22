@@ -11,7 +11,15 @@
 
 
 <!-- JavaScript -->
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+{{-- <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script> --}}
+
+<!-- include the script -->
+<script src="{{ asset('frontend/alertifyjs/alertify.min.js') }}"></script>
+ Include CSS
+<!-- include the style -->
+<link rel="stylesheet" href="{{ asset('frontend/alertifyjs/css/alertify.min.css') }}" />
+<!-- include a theme -->
+<link rel="stylesheet" href="{{ asset('frontend/alertifyjs/css/themes/default.min.css') }}" />
 {{-- <script data-cfasync="false" src="{{ asset('frontend/js/script.js') }}"></script> --}}
 
 {{-- bootstap-js --}}
@@ -91,8 +99,9 @@
                     success: function (data) {
                         
                         //let $rout = '{{ route('carts') }}';
-                        alert(`Item added to your wishlist !!`);
-                        
+                        //alert(`Item added to your wishlist !!`);
+                        alertify.set('notifier','position', 'top-center');
+                        alertify.success('Item added to Wishlist');
                         $("#changeid").load(" #changeid > *");
                         $("#update_table_id").load(" #update_table_id > *");
                         $("#wishlist-total").load(" #wishlist-total > *");
@@ -241,7 +250,7 @@
                     data: {
                         product_id:id,
                         product_quantity:product_quantity,
-                        //product_size: $('#product_size option:selected').val(),
+                        product_size: $('#product_size option:selected').val(),
                     },
                     
                     success: function (data) {

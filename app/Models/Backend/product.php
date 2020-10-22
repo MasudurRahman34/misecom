@@ -11,6 +11,7 @@ use App\Models\Backend\Supplier;
 use App\Models\Backend\Category;
 use App\Models\Backend\Fabrics;
 use App\Models\Backend\Images;
+use App\Models\Backend\ProductVariant;
 
 
 class Product extends Model
@@ -64,7 +65,10 @@ class Product extends Model
     {
       return $this->belongsTo(Section::class);
     }
-
+    public function product_variant()
+    {
+      return $this->hasMany(ProductVariant::class,'product_id','id');
+    }
 
 
 }

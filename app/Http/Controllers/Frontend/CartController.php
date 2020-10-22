@@ -51,7 +51,9 @@ class CartController extends Controller
     {
         
     $this->validate($request, [
-        'product_id' => 'required'
+        'product_id' => 'required',
+        // 'product_size' => 'required',
+        
       ],
       [
         'product_id.required' => 'Please give a product'
@@ -83,6 +85,8 @@ class CartController extends Controller
         
         $cart->ip_address = request()->ip();
         $cart->product_id = $request->product_id;
+        // $cart->product_size = $request->product_size;
+        
         $cart->save();
       }
       $totalItems= Cart::totalItems();
@@ -121,6 +125,7 @@ class CartController extends Controller
       //reduce duplicate entry by add to cart
       if (!is_null($cart)) {
         $cart->product_quantity = $request->product_quantity;
+        $cart->product_size = $request->product_size;
         $cart->save();
       }else {
 
@@ -133,6 +138,7 @@ class CartController extends Controller
           $cart->ip_address = request()->ip();
           $cart->product_id = $request->product_id;
           $cart->product_quantity = $request->product_quantity;
+          $cart->product_size = $request->product_size;
           $cart->save();
       }
       $totalItems= Cart::totalItems();
@@ -181,6 +187,7 @@ class CartController extends Controller
       $cart = Cart::find($id);
       if (!is_null($cart)) {
         $cart->product_quantity = $request->product_quantity;
+        $cart->product_size = $request->product_size;
         $cart->save();
       }else {
         return redirect()->route('carts');

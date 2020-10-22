@@ -30,6 +30,7 @@
                         <th>sku</th>
                         <th>Title</th>
                         <th>desctoption</th>
+                        <th>image</th>
                         <th>Sell Price</th>
                         {{-- <th>Created Date</th> --}}
                         <th>Action</th>
@@ -251,6 +252,7 @@
                     { data: 'sku', name: 'sku' },
                     { data: 'product_title', name: 'product_title' },
                     { data: 'product_description', name: 'product_description' },
+                    { data: 'product_image', name: 'product_image' },
                     { data: 'sell_price', name: 'sell_price' },
                     { data: 'action', name: 'action' }
                 ]
