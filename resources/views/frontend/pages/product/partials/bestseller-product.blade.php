@@ -19,6 +19,7 @@
                                     <button type="button" class="wishlist wishlist-btn" id="{{ $product->id }}" value="{{ $product->id }}" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
                                     <button type="button" class="addtocart-btn" id="{{ $product->id }}" value="{{ $product->id }}" >Add to Bag </button>
                                     <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" ><i class="fa fa-exchange"></i></button>
+<<<<<<< Updated upstream
                                 </div> --}}
                                 <div class="button-group">
                                     <button type="button" class="wishlist wishlist-btn" id="{{ $product->id }}" value="{{ $product->id }}" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
@@ -39,6 +40,8 @@
                                     {{-- <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" > --}}
                                         
                                     </button>
+=======
+>>>>>>> Stashed changes
                                 </div>
                             </div>
                             <div class="caption product-detail">
