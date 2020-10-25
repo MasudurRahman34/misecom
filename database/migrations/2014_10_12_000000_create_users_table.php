@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone_num')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
@@ -32,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->string('Billing_Details_post_code')->nullable();
             $table->string('Billing_Details_country')->nullable();
             $table->string('Billing_Details_region')->nullable();
+            $table->tinyInteger('is_admin')->default(0)->comment('1=admin');
 
             $table->rememberToken();
             //soft-delete

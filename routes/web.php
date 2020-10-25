@@ -77,16 +77,20 @@ Route::get('/shop/about-us', function () {
 
 Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin', function () {
-    return view('backend.layouts.app');
-});
-Route::get('/admin/dashboard', function () {
-    return view('backend.pages.dashboard.index');
+Route::group(['middleware' => 'admin','auth'], function () {
+    Route::get('/admin', function () {
+        return view('backend.pages.dashboard.index');
+    });
 });
 
-Route::get('/admin/datatable', function () {
-    return view('backend.pages.datatable');
-});
+
+// Route::get('/admin/dashboard', function () {
+//     return view('backend.pages.dashboard.index');
+// });
+
+// Route::get('/admin/datatable', function () {
+//     return view('backend.pages.datatable');
+// });
 //user list
     Route::get('admin/users', ['uses'=>'backend\UserController@index', 'as'=>'users.index']);
 
