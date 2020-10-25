@@ -1109,7 +1109,7 @@ h2.price {
 }
 .product-thumb .button-group .wishlist, .product-thumb .button-group .compare {
 	height: 32px;
-	width: 32px;
+	width: 50px;
 	background: #fe5723;
 	padding: 0;
 }

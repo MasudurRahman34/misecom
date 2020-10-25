@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Frontend\Order;
 use App\Models\Frontend\Cart;
+use App\Models\Backend\ProductVariant;
 
 use Auth;
 
@@ -52,7 +53,7 @@ class CartController extends Controller
         
     $this->validate($request, [
         'product_id' => 'required',
-        // 'product_size' => 'required',
+         'product_size' => 'required',
         
       ],
       [
@@ -74,6 +75,10 @@ class CartController extends Controller
   
       //reduce duplicate entry by add to cart
       if (!is_null($cart)) {
+        $product= ProductVariant::where('product_id',$request->product_id);
+        $product->decrement('quantity',1);
+        //$product->save();
+
         $cart->increment('product_quantity');
       }else {
 
@@ -85,7 +90,13 @@ class CartController extends Controller
         
         $cart->ip_address = request()->ip();
         $cart->product_id = $request->product_id;
-        // $cart->product_size = $request->product_size;
+        $cart->product_size = $request->product_size;
+
+        if(!is_null($request->product_id)){
+          $product= ProductVariant::where('product_id',$request->product_id);
+          $product->decrement('quantity',1);
+          //$product->save();
+        }
         
         $cart->save();
       }
