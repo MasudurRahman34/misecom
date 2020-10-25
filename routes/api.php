@@ -103,6 +103,13 @@ Route::group([ 'prefix'=>'admin/product/quantity', 'namespace'=>'Backend\Product
     Route::get('/destroy/{id}','ProductController@quantity_destroy')->name('product.quantity.delete');
     
 });
+
+Route::group([ 'prefix'=>'admin/product/image', 'namespace'=>'Backend\Product'], function () {
+  Route::post('/store','ProductImageController@store')->name('product.image.store');
+    Route::get('/synctable','ProductImageController@syncTable')->name('product.image.syncTable');
+    Route::get('/destroy/{id}','ProductImageController@destroy')->name('product.image.delete');
+});
+
 Route::group([ 'prefix'=>'admin/region', 'namespace'=>'Backend\Region'], function () {
   Route::post('/store','RegionCntroller@store')->name('region.store');
   Route::get('/synctable','RegionCntroller@syncTable')->name('region.synctable');
