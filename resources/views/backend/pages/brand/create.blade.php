@@ -274,6 +274,7 @@ $(document).ready(function () {
                     url:url+"/"+id,
                     success:function(result) {
                         $('#name').val(result.data.name);
+                        $('#section_id').val(result.data.section_id);
                         $('#status').val(result.data.status);
                         //$('#thumbnail_image').val(result.data.thumbnail_image);
                         $('#modal-preview').attr('src', SITEURL +'/img/product/brand/thumbnail/'+result.data.thumbnail_image);

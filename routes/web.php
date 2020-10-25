@@ -127,9 +127,13 @@ Route::group([ 'prefix'=>'admin/categories', 'namespace'=>'Backend\Catagory'], f
 Route::group([ 'prefix'=>'admin/product', 'namespace'=>'Backend\Product'], function () {
     Route::get('/list','ProductController@index')->name('products.index');
 });
-
+//quantity
 Route::group([ 'prefix'=>'admin/product/quantity', 'namespace'=>'Backend\Product'], function () {
     Route::get('/list','ProductController@quantity_index')->name('product.quantity.index');
+});
+//image
+Route::group([ 'prefix'=>'admin/product/image', 'namespace'=>'Backend\Product'], function () {
+    Route::get('/list','ProductImageController@index')->name('product.image');
 });
 
 Route::group([ 'prefix'=>'admin/region', 'namespace'=>'Backend\Region'], function () {

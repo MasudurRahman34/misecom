@@ -37,6 +37,8 @@ class Product extends Model
   public static $rules = [
 
     'product_title'=>'required','string','max:255',
+    'catagory_id'=>'required','numeric',
+    'brand_id'=>'required','numeric',
 
   ];
 
@@ -50,11 +52,11 @@ class Product extends Model
     }
     public function suppliers()
     {
-      return $this->belongsTo(Supplier::class);
+      return $this->belongsTo(Supplier::class,'supplier_id');
     }
     public function fabrics()
     {
-      return $this->belongsTo(Fabrics::class);
+      return $this->belongsTo(Fabrics::class,'fabric_id');
     }
     public function product_images()
     {

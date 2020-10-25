@@ -147,8 +147,15 @@
                         <a href="{{ route('products.index', []) }}">
                             <span class="pcoded-mtext">Manage product</span>
                         </a>
+                    </li>
+                    <li>
                         <a href="{{ route('product.quantity.index', []) }}">
                             <span class="pcoded-mtext">Product Quantity</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('product.image')}}">
+                        <span class="pcoded-mtext">Product Image</span>
                         </a>
                     </li>
                    

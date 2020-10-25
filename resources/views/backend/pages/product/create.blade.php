@@ -27,11 +27,17 @@
                     <thead>
                     <tr>
                         <th></th>
-                        <th>sku</th>
+                        <th>Sku</th>
+                        <th>Catagory</th>
                         <th>Title</th>
                         <th>desctoption</th>
-                        <th>image</th>
-                        <th>Sell Price</th>
+                        <th>Buying price</th>
+                        <th>Selling Price</th>
+                        <th>Offer</th>
+                        <th>Sleeve</th>
+                        <th>Color</th>
+                        <th>Fabric</th>
+                        <th>Supplier</th>
                         {{-- <th>Created Date</th> --}}
                         <th>Action</th>
                     </tr>
@@ -49,7 +55,7 @@
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <form action="javascipt::void(0)" id="product_form" enctype="multipart/form-data">
+                          <form action="javascipt::void(0)" id="myform" enctype="multipart/form-data">
                           {{-- <form action="{{route('products.store')}}" id="product_form" method="post" enctype="multipart/form-data"> --}}
                             {{-- @csrf --}}
                             <div class="modal-body">
@@ -189,28 +195,21 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12">
+                                    {{-- <div class="col-sm-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5>Image Upload</h5>
-                                                {{-- <div class="card-header-right">
-                                                    <ul class="list-unstyled card-option">
-                                                        <li><i class="feather icon-maximize full-card"></i></li>
-                                                        <li><i class="feather icon-minus minimize-card"></i></li>
-                                                        <li><i class="feather icon-trash-2 close-card"></i></li>
-                                                    </ul>
-                                                </div> --}}
                                             </div>
                                             <div class="card-block">
                                                 <input type="file" name="images[]" id="images" class="filer_input1" multiple="multiple">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" id="submit" class="btn btn-primary" id="submit">Save</button>
+                                <button type="submit" class="btn btn-primary" id="submit">Save</button>
                             </div>
                           </form>
                                     
@@ -232,7 +231,7 @@
     {{-- <script src="'public\backend\files\assets\pages\jquery.filer\js\jquery.filer.min.js'"></script>
     <script src="..\files\assets\pages\filer\custom-filer.js" type="text/javascript"></script> --}}
     <script>
-       
+         dataDismiss();
 
         var table= $('#sampleTable').DataTable({
                 dom: 'lBfrtip',
@@ -250,19 +249,36 @@
                 columns:[
                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                     { data: 'sku', name: 'sku' },
+                    { data: 'categories.name', name: 'categories.name' },
                     { data: 'product_title', name: 'product_title' },
                     { data: 'product_description', name: 'product_description' },
-                    { data: 'product_image', name: 'product_image' },
+                  
+                    { data: 'buy_price', name: 'buy_price' },
                     { data: 'sell_price', name: 'sell_price' },
+                    { data: 'offer_price', name: 'offer_price' },
+                    { data: 'sleeve', name: 'sleeve' },
+                    { data: 'color', name: 'color' },
+                    { data: 'fabrics.name', name: 'fabrics.name' },
+                    { data: 'suppliers.official_name', official_name: 'suppliers.name' },
                     { data: 'action', name: 'action' }
                 ]
             });
 
             //submit function
-            $('#product_form').submit(function(e) {
+            $('#myform').submit(function(e) {
                 e.preventDefault();
                
                 var id=$('#submit').val();
+                var catagory_id=$('#catagory_id').val();
+                var brand_id=$('#brand_id').val();
+                if(catagory_id=="--Please Select--"){
+                        alert('Please Select catagory');
+                        return true;
+                }
+                if(brand_id=="--Please Select--"){
+                    alert('please select brand');
+                    return true;
+                }
                 var from_data= new FormData(this)
 
                 $.ajaxSetup({
@@ -287,9 +303,9 @@
                         console.log(result);
                         if (result.error==false) {
                             successNotification();
-                           // removeUpdateProperty("catagory");
-                            document.getElementById("product_form").reset();
-                            $('.jFiler-items').empty();
+                           removeUpdateProperty("product");
+                            //document.getElementById("product_form").reset();
+                            //$('.jFiler-items').empty();
                         }
                         if(result.error==true){
                             getError(result.message);
@@ -299,53 +315,73 @@
                 });
             });
             //edit view
-            function editProduct(id)
+            function btnEdit(id)
             {
-                setUpdateProperty(id, "Brand");
-                var url="{{url('/admin/products/edit')}}";
+                setUpdateProperty(id, "product","product","submit");
+                var url="{{url('/api/admin/product/edit')}}";
                 $.ajax({
                     type:'GET',
                     url:url+"/"+id,
                     success:function(data) {
                         $('#product_title').val(data.product_title);
                         $('#product_description').val(data.product_description);
-                        $('#Price').val(data.Price);
+                        $('#sell_price').val(data.sell_price);
+                        $('#buy_price').val(data.buy_price);
+                        $('#offer').val(data.offer);
+                        $('#description').val(data.description);
+                        //$('#section_id').val(data.section_id);
+                        $('#catagory_id').val(data.catagory_id);
+                        $('#brand_id').val(data.brand_id);
+                        $('#supplier_id').val(data.supplier_id);
+                        $('#fabric_id').val(data.fabric_id);
+                        $('#color').val(data.color);
+                        $('#sleeve').val(data.sleeve);
+                        $('#status').val(data.status);
                         console.log(data);
                         }
                      });
              }
             //delete
-            function deleteProduct(id) {
-                var url = "{{url('/admin/products/delete')}}";
+            function btnDelete(id) {
+                var url = "{{url('/api/admin/product/delete')}}";
                 $.ajax({
                    url:url+"/"+id,
                    type:"GET",
                    dataType:"json",
                    success:function(data) {
                        console.log(data)
-                       alert('data success fully deleted');
-                       table.draw();
+                       if(data.error){
+                        alert('product Image Found ! Please Delete Product Image First');
+                       }else{
+                           alert('product deleted');
+                           table.draw();
+                       }
+                       //
+                      
                    }
                })
             } 
             
             function setCatagoryBrand(res){
+                var option="<option>--Please Select--</option>";
                 if(res.data.catagories!=""){
-                            var option="<option>--Please Select--</option>";
+                            
                             res.data.catagories.forEach(element => {
                             option+=("<option value='"+element.id+"'>"+element.name+"</option>");
                         });
-                        $('#catagory_id').html(option);
+                        
                         }
-                       
+                        $('#catagory_id').html(option);
+                       var br_option="<option>--Please Select--</option>";
                         if(res.data.brands!=""){
-                            br_option="<option>--Please Select--</option>";
+                            
                             res.data.brands.forEach(element => {
                             br_option+=("<option value='"+element.id+"'>"+element.name+"</option>");
                         });              
                        
-                        $('#brand_id').html(br_option);
+                       
                         }
+                        $('#brand_id').html(br_option);
             } 
 
             $('#section_id').change(function(e){

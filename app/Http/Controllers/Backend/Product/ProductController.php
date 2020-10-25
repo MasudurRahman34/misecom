@@ -21,7 +21,10 @@ use App\Traits\ApiResponse;
 use App\Traits\imageUpload;
 use DataTables;
 use Session;
+use Illuminate\Support\Facades\URL;
 use DB;
+use Image;
+Use File;
 
 //end-use-add
 
@@ -80,29 +83,26 @@ use imageUpload;
                     $product->brand_id = $request->brand_id;
                     $product->save();
 
-                    if(($request->images !=null) && (count($request->images)>0)){
-                        $i = 0;
-                        foreach($request->images as $image){
-                                //$image= $request->file('image');
-                            ini_set('memory_limit','256M');
-                            $img= time().$i.'.'.$image->getClientOriginalExtension();
-                            $thumbnailPath='img/product';
-                            $image->move($thumbnailPath,$img);
+                    // if(($request->images !=null) && (count($request->images)>0)){
+                    //     $i = 0;
+                    //     foreach($request->images as $image){
+                    //             //$image= $request->file('image');
+                    //         ini_set('memory_limit','256M');
+                    //         $img= time().$i.'.'.$image->getClientOriginalExtension();
+                    //         $thumbnailPath='img/product';
+                    //         $image->move($thumbnailPath,$img);
                 
-                            $im= new Images;
-                            $im->type= 'product';
-                            $im->type_id=$product->id;
-                            $im->name=$product->product_title;
-                            $im->link=$img;
-                            $im->status=0;
-                            $im->Save();
-                            $i++;
-                        }
-                    }
+                    //         $im= new Images;
+                    //         $im->type= 'product';
+                    //         $im->type_id=$product->id;
+                    //         $im->name=$product->product_title;
+                    //         $im->link=$img;
+                    //         $im->status=0;
+                    //         $im->Save();
+                    //         $i++;
+                    //     }
+                    // }
 
-                    
-                    // Session::flash('alert-danger', 'danger');
-                    // Session::flash('alert-warning', 'warning');
                     DB::commit();
                     return $this->success($product);
 
@@ -122,15 +122,9 @@ use imageUpload;
     public function syncTable()
     {
         //product-show
-        $data= Product::all();
+        $data= Product::with(['categories','fabrics','suppliers'])->get();
         return $data_table_render = DataTables::of($data)
             ->addIndexColumn()
-            ->editColumn('product_image', function($raw){
-                $url= URL::to('/img/product/'.$raw->product_images->link);
-                 $img='<img src='.$url.' border="0" width="40" class="img-rounded" align="center" />';
-                 return $img;
-
-            })
             ->addColumn('action',function ($row){
                 return view('backend.pages.product.action',compact('row'));
         })
@@ -160,7 +154,63 @@ use imageUpload;
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), Product::$rules);
+        if($validator->fails()) {
+            return $this->error($validator->errors(),200);
+        }else{
+            DB::beginTransaction();
+                try {
+                
+                    $product= Product::find($id);
+                    $product->product_title = $request->product_title;
+                    $product->meta_title =Str::slug( $request->product_title );
+                    $product->url =Str::slug( $request->product_title );
+                    $product->product_description = $request->product_description;
+                    $product->meta_description = $request->meta_description;
+                    $product->slug = Str::slug( $request->product_title ).'-'.rand(1,2000);
+                    $product->sleeve= $request->sleeve;
+                    $product->color= $request->color;
+
+                    $product->buy_price = $request->buy_price;
+                    $product->sell_price = $request->sell_price;
+                    $product->offer = $request->offer;
+                    $product->offer_price =($request->sell_price)-(($request->sell_price * $request->offer)/100);
+
+                    $product->category_id = $request->catagory_id;
+                    $product->supplier_id = 1;//$request->supplier_id;
+                    $product->fabric_id = 1;//$request->fabric_id;
+                    $product->status = $request->status;
+                    $product->brand_id = $request->brand_id;
+                    $product->update();
+
+                    // if(($request->images !=null) && (count($request->images)>0)){
+                    //     $i = 0;
+                    //     foreach($request->images as $image){
+                    //             //$image= $request->file('image');
+                    //         ini_set('memory_limit','256M');
+                    //         $img= time().$i.'.'.$image->getClientOriginalExtension();
+                    //         $thumbnailPath='img/product';
+                    //         $image->move($thumbnailPath,$img);
+                
+                    //         $im= new Images;
+                    //         $im->type= 'product';
+                    //         $im->type_id=$product->id;
+                    //         $im->name=$product->product_title;
+                    //         $im->link=$img;
+                    //         $im->status=0;
+                    //         $im->Save();
+                    //         $i++;
+                    //     }
+                    // }
+
+                    DB::commit();
+                    return $this->success($product);
+
+                } catch (Exception $e) {
+                    DB::rollBack();
+                    return $this->error($e->getMessage(),200);
+                }
+            }     
     }
 
     /**
@@ -171,12 +221,15 @@ use imageUpload;
      */
     public function destroy($id)
     {
-        $productDelete = Product::find($id);
-        if($productDelete){
-            $productDelete->delete();
-            return response()->json(["success"=>'data deleted',201]);
+        $product = Product::find($id);
+       
+        if(count($product->product_images)>0){
+            return response()->json(["error"=>'Product Image found ! Please Delete product Image First',201]);
+        }else{
+            $product->delete();
+            return response()->json(["success"=>'product Deleted']);
         }
-        return response()->json(["error"=>'error',422]);
+        
     }
     
     //quantity
