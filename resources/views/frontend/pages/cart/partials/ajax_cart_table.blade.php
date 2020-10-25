@@ -8,6 +8,7 @@
             <td>#</td>
             <td class="text-center">Image</td>
             <td class="text-left">Product Name</td>
+            <td class="text-left">Product Size</td>
           
             <td class="text-left">Quantity</td>
             <td class="text-right">Unit Price</td>
@@ -35,6 +36,7 @@
             {{-- {{ route('products.show', $cart->product->slug) }} --}}
   
             <td class="text-left"><a href="{{ route('product.show',[$cart->product->slug] ) }}" >{{ $cart->product->product_title }}</a></td>
+            <td class="text-left">{{ $cart->product_size }}</td>
             <td class="text-left">
               <div style="width: max-content; max-width: 200px;" class="input-group btn-block">
                 {{-- <input type="hidden" id="cart_id" value="{{ $cart->id }} "> --}}

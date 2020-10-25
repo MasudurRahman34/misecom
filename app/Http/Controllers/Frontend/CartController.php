@@ -63,11 +63,14 @@ class CartController extends Controller
       if (Auth::check()) {
         $cart = Cart::where('user_id', Auth::id())
         ->where('product_id', $request->product_id)
+        ->where('product_size', $request->product_size)
         ->where('order_id', NULL)
         ->first();
       }else {
         $cart = Cart::where('ip_address', request()->ip())
         ->where('product_id', $request->product_id)
+        ->where('product_size', $request->product_size)
+
         ->where('order_id', NULL)
         ->first();
       }
@@ -75,11 +78,13 @@ class CartController extends Controller
   
       //reduce duplicate entry by add to cart
       if (!is_null($cart)) {
+        $cart->product_size= $request->product_size;
+        $cart->save();
+        $cart->increment('product_quantity');
         $product= ProductVariant::where('product_id',$request->product_id);
         $product->decrement('quantity',1);
         //$product->save();
-
-        $cart->increment('product_quantity');
+        
       }else {
 
         $cart = new Cart();

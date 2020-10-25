@@ -70,12 +70,10 @@
                         <div class="col-sm-10">
                           <select class="form-control" id="Billing_Details_zone_id" name="Billing_Details_zone_id">
                             <option value=""> --- Please Select --- </option>
-                            <option selected="selected" value="3121">Al Hasakah</option>
-                            <option value="3122">Al Ladhiqiyah</option>
-                            <option value="3123">Al Qunaytirah</option>
-                            <option value="3124">Ar Raqqah</option>
-                            <option value="3125">As Suwayda</option>
-                            <option value="3126">Dara</option>
+                            @foreach ($regions as $region)
+
+                            <option value="{{$region->region_name}}" >{{$region->region_name}}</option>
+                          @endforeach
                           
                           </select>
                         </div>
@@ -108,7 +106,7 @@
                         <label for="input-shipping-zone" class="col-sm-3 control-label">Region / State</label>
                         <div class="col-sm-9">
                           <select class="form-control" id="Delivery_Details_zone_id" name="Delivery_Details_zone_id">
-                            <option value="">please select you shipping location</option>
+                            <option value="">Shipping location</option>
                             @foreach ($regions as $region)
 
                               <option value="{{$region->id}}" id="{{$region->id}}" data-id="{{ $region->shipping_cost }}">{{$region->region_name}}</option>
@@ -129,12 +127,12 @@
                           <input type="text" class="form-control" id="Delivery_Details_address_1" placeholder="Address 1" value="" name="Delivery_Details_address_1">
                         </div>
                       </div>
-                      <div class="form-group">
+                      {{-- <div class="form-group">
                         <label for="input-shipping-address-2" class="col-sm-3 control-label">Address 2</label>
                         <div class="col-sm-9">
                           <input type="text" class="form-control" id="Delivery_Details_address_2" placeholder="Address 2" value="" name="Delivery_Details_address_2">
                         </div>
-                      </div>
+                      </div> --}}
                       <div class="form-group required">
                         <label for="input-shipping-phone_number" class="col-sm-3 control-label"> Contact Number</label>
                         <div class="col-sm-9">

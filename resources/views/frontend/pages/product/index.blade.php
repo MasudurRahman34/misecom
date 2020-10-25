@@ -4,8 +4,8 @@
         <div id="tabs" class="customtab-wrapper">
             <ul class='customtab-inner'>
                 <li class='tab'><a href="#tab-latest">Latest</a></li>
-                <li class='tab'><a href="#tab-special">Special</a></li>
-                <li class='tab'><a href="#tab-bestseller">Bestseller</a></li>
+                {{-- <li class='tab'><a href="#tab-special">Special</a></li>
+                <li class='tab'><a href="#tab-bestseller">Bestseller</a></li> --}}
             </ul>
         </div>
 
@@ -13,12 +13,12 @@
         @include('frontend.pages.product.partials.latest-product')
         <!-- tab-latest-end-->
         {{-- tab-special --}}
-        @include('frontend.pages.product.partials.special-product')
+        {{-- @include('frontend.pages.product.partials.special-product')
             
          <!-- tab-special-->
 
         <!-- tab-bestseller-->
-        @include('frontend.pages.product.partials.bestseller-product')
+        @include('frontend.pages.product.partials.bestseller-product') --}}
             
         <!-- tab-bestseller-->
 

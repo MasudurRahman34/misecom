@@ -153,7 +153,7 @@ class OrderController extends Controller
             'delivery_clint_name'  => 'required',
             'delivery_clint_phone_number'  => 'required',
             'delivery_shipping_address_1'  => 'required',
-            'delivery_shipping_address_2'  => 'required',
+            // 'delivery_shipping_address_2'  => 'required',
             'delivery_city'  => 'required',
             'payment_option'  => 'required',
             'delivery_region'  => 'required',

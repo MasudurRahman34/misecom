@@ -5,6 +5,7 @@
                 <tr>
                 <td>no</td>
                 <td class="text-left">Product Name</td>
+                <td class="text-left">Product Size</td>
                 <td class="text-right">Quantity</td>
                 <td class="text-right">Unit Price</td>
                 <td class="text-right">Total</td>
@@ -18,6 +19,7 @@
             <tr>
                 <td>  {{ $loop->index + 1 }}</td>
                 <td class="text-left"><a href="">{{ $cart->product->product_title }}</a></td>
+                <td class="text-left"><a href="">{{ $cart->product_size }}</a></td>
             
                 <td class="text-right">  x {{  $cart->product_quantity  }}  </td>
                 <td class="text-right">  {{ $cart->product->offer_price }} Taka  </td>
@@ -33,7 +35,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <td class="text-right" colspan="4"><strong>Sub-Total + vat(15%):</strong></td>
+                <td class="text-right" colspan="5"><strong>Sub-Total + vat(15%):</strong></td>
                 @php
                     $vat=15/100;
                         $vat_amount=$vat* $total_price;
@@ -45,11 +47,11 @@
                 <td class="text-right"><b id="sub_total">{{ $sub_total }}</b> Taka</td>
             </tr>
             <tr>
-                <td class="text-right" data-toggle="tooltip" data-placement="top" title="Pleace select shipping region to see total price" colspan="4"><strong>Flat Shipping Rate:</strong></td>
+                <td class="text-right" data-toggle="tooltip" data-placement="top" title="Pleace select shipping region to see total price" colspan="5"><strong>Flat Shipping Rate:</strong></td>
                 <td class="text-right"><b id="shipping_cost"></b>Taka</td>
             </tr>
             <tr>
-                <td class="text-right" colspan="4"><strong>Total:</strong></td>
+                <td class="text-right" colspan="5"><strong>Total:</strong></td>
                 <td class="text-right total_amount" id=""  data-toggle="tooltip" data-placement="top" title="add shipping region in shipping section"><b id="total"></b> Taka</td>
             </tr>
             </tfoot>

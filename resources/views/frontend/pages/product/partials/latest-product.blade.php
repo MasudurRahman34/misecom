@@ -2,7 +2,7 @@
     <div class="box">
         <div id="latest-slidertab" class="row owl-carousel product-slider">
             
-
+            <input type="hidden" id="h_quantity"  name="h_quantity" value="" >
                 @foreach ($products as $product)
                         <div class="item">
                         <div class="product-thumb transition">
@@ -14,26 +14,27 @@
 
                                 @php $i--; @endphp
                             @endforeach
-                            <div class="button-group">
-                                    <button type="button" class="wishlist wishlist-btn" id="{{ $product->id }}" value="{{ $product->id }}" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
-                                    {{-- <button type="button" class="addtocart-btn" id="{{ $product->id }}" value="{{ $product->id }}" >Add to Bag </button> --}}
-                                    <button type="button" class="addtocart-btn" id="{{ $product->id }}" value="{{ $product->id }}" > Add to Bag
-                                         
-                                    </button>
-                                    <button type="btn btn-info" class=" compare">
-                                        <select name="quantity" id="product_quantity" class="product_quantity" style="background-color:orangered">
-                                            <option value="">..</option>
-                                            @foreach ($product->product_variant as $option)
-                                            <option value="{{$option->size}}" id="{{$option->quantity}}" >{{$option->size}}</option> 
-                                            @endforeach
-                                        </select>
-                                    </button>
-                                    {{-- <input type="hidden"  id="addtocarthidden"> --}}
-                                    {{-- <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" > --}}
-                                        
-                                    </button>
+                                    <div class="button-group">
+                                            <button type="button" class="wishlist wishlist-btn" id="{{ $product->id }}" value="{{ $product->id }}" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
+                                            {{-- <button type="button" class="addtocart-btn" id="{{ $product->id }}" value="{{ $product->id }}" >Add to Bag </button> --}}
+                                            <button type="button" class="addtocart-btn" id="{{ $product->id }}" value="{{ $product->id }}" > Add to Bag
+                                                
+                                                
+                                            </button>
+                                            <button type="btn btn-info" class=" compare">
+                                                <select name="quantity" id="product_quantity" class="product_quantity" style="background-color:orangered">
+                                                    <option value="" selected> Reset </option>
+                                                    @foreach ($product->product_variant as $option)
+                                                    <option value="{{$option->size}}" id="{{$option->quantity}}" >{{$option->size}}</option> 
+                                                    @endforeach
+                                                </select>
+                                            </button>
+                                            {{-- <input type="hidden"  id="addtocarthidden"> --}}
+                                            {{-- <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" > --}}
+                                                
+                                            </button>
+                                        </div>
                                 </div>
-                            </div>
                             <div class="caption product-detail">
                                 <h4 class="product-name"><a href="{{ route('product.show',[$product->slug] ) }}" class="ex2" title="iPod Classic">{{ $product->product_title }}</a></h4>
                                 <p class="price product-price"> Taka {{ $product->offer_price }}<span class="price-tax">Ex Tax: $100.00 </span></p>

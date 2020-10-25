@@ -163,14 +163,24 @@
 
     //    function product_size(){
         //var size="";
+
+        function pq(){
+            
+            var size="";
+
             $(".product_quantity").on('change', function () {
                 //alert('ok')
                 var quantity =$(this).find('option:selected').attr('id');
-                var size = $(this).val();
+                var size = $(this).val()
+               // console.log(size);
+             $("#h_quantity").val(size);
+             var s=$('#h_quantity').val();
                 
-                console.log(size);
+            //console.log(s);
                 console.log(quantity);
-                addtocart(size);
+
+               
+
                 if(quantity<=10){
                    // $(".addtocart").css(display, none);
                    function alert_msg() {  
@@ -181,22 +191,46 @@
                     }
                     alert_msg();
                 }
-               
+                //addtocart(size);
       
             });   
-        // }  
+           
+        }  
+        pq();
 
         //all-general-view        
-        function addtocart(size){
+        function addtocart(){
             $('.addtocart-btn').on("click",function (e) {  
-                var id = $(this).attr('id');
-                console.log(id);
-                //e.preventDefault();
-                //alert(" product " +id+ " is added to card");
-                var url = "{{ url('/') }}";
+
+                var id   = $(this).attr('id');
+
+                var size =$('#h_quantity').val();
+                if (size==="" || size === undefined || size === null ){
+                    //alert('ok');
+                    alertify.set('notifier','position', 'top-right');
+                        alertify.warning('Please Select a Size before click Added to Cart');
+                }else{
+
+
+                    // var size="";
+                    // $( ".product_quantity" ).each(function( ) {
+
+                    //     console.log( $('option:selected').val() );
+                    // });
+                
+                    // var size = $("h_quantity").val();
+                
+                    //var size = $("option:selected").val();
+                    //console.log(size);
+                    //return true;
+                    //console.log(size);
+                    //e.preventDefault();
+                    //alert(" product " +id+ " is added to card");
+                    var url = "{{ url('/') }}";
             
-                alert(size);
-                $.ajax({
+                    //alert(size);
+
+                    $.ajax({
                     type: "Post",
                     url: url+"/api/carts/store",
                     data: {
@@ -205,11 +239,13 @@
                     },
                     
                     success: function (data) {
+                        //data = JSON.parse(data);
             
                         //let $rout = '{{ route('carts') }}';
                         //alert(`added to card`);
-                        alertify.set('notifier','position', 'top-center');
-                        alertify.success('Item added to Cart');
+                        $("#h_quantity").val("");
+                        alertify.set('notifier','position', 'top-right');
+                        alertify.success('Item added to Cart <br />To checkout <a href="{{ route('carts') }}">go to checkout page</a>');
                         $("#changeid").load(" #changeid > *");
                         $("#update_table_id").load(" #update_table_id > *");
                         $("#cart-total").html(data.totalItems);
@@ -229,6 +265,10 @@
                         //  }
                     }
                 });
+
+                }
+                
+                
             });
         };
         //all-general-view
@@ -406,10 +446,18 @@
                 var price = $("#Delivery_Details_zone_id").find(':selected').data('id');
                 //price =$("#shipping_cost").val(price);
                 $("#shipping_cost").text(price);
-                alert('your shipping price is '+price+' taka');
+
+                //alert('your shipping price is '+price+' taka');
+                alertify.set('notifier','position', 'top-right');
+                alertify.success('your shipping Price is '+price+' taka');
 
                  var sub_total = $("#sub_total").text();
                  var int_price =parseInt(price);
+                 if (price==="" || price === undefined || price === null ){
+                    //alert('ok');
+                    alertify.set('notifier','position', 'top-right');
+                        alertify.warning('Please Select a shipptin region to complate your Order');
+                }
                  var int_total= parseInt(sub_total);
 
                 //  var sub_total = $("#hidden_sub_total").val();
@@ -447,13 +495,24 @@
 
 
                 let total_amount = $('.total_amount').attr('id'); 
+
+               
                 console.log(total_amount);
-                //set Url
-                let url = "{{ url('/') }}";
+                if(Billing_Details_name==="" || Billing_Details_address===""|| Billing_Details_contact_number===""|| Billing_Details_city==="" || 
+                    Billing_Details_zone_id===""||Delivery_Details_name==="" || Delivery_Details_address_1==="" || Delivery_Details_address_2==="" ||
+                    Delivery_Details_phone_number==="" ||Delivery_Details_city===""||Delivery_Details_postcode==="" || Delivery_Details_zone_id===""||
+                     payment_method===""){
+
+                    alertify.set('notifier','position', 'top-right');
+                        alertify.warning('Please Fill up all required information And Select a shipptin region to complate your Order');
+                }else{
+
+                       //set Url
+                    let url = "{{ url('/') }}";
 
                     //set ajax for post request
 
-                $.ajax({
+                    $.ajax({
                     type: "post",
                     url: url+"/checkout/store/",
                     data:{
@@ -476,36 +535,39 @@
                         payment_option:payment_method,
 
                     },
-                
+
                     success: function (response) {
                     console.log(response);
                     if(response){
                         //alert('your order is complate. Thank You');
                         alertify.set('notifier','position', 'top-center');
                         alertify.success('Order Complate Sucessfully. You item will be shipped in 24 hour. Thank You ');
-                         var url = "<?php echo URL::to('shop/invoice'); ?>";
-                         //window.open(url, '_blank');
-                         setTimeout(function () {
+                        var url = "<?php echo URL::to('shop/invoice'); ?>";
+                        //window.open(url, '_blank');
+                        setTimeout(function () {
                             window.location.replace(url); //will redirect to your blog page (an ex: blog.html)
                             }, 500);
 
-                         //window.location.replace(url);
-                         //window.open(url);
+                        //window.location.replace(url);
+                        //window.open(url);
                         //$("#divid").load(" #divid > *");
                         $("#changeid").load(" #changeid > *");
                         //$("#update_table_id").load(" #update_table_id > *");
 
                         }
-                    
+
                     }
-                });
+                    });
+
+                }
+             
             });  
         };
         checkout(); 
         cart_update();
         cart_delete();
         addtoWishlist();
-        // addtocart();
+        addtocart();
         singleProductDetails_addtocart();
         deleteAddtocart();
         deleteWishlist();

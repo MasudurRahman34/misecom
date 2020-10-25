@@ -15,11 +15,31 @@
                 
                                     @php $i--; @endphp
                                 @endforeach
-                                <div class="button-group">
+                                {{-- <div class="button-group">
                                         <button type="button" class="wishlist wishlist-btn" id="{{ $product->id }}" value="{{ $product->id }}" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
                                         <button type="button" class="addtocart-btn" id="{{ $product->id }}" value="{{ $product->id }}" >Add to Bag </button>
                                         <input type="hidden"  id="addtocarthidden">
                                         <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" ><i class="fa fa-exchange"></i></button>
+                                    </div> --}}
+                                    <div class="button-group">
+                                        <button type="button" class="wishlist wishlist-btn" id="{{ $product->id }}" value="{{ $product->id }}" data-toggle="tooltip" title="Add to Wish List" ><i class="fa fa-heart-o"></i></button>
+                                        {{-- <button type="button" class="addtocart-btn" id="{{ $product->id }}" value="{{ $product->id }}" >Add to Bag </button> --}}
+                                        <button type="button" class="addtocart-btn" id="{{ $product->id }}" value="{{ $product->id }}" > Add to Bag
+                                            
+                                            
+                                        </button>
+                                        <button type="btn btn-info" class=" compare">
+                                            <select name="quantity" id="product_quantity" class="product_quantity" style="background-color:orangered">
+                                                {{-- <option value="">..</option> --}}
+                                                @foreach ($product->product_variant as $option)
+                                                <option value="{{$option->size}}" id="{{$option->quantity}}" >{{$option->size}}</option> 
+                                                @endforeach
+                                            </select>
+                                        </button>
+                                        {{-- <input type="hidden"  id="addtocarthidden"> --}}
+                                        {{-- <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product" > --}}
+                                            
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="caption product-detail">

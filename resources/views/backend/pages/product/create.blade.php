@@ -30,7 +30,7 @@
                         <th>sku</th>
                         <th>Title</th>
                         <th>desctoption</th>
-                        <th>image</th>
+                        {{-- <th>image</th> --}}
                         <th>Sell Price</th>
                         {{-- <th>Created Date</th> --}}
                         <th>Action</th>
@@ -221,7 +221,53 @@
                     </div>
                   </div>
             </div>
-
+            <div class="col-md-12">
+                <div class="modal fade bd-example-modal-lg" id="image" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"> Product image</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            
+                                <div class="modal-body">
+                                    <div class="row">
+                                        {{-- @php $i = 1; @endphp
+                                        @foreach ($product->product_images as $image)
+                                            @if ($i > 0)
+                                                <div class="image product-imageblock"> <a href="{{ route('product.show',[$product->slug] ) }}"><img src="{{ asset('img/product/'.$image->link ) }}" alt="iPod Classic" title="iPod Classic" class="img-responsive" /> </a>
+                                            @endif
+            
+                                            @php $i--; @endphp
+                                        @endforeach --}}
+                                                </div>
+                                    
+                                    
+                                   
+                                    
+                                    
+                                    
+                                   
+                                    
+                                   
+                                    
+                                   
+                                   
+                                    
+                                   
+                                   
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+            </div>
+            </div>
         </div>
     </div>
 </div>
@@ -252,7 +298,7 @@
                     { data: 'sku', name: 'sku' },
                     { data: 'product_title', name: 'product_title' },
                     { data: 'product_description', name: 'product_description' },
-                    { data: 'product_image', name: 'product_image' },
+                    // { data: 'product_image', name: 'product_image' },
                     { data: 'sell_price', name: 'sell_price' },
                     { data: 'action', name: 'action' }
                 ]
@@ -363,6 +409,7 @@
                 //console.log(section_id);
 
             });
+            
     </script>
 
     @endsection

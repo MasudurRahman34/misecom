@@ -93,6 +93,7 @@
           @foreach ($order_carts_items as $cart)
           <tr>
             <td class="col border-0">{{ $cart->product->product_title }}</td>
+            <td class="col border-0">{{ $cart->product_size }}</td>
             {{-- <td class="col-1 border-0">{{ $cart->product->sku }}</td> --}}
            
             <td class="col text-1 border-0">ok</td>
@@ -125,11 +126,11 @@
 
 
             <tr>
-              <td colspan="4" class="bg-light-2 text-right"><strong>Sub Total: </strong></td>
+              <td colspan="5" class="bg-light-2 text-right"><strong>Sub Total: </strong></td>
               <td class="bg-light-2 text-right">{!! $total_price !!}</td>
             </tr>
             <tr>
-              <td colspan="4" class="bg-light-2 text-right"><strong>Tax (15%):</strong></td>
+              <td colspan="5" class="bg-light-2 text-right"><strong>Tax (15%):</strong></td>
               @php
               $vat=15/100;
               $vat_amount=$vat* $total_price;
@@ -140,10 +141,10 @@
               <td class="bg-light-2 text-right">{{ $vat_amount }} </td>
             </tr>
             <tr>
-              <td colspan="4" class="bg-light-2 text-right"><strong>Flat Shipping Rate:</strong></td>
+              <td colspan="5" class="bg-light-2 text-right"><strong>Flat Shipping Rate:</strong></td>
               <td class="bg-light-2 text-right">50.00 </td>
             </tr><tr>
-              <td colspan="4" class="bg-light-2 text-right"><strong>Total:</strong></td>
+              <td colspan="5" class="bg-light-2 text-right"><strong>Total:</strong></td>
               <td class="bg-light-2 text-right">{{ $total }}</td>
             </tr>
           </tbody>

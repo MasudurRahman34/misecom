@@ -98,9 +98,9 @@
                                     <div class="form-group">
                                         <select class="custom-select" required id="product_size" name="product_size">
                                             <option value=""> select product size</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach ($product->product_variant as $option)
+                                            <option value="{{$option->size}}" id="{{$option->quantity}}" >{{$option->size}}</option> 
+                                            @endforeach
                                         </select>
                                         <hr>
                                         <div class="invalid-feedback">Select you product details</div>
