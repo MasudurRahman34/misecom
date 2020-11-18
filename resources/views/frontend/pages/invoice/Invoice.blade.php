@@ -67,6 +67,14 @@
      {{ $user_order->payment_option }}<br>
       </address>
     </div>
+    <div class="col-sm-6 text-sm-right order-sm-1"> <strong>Shipping Address:</strong>
+      <address>
+    {{ $user_order->delivery_clint_name }}<br>
+    {{ $user_order->delivery_clint_phone_number }} <br>
+    {{ $user_order->delivery_shipping_address_1 }},{{ $user_order->delivery_shipping_address_2 }},{{ $user_order->delivery_city }}
+    ,{{ $user_order->delivery_post_code }}
+      </address>
+    </div>
   </div>
   <div class="card">
     <div class="card-header px-2 py-0">

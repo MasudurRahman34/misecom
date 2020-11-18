@@ -149,20 +149,20 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
-            'delivery_clint_name'  => 'required',
-            'delivery_clint_phone_number'  => 'required',
-            'delivery_shipping_address_1'  => 'required',
-            // 'delivery_shipping_address_2'  => 'required',
-            'delivery_city'  => 'required',
-            'payment_option'  => 'required',
-            'delivery_region'  => 'required',
-            // 'Billing_Details_name'  => 'required',
-            'Billing_Details_address'  => 'required',
-            'Billing_Details_contact_number'  => 'required',
-            'Billing_Details_contact_number'  => 'required',
+        // $this->validate($request, [
+        //     'delivery_clint_name'  => 'required',
+        //     'delivery_clint_phone_number'  => 'required',
+        //     'delivery_shipping_address_1'  => 'required',
+        //     // 'delivery_shipping_address_2'  => 'required',
+        //     'delivery_city'  => 'required',
+        //     'payment_option'  => 'required',
+        //     'delivery_region'  => 'required',
+        //     // 'Billing_Details_name'  => 'required',
+        //     'Billing_Details_address'  => 'required',
+        //     'Billing_Details_contact_number'  => 'required',
+        //     'Billing_Details_contact_number'  => 'required',
 
-          ]);
+        //   ]);
         //
         $user_id= Auth::guard('web')->user()->id;
     

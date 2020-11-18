@@ -514,7 +514,7 @@
 
                     $.ajax({
                     type: "post",
-                    url: url+"/checkout/store/",
+                    url: url+"/order/store/",
                     data:{
                         total_amount:total_amount,
                         //billing-data
@@ -542,8 +542,10 @@
                         //alert('your order is complate. Thank You');
                         alertify.set('notifier','position', 'top-center');
                         alertify.success('Order Complate Sucessfully. You item will be shipped in 24 hour. Thank You ');
-                        var url = "<?php echo URL::to('shop/invoice'); ?>";
+                        //var url = "<?php echo URL::to('shop/invoice'); ?>";
                         //window.open(url, '_blank');
+                        var url ="{{ url('/') }}";
+                            url = url+'/order/invoice';
                         setTimeout(function () {
                             window.location.replace(url); //will redirect to your blog page (an ex: blog.html)
                             }, 500);

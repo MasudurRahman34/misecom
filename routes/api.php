@@ -93,6 +93,9 @@ Route::group([ 'prefix'=>'admin/product', 'namespace'=>'Backend\Product'], funct
     Route::get('/edit/{id}','ProductController@edit')->name('products.edt');
     Route::post('/update/{id}','ProductController@update')->name('products.update');
     Route::get('/delete/{id}','ProductController@destroy')->name('products.delete');
+
+    Route::get('/image/{id}','ProductController@productimage')->name('products.image');
+
     
 });
 Route::group([ 'prefix'=>'admin/product/quantity', 'namespace'=>'Backend\Product'], function () {

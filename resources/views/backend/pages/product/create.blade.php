@@ -30,7 +30,7 @@
                         <th>sku</th>
                         <th>Title</th>
                         <th>desctoption</th>
-                        {{-- <th>image</th> --}}
+                        <th>image</th>
                         <th>Sell Price</th>
                         {{-- <th>Created Date</th> --}}
                         <th>Action</th>
@@ -113,6 +113,9 @@
                                             <label for="recipient-name" class="form-control-label">Catagory</label>
                                             <select class="form-control m-b-1" id="catagory_id" name="catagory_id" required>
                                                 <option>--Please Select--</option>
+                                                @foreach ($categories as $categorie)
+                                                <option value="{{$categorie->id}}">{{$categorie->name}}</option>
+                                            @endforeach
                                                 
                                             </select>
                                         </div>
@@ -122,9 +125,9 @@
                                             <label for="recipient-name" class="form-control-label">Brand</label>
                                             <select class="form-control m-b-1" id="brand_id" name="brand_id" required>
                                                 <option>--Please Select--</option>
-                                                {{-- @foreach ($brands as $brand)
+                                                @foreach ($brands as $brand)
                                                     <option value="{{$brand->id}}">{{$brand->name}}</option>
-                                                @endforeach --}}
+                                                @endforeach
                                                 
                                             </select>
                                         </div>
@@ -233,9 +236,11 @@
                             </div>
                             
                                 <div class="modal-body">
-                                    <div class="row">
-                                        {{-- @php $i = 1; @endphp
-                                        @foreach ($product->product_images as $image)
+                                    <div class="row" id="Product_Image">
+
+                                        
+                                        {{-- @php $i = 1; @endphp --}}
+                                        {{-- @foreach ($product->product_images as $image)
                                             @if ($i > 0)
                                                 <div class="image product-imageblock"> <a href="{{ route('product.show',[$product->slug] ) }}"><img src="{{ asset('img/product/'.$image->link ) }}" alt="iPod Classic" title="iPod Classic" class="img-responsive" /> </a>
                                             @endif
@@ -298,7 +303,7 @@
                     { data: 'sku', name: 'sku' },
                     { data: 'product_title', name: 'product_title' },
                     { data: 'product_description', name: 'product_description' },
-                    // { data: 'product_image', name: 'product_image' },
+                    { data: 'product_image', name: 'product_image' },
                     { data: 'sell_price', name: 'sell_price' },
                     { data: 'action', name: 'action' }
                 ]
@@ -409,6 +414,26 @@
                 //console.log(section_id);
 
             });
+            // function product_image(id)
+            // {
+               
+            //     var url="{{url('/api/admin/product/image')}}";
+            //     $.ajax({
+            //         type:'GET',
+            //         url:url+"/"+id,
+            //         success:function(result) {
+            //             // $('#name').val(result.data.name);
+            //             // $('#status').val(result.data.status);
+            //             //$('#thumbnail_image').val(result.data.thumbnail_image);
+                       
+            //             console.log(result.id);
+
+                            
+            //             }
+                        
+                        
+            //          });
+            //  }
             
     </script>
 

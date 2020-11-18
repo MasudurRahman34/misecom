@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\User;
 use App\Models\Frontend\Cart;
+use App\Models\Region;
 
 class Order extends Model
 {
@@ -18,5 +19,9 @@ class Order extends Model
     public function user()
     {
       return $this->belongsTo(User::class);
+    }
+    public function region()
+    {
+      return $this->belongsTo(Region::class);
     }
 }

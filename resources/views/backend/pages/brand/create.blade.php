@@ -299,6 +299,8 @@ $(document).ready(function () {
                 alert("Data is Safe");
             }
             }   
+
+           
     </script>
 
     @endsection

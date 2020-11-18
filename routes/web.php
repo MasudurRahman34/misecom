@@ -44,9 +44,9 @@ Route::group(['prefix' => 'api/checkout','auth'=>'web'], function(){
 
   });  
 Route::get('/checkout','Frontend\OrderController@index')->name('checkout'); 
-Route::post('/checkout/store','Frontend\OrderController@store')->name('checkout.store'); 
+Route::post('/order/store','Frontend\OrderController@store')->name('checkout.store'); 
 
-Route::get('/shop/invoice','Frontend\OrderController@invoice')->name('invoice'); 
+Route::get('/order/invoice','Frontend\OrderController@invoice')->name('invoice'); 
 
 //user-order-list
 Route::group([ 'prefix'=>'user/order', 'namespace'=>'Frontend'], function () {
@@ -60,20 +60,14 @@ Route::group([ 'prefix'=>'user/order', 'namespace'=>'Frontend'], function () {
 
 
 
-Route::get('/shop/contact', function () {
-    return view('frontend.pages.contact.index');
-});
-Route::get('/shop/about-us', function () {
-    return view('frontend.pages.about-us.about-us');
-});
+// Route::get('/shop/contact', function () {
+//     return view('frontend.pages.contact.index');
+// });
+// Route::get('/shop/about-us', function () {
+//     return view('frontend.pages.about-us.about-us');
+// });
 
 
-// Route::get('/shop/single-product', function () {
-//     return view('frontend.pages.product.show');
-// })->name('single.product.show');
-
-//end-frontend
-//Route::get('/', function () { return view('welcome'); });
 
 Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
